@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="filzinger.lab cube">
+  <rect width="180" height="180" rx="38" fill="#05050a"/>
+  <path d="M90 24 148 58v64L90 156l-58-34V58l58-34Z" fill="#101018" stroke="#d8ccff" stroke-opacity=".42" stroke-width="4"/>
+  <path d="M90 24v66l58-32M90 90 32 58M90 90v66" fill="none" stroke="#a78bfa" stroke-opacity=".5" stroke-width="3.4"/>
+  <circle cx="90" cy="90" r="28" fill="#8b5cf6" fill-opacity=".72"/>
+  <circle cx="90" cy="90" r="50" fill="#7c3aed" fill-opacity=".14"/>
+</svg>
