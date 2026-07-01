@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://filzinger.lab/sitemap.xml
