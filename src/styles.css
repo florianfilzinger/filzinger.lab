@@ -22,8 +22,8 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 50% 10%, rgba(124, 58, 237, 0.2), transparent 34rem),
-    radial-gradient(circle at 20% 45%, rgba(91, 33, 182, 0.12), transparent 28rem),
+    radial-gradient(circle at 50% 8%, rgba(124, 58, 237, 0.13), transparent 30rem),
+    radial-gradient(circle at 16% 42%, rgba(91, 33, 182, 0.08), transparent 26rem),
     #05050a;
 }
 
@@ -35,8 +35,8 @@ a {
 .site-shell {
   min-height: 100vh;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 18rem),
-    linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.56) 100vh);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.026), transparent 16rem),
+    linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.42) 82vh);
 }
 
 .topbar {
@@ -49,15 +49,15 @@ a {
   align-items: center;
   justify-content: space-between;
   padding: 24px clamp(20px, 5vw, 72px);
-  color: rgba(255, 255, 255, 0.86);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .brand-mark,
 .nav-links {
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(5, 5, 10, 0.68);
-  backdrop-filter: blur(18px);
-  box-shadow: 0 18px 70px rgba(0, 0, 0, 0.24);
+  background: rgba(7, 7, 13, 0.6);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.22);
 }
 
 .brand-mark {
@@ -68,7 +68,7 @@ a {
   border-radius: 999px;
   padding: 0 15px;
   font-size: 14px;
-  font-weight: 650;
+  font-weight: 620;
 }
 
 .brand-cube {
@@ -76,7 +76,7 @@ a {
   height: 14px;
   border-radius: 3px;
   background: linear-gradient(135deg, #f5f3ff, #7c3aed 48%, #111018);
-  box-shadow: 0 0 24px rgba(139, 92, 246, 0.74);
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.52);
   transform: rotate(45deg);
 }
 
@@ -94,7 +94,7 @@ a {
   padding: 10px 13px;
   font-size: 13px;
   font-weight: 620;
-  color: rgba(255, 255, 255, 0.64);
+  color: rgba(255, 255, 255, 0.58);
   transition: color 180ms ease, background 180ms ease;
 }
 
@@ -105,7 +105,7 @@ a {
 
 .hero {
   position: relative;
-  min-height: 180vh;
+  min-height: 132vh;
   overflow: hidden;
 }
 
@@ -118,12 +118,25 @@ a {
 
 .cube-stage::before {
   position: absolute;
-  inset: auto 10% 8% 10%;
-  height: 34vh;
+  inset: auto 6% 2% 6%;
+  height: 44vh;
   border-radius: 999px;
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.18), transparent 68%);
+  background:
+    radial-gradient(circle at 50% 30%, rgba(168, 85, 247, 0.18), transparent 30%),
+    radial-gradient(circle, rgba(124, 58, 237, 0.11), transparent 70%);
+  filter: blur(46px);
+  content: "";
+}
+
+.cube-stage::after {
+  position: absolute;
+  inset: 22% 18% 8%;
+  background:
+    radial-gradient(ellipse at center, rgba(255, 255, 255, 0.05), transparent 34%),
+    radial-gradient(ellipse at center, rgba(124, 58, 237, 0.09), transparent 60%);
   filter: blur(34px);
   content: "";
+  pointer-events: none;
 }
 
 .cube-stage canvas {
@@ -134,7 +147,7 @@ a {
 
 .hero-content {
   position: absolute;
-  top: clamp(160px, 22vh, 230px);
+  top: clamp(128px, 18vh, 196px);
   left: 0;
   right: 0;
   z-index: 2;
@@ -146,10 +159,10 @@ a {
 
 .eyebrow {
   margin: 0;
-  color: #a78bfa;
+  color: rgba(196, 181, 253, 0.86);
   font-size: 12px;
-  font-weight: 760;
-  letter-spacing: 0.18em;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
@@ -162,17 +175,17 @@ a {
 }
 
 .hero h1 {
-  margin-top: 22px;
-  font-size: clamp(54px, 9vw, 132px);
-  font-weight: 760;
-  line-height: 0.92;
+  margin-top: 18px;
+  font-size: clamp(50px, 8vw, 112px);
+  font-weight: 720;
+  line-height: 0.96;
 }
 
 .hero-copy {
   max-width: 680px;
-  margin: 28px auto 0;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: clamp(18px, 2.2vw, 24px);
+  margin: 24px auto 0;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: clamp(17px, 1.65vw, 22px);
   line-height: 1.55;
 }
 
@@ -180,7 +193,7 @@ a {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-top: 34px;
+  margin-top: 30px;
   pointer-events: auto;
 }
 
@@ -193,11 +206,11 @@ a {
   border-radius: 999px;
   padding: 0 20px;
   font-size: 14px;
-  font-weight: 720;
+  font-weight: 680;
 }
 
 .primary-link {
-  background: #f8f7ff;
+  background: rgba(248, 247, 255, 0.94);
   color: #080812;
 }
 
@@ -210,7 +223,7 @@ a {
 .scroll-cue {
   position: absolute;
   left: 50%;
-  top: 88vh;
+  top: 82vh;
   z-index: 4;
   color: rgba(255, 255, 255, 0.38);
   font-size: 11px;
@@ -224,8 +237,8 @@ main {
   position: relative;
   z-index: 5;
   display: grid;
-  gap: 24px;
-  padding: 0 clamp(20px, 5vw, 72px) 72px;
+  gap: 0;
+  padding: 0 clamp(20px, 5vw, 72px) 56px;
 }
 
 .content-section,
@@ -233,14 +246,14 @@ main {
 .contact-section {
   width: min(1180px, 100%);
   margin: 0 auto;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: clamp(72px, 12vw, 150px) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.085);
+  padding: clamp(58px, 8vw, 112px) 0;
 }
 
 .section-heading {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.45fr);
-  gap: clamp(28px, 8vw, 110px);
+  gap: clamp(28px, 7vw, 94px);
   align-items: start;
 }
 
@@ -248,9 +261,9 @@ main {
 .factory-section h2,
 .contact-section h2 {
   max-width: 780px;
-  font-size: clamp(36px, 6vw, 78px);
-  font-weight: 730;
-  line-height: 1.02;
+  font-size: clamp(34px, 5vw, 66px);
+  font-weight: 690;
+  line-height: 1.04;
 }
 
 .vision-grid,
@@ -258,7 +271,7 @@ main {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
-  margin-top: 58px;
+  margin-top: 42px;
 }
 
 .vision-grid p,
@@ -266,24 +279,24 @@ main {
 .factory-section p,
 .product-card p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 18px;
-  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 17px;
+  line-height: 1.68;
 }
 
 .principles {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 34px;
+  margin-top: 28px;
 }
 
 .principles span {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 999px;
   padding: 10px 14px;
-  color: rgba(255, 255, 255, 0.72);
-  background: rgba(255, 255, 255, 0.035);
+  color: rgba(255, 255, 255, 0.66);
+  background: rgba(255, 255, 255, 0.028);
   font-size: 13px;
   font-weight: 680;
 }
@@ -291,39 +304,52 @@ main {
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 58px;
+  gap: 12px;
+  margin-top: 42px;
 }
 
 .product-card {
-  min-height: 310px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  position: relative;
+  min-height: 260px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.085);
   border-radius: 8px;
-  padding: 24px;
+  padding: 22px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
+    radial-gradient(circle at 24px 24px, rgba(167, 139, 250, 0.12), transparent 8rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.062), rgba(255, 255, 255, 0.022)),
     #090910;
 }
 
+.product-card::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.09), transparent 38%);
+  content: "";
+  opacity: 0.32;
+  pointer-events: none;
+}
+
 .product-card span {
-  color: #a78bfa;
+  color: rgba(196, 181, 253, 0.82);
   font-size: 12px;
-  font-weight: 760;
-  letter-spacing: 0.14em;
+  font-weight: 700;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
 .product-card h3 {
-  margin: 76px 0 18px;
+  margin: 58px 0 16px;
   color: #fff;
-  font-size: 28px;
+  font-size: 26px;
   line-height: 1.1;
 }
 
 .factory-section {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: clamp(28px, 7vw, 92px);
+  gap: clamp(28px, 6vw, 80px);
   align-items: end;
 }
 
@@ -336,7 +362,7 @@ main {
 }
 
 .contact-section {
-  min-height: 52vh;
+  min-height: 42vh;
 }
 
 .contact-section h2 {
@@ -345,10 +371,10 @@ main {
 
 .contact-section a {
   display: inline-flex;
-  margin-top: 34px;
+  margin-top: 28px;
   color: #fff;
-  font-size: clamp(28px, 5vw, 62px);
-  font-weight: 720;
+  font-size: clamp(28px, 4.2vw, 54px);
+  font-weight: 680;
   line-height: 1;
   text-decoration: underline;
   text-decoration-color: rgba(167, 139, 250, 0.72);
@@ -366,15 +392,15 @@ main {
   }
 
   .hero {
-    min-height: 160vh;
+    min-height: 128vh;
   }
 
   .hero-content {
-    top: 128px;
+    top: 112px;
   }
 
   .hero h1 {
-    font-size: clamp(48px, 15vw, 78px);
+    font-size: clamp(44px, 14vw, 72px);
   }
 
   .hero-actions,
@@ -391,17 +417,17 @@ main {
   }
 
   .product-card {
-    min-height: 240px;
+    min-height: 220px;
   }
 
   .product-card h3 {
-    margin-top: 52px;
+    margin-top: 44px;
   }
 
   .content-section,
   .factory-section,
   .contact-section {
-    padding: 72px 0;
+    padding: 58px 0;
   }
 }
 

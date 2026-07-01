@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 import * as THREE from 'three';
 
@@ -29,7 +29,7 @@ export function App() {
     offset: ['start start', 'end start'],
   });
   const heroOpacity = useTransform(scrollYProgress, [0, 0.72, 1], [1, 0.9, 0]);
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 72]);
 
   return (
     <div className="site-shell">
@@ -53,10 +53,10 @@ export function App() {
             AI Product Studio
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.08 }}>
-            Products from the dark factory.
+            filzinger.lab builds AI products.
           </motion.h1>
           <motion.p className="hero-copy" initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.16 }}>
-            filzinger.lab baut fokussierte AI-Produkte, interne Betriebssysteme und Automatisierung, die leise im Hintergrund arbeitet.
+            Ein unabhängiges Product Studio für präzise Software, leise Automatisierung und die AI-Systeme dahinter.
           </motion.p>
           <motion.div className="hero-actions" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.24 }}>
             <a className="primary-link" href="#products">Produkte ansehen</a>
@@ -130,7 +130,7 @@ export function App() {
   );
 }
 
-function Section({ children, id, label, title }: { children: React.ReactNode; id: string; label: string; title: string }) {
+function Section({ children, id, label, title }: { children: ReactNode; id: string; label: string; title: string }) {
   return (
     <motion.section
       className="content-section"
@@ -155,12 +155,13 @@ function CubeSymbol({ progress }: { progress: MotionValue<number> }) {
   useEffect(() => {
     const mount = mountRef.current;
     if (!mount) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x05050a, 0.055);
 
-    const camera = new THREE.PerspectiveCamera(38, mount.clientWidth / mount.clientHeight, 0.1, 100);
-    camera.position.set(0, 0.15, 7.2);
+    const camera = new THREE.PerspectiveCamera(36, mount.clientWidth / mount.clientHeight, 0.1, 100);
+    camera.position.set(0, 0.1, 6.7);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -172,33 +173,33 @@ function CubeSymbol({ progress }: { progress: MotionValue<number> }) {
     scene.add(group);
 
     const metal = new THREE.MeshPhysicalMaterial({
-      color: 0x101018,
-      metalness: 0.72,
-      roughness: 0.28,
-      transmission: 0.28,
+      color: 0x14131a,
+      metalness: 0.76,
+      roughness: 0.22,
+      transmission: 0.18,
       transparent: true,
-      opacity: 0.72,
-      clearcoat: 0.55,
-      clearcoatRoughness: 0.25,
+      opacity: 0.82,
+      clearcoat: 0.72,
+      clearcoatRoughness: 0.18,
     });
-    const cube = new THREE.Mesh(new THREE.BoxGeometry(2.05, 2.05, 2.05, 12, 12, 12), metal);
+    const cube = new THREE.Mesh(new THREE.BoxGeometry(1.82, 1.82, 1.82, 8, 8, 8), metal);
     group.add(cube);
 
     const core = new THREE.Mesh(
-      new THREE.SphereGeometry(0.58, 48, 48),
-      new THREE.MeshBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.86 }),
+      new THREE.SphereGeometry(0.48, 36, 36),
+      new THREE.MeshBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.78 }),
     );
     group.add(core);
 
     const coreGlow = new THREE.Mesh(
-      new THREE.SphereGeometry(1.08, 48, 48),
-      new THREE.MeshBasicMaterial({ color: 0x7c3aed, transparent: true, opacity: 0.13, blending: THREE.AdditiveBlending }),
+      new THREE.SphereGeometry(1.35, 36, 36),
+      new THREE.MeshBasicMaterial({ color: 0x7c3aed, transparent: true, opacity: 0.11, blending: THREE.AdditiveBlending }),
     );
     group.add(coreGlow);
 
-    const count = 1200;
-    const particleGeometry = new THREE.BoxGeometry(0.035, 0.035, 0.035);
-    const particleMaterial = new THREE.MeshBasicMaterial({ color: 0xa78bfa, transparent: true, opacity: 0.58 });
+    const count = reducedMotion ? 0 : 260;
+    const particleGeometry = new THREE.BoxGeometry(0.028, 0.028, 0.028);
+    const particleMaterial = new THREE.MeshBasicMaterial({ color: 0xa78bfa, transparent: true, opacity: 0.3 });
     const particles = new THREE.InstancedMesh(particleGeometry, particleMaterial, count);
     particles.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
     group.add(particles);
@@ -209,18 +210,18 @@ function CubeSymbol({ progress }: { progress: MotionValue<number> }) {
 
     for (let index = 0; index < count; index += 1) {
       const side = Math.floor(Math.random() * 6);
-      const x = (Math.random() - 0.5) * 2.1;
-      const y = (Math.random() - 0.5) * 2.1;
-      const z = (Math.random() - 0.5) * 2.1;
+      const x = (Math.random() - 0.5) * 1.86;
+      const y = (Math.random() - 0.5) * 1.86;
+      const z = (Math.random() - 0.5) * 1.86;
       const origin = new THREE.Vector3(x, y, z);
-      if (side === 0) origin.x = 1.08;
-      if (side === 1) origin.x = -1.08;
-      if (side === 2) origin.y = 1.08;
-      if (side === 3) origin.y = -1.08;
-      if (side === 4) origin.z = 1.08;
-      if (side === 5) origin.z = -1.08;
+      if (side === 0) origin.x = 0.96;
+      if (side === 1) origin.x = -0.96;
+      if (side === 2) origin.y = 0.96;
+      if (side === 3) origin.y = -0.96;
+      if (side === 4) origin.z = 0.96;
+      if (side === 5) origin.z = -0.96;
 
-      const radius = 2.35 + Math.random() * 2.4;
+      const radius = 1.8 + Math.random() * 1.45;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
       const target = new THREE.Vector3(
@@ -233,10 +234,10 @@ function CubeSymbol({ progress }: { progress: MotionValue<number> }) {
       targets.push(target);
     }
 
-    const ambient = new THREE.AmbientLight(0xffffff, 0.38);
-    const key = new THREE.DirectionalLight(0xffffff, 2.8);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.44);
+    const key = new THREE.DirectionalLight(0xffffff, 3.1);
     key.position.set(3.5, 4.5, 5);
-    const violet = new THREE.PointLight(0x8b5cf6, 13, 9);
+    const violet = new THREE.PointLight(0x8b5cf6, 9, 8);
     violet.position.set(-1.8, 0.8, 2.6);
     const rim = new THREE.PointLight(0xffffff, 3.2, 10);
     rim.position.set(3.5, -2.4, -1.5);
@@ -249,38 +250,53 @@ function CubeSymbol({ progress }: { progress: MotionValue<number> }) {
 
     const clock = new THREE.Clock();
     let frame = 0;
+    let visible = true;
+    let lastParticlePhase = -1;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible && frame === 0) render();
+    }, { threshold: 0.02 });
+    observer.observe(mount);
 
     function render() {
-      const elapsed = clock.getElapsedTime();
-      const phase = Math.sin(Math.min(1, Math.max(0, (scroll - 0.18) / 0.64)) * Math.PI);
-      const floatY = Math.sin(elapsed * 0.55) * 0.13;
-
-      group.position.y = floatY - scroll * 0.75;
-      group.rotation.x = elapsed * 0.075 + scroll * 0.9;
-      group.rotation.y = elapsed * 0.105 + scroll * 1.35;
-      group.rotation.z = Math.sin(elapsed * 0.18) * 0.06;
-
-      cube.material.opacity = 0.72 - phase * 0.54;
-      core.scale.setScalar(1 + phase * 0.35 + Math.sin(elapsed * 1.2) * 0.025);
-      coreGlow.scale.setScalar(1 + phase * 0.65 + Math.sin(elapsed) * 0.035);
-
-      particleMaterial.opacity = 0.1 + phase * 0.54;
-      for (let index = 0; index < count; index += 1) {
-        const origin = origins[index];
-        const target = targets[index];
-        dummy.position.lerpVectors(origin, target, phase);
-        dummy.position.x += Math.sin(elapsed * 0.45 + index) * phase * 0.08;
-        dummy.position.y += Math.cos(elapsed * 0.35 + index * 0.7) * phase * 0.08;
-        const scale = 0.55 + phase * 1.1;
-        dummy.scale.setScalar(scale);
-        dummy.rotation.set(elapsed * 0.2 + index, elapsed * 0.16 + index * 0.4, elapsed * 0.12);
-        dummy.updateMatrix();
-        particles.setMatrixAt(index, dummy.matrix);
+      if (!visible || document.hidden) {
+        frame = 0;
+        return;
       }
-      particles.instanceMatrix.needsUpdate = true;
+      const elapsed = clock.getElapsedTime();
+      const phase = reducedMotion ? 0 : Math.sin(Math.min(1, Math.max(0, (scroll - 0.16) / 0.62)) * Math.PI);
+      const floatY = reducedMotion ? 0 : Math.sin(elapsed * 0.48) * 0.08;
+
+      group.position.y = floatY - scroll * 0.38;
+      group.rotation.x = elapsed * 0.045 + scroll * 0.38;
+      group.rotation.y = elapsed * 0.065 + scroll * 0.58;
+      group.rotation.z = Math.sin(elapsed * 0.15) * 0.035;
+
+      metal.opacity = 0.82 - phase * 0.28;
+      core.scale.setScalar(1 + phase * 0.18 + Math.sin(elapsed * 0.9) * 0.018);
+      coreGlow.scale.setScalar(1 + phase * 0.36 + Math.sin(elapsed * 0.7) * 0.03);
+
+      if (count && Math.abs(phase - lastParticlePhase) > 0.006) {
+        particleMaterial.opacity = 0.04 + phase * 0.26;
+        for (let index = 0; index < count; index += 1) {
+          const origin = origins[index];
+          const target = targets[index];
+          dummy.position.lerpVectors(origin, target, phase);
+          dummy.position.x += Math.sin(index) * phase * 0.045;
+          dummy.position.y += Math.cos(index * 0.7) * phase * 0.045;
+          const scale = 0.42 + phase * 0.76;
+          dummy.scale.setScalar(scale);
+          dummy.rotation.set(index, index * 0.4, elapsed * 0.04);
+          dummy.updateMatrix();
+          particles.setMatrixAt(index, dummy.matrix);
+        }
+        particles.instanceMatrix.needsUpdate = true;
+        lastParticlePhase = phase;
+      }
 
       renderer.render(scene, camera);
-      frame = window.requestAnimationFrame(render);
+      frame = reducedMotion ? 0 : window.requestAnimationFrame(render);
     }
 
     function resize() {
@@ -296,6 +312,7 @@ function CubeSymbol({ progress }: { progress: MotionValue<number> }) {
     return () => {
       window.cancelAnimationFrame(frame);
       window.removeEventListener('resize', resize);
+      observer.disconnect();
       unsubscribe();
       mount.removeChild(renderer.domElement);
       renderer.dispose();
