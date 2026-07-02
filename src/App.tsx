@@ -1,4 +1,4 @@
-import { Suspense, lazy, useRef, type ReactNode } from 'react';
+import { Suspense, lazy, useEffect, useRef, type ReactNode } from 'react';
 import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 
 const CubeSymbol = lazy(() => import('./CubeSymbol'));
@@ -46,6 +46,12 @@ const factoryLayers = [
 ];
 
 const contactEmail = 'filzinger.lab@gmail.com';
+const siteUrl = 'https://filzinger.lab';
+const homeMeta = {
+  title: 'filzinger.lab | AI Product Studio for focused digital products',
+  description: 'filzinger.lab is an AI Product Studio building focused digital products, starting with WeightCoach AI for weight, nutrition and routine tracking.',
+  path: '/',
+};
 
 export function App() {
   const heroRef = useRef<HTMLElement>(null);
@@ -57,6 +63,7 @@ export function App() {
   });
   const heroOpacity = useTransform(scrollYProgress, [0, 0.64, 1], [1, 0.96, 0]);
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 42]);
+  usePageMeta(legalPage);
 
   return (
     <div className="site-shell">
@@ -335,6 +342,38 @@ const legalContent: Record<LegalPageKey, { label: string; title: ReactNode; intr
     ],
   },
 };
+
+const legalMeta: Record<LegalPageKey, { title: string; path: string }> = {
+  impressum: { title: 'Impressum', path: '/impressum' },
+  datenschutz: { title: 'Datenschutzerklärung', path: '/datenschutz' },
+  nutzungsbedingungen: { title: 'Nutzungsbedingungen', path: '/nutzungsbedingungen' },
+};
+
+function usePageMeta(page: LegalPageKey | null) {
+  useEffect(() => {
+    const meta = page
+      ? {
+          title: `${legalMeta[page].title} | filzinger.lab`,
+          description: legalContent[page].intro,
+          path: legalMeta[page].path,
+        }
+      : homeMeta;
+    const url = `${siteUrl}${meta.path}`;
+
+    document.title = meta.title;
+    setMetaContent('meta[name="description"]', meta.description);
+    setMetaContent('link[rel="canonical"]', url, 'href');
+    setMetaContent('meta[property="og:url"]', url);
+    setMetaContent('meta[property="og:title"]', meta.title);
+    setMetaContent('meta[property="og:description"]', meta.description);
+    setMetaContent('meta[name="twitter:title"]', meta.title);
+    setMetaContent('meta[name="twitter:description"]', meta.description);
+  }, [page]);
+}
+
+function setMetaContent(selector: string, value: string, attribute = 'content') {
+  document.querySelector(selector)?.setAttribute(attribute, value);
+}
 
 function getLegalPage(pathname: string): LegalPageKey | null {
   const cleanPath = pathname.replace(/\/$/, '');
