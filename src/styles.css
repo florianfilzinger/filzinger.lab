@@ -351,8 +351,10 @@ a:focus-visible {
   position: absolute;
   left: 50%;
   top: auto;
-  bottom: 6vh;
+  bottom: calc(6vh + 28px);
   z-index: 4;
+  padding: 0 12px;
+  background: rgba(5, 5, 10, 0.72);
   color: rgba(255, 255, 255, 0.26);
   font-size: 11px;
   font-weight: 760;
