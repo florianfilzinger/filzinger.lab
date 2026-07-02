@@ -57,8 +57,11 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       opacity: 0.94,
       clearcoat: 0.96,
       clearcoatRoughness: 0.24,
+      polygonOffset: true,
+      polygonOffsetFactor: 1,
+      polygonOffsetUnits: 1,
     });
-    const edgeMaterial = new THREE.LineBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.18 });
+    const edgeMaterial = new THREE.LineBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.18, depthWrite: false });
     const shell = new THREE.Group();
     const shellMeshes: THREE.Mesh[] = [];
     const shellEdges: THREE.LineSegments[] = [];

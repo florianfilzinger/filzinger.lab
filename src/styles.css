@@ -268,6 +268,12 @@ a:focus-visible {
   text-transform: uppercase;
 }
 
+.hero .eyebrow {
+  text-shadow:
+    0 1px 12px rgba(5, 5, 10, 0.92),
+    0 0 16px rgba(167, 139, 250, 0.22);
+}
+
 .hero h1,
 .content-section h2,
 .factory-section h2,
