@@ -61,7 +61,7 @@ export function App() {
     <div className="site-shell">
       <header className="topbar">
         <a className="brand-mark" href="/" aria-label="filzinger.lab Start">
-          <CubeMark />
+          <img className="brand-cube" src="/favicon.svg" alt="" aria-hidden="true" />
           filzinger.lab
         </a>
         <nav className="nav-links" aria-label="Hauptnavigation">
@@ -357,17 +357,6 @@ function LegalPage({ page }: { page: LegalPageKey }) {
         </div>
       </section>
     </main>
-  );
-}
-
-function CubeMark() {
-  return (
-    <svg className="brand-cube" viewBox="0 0 32 32" aria-hidden="true">
-      <path className="brand-cube-shell" d="M16 3.5 27 10v12L16 28.5 5 22V10L16 3.5Z" />
-      <path className="brand-cube-lines" d="M16 3.5V16l11-6M16 16 5 10M16 16v12.5" />
-      <circle className="brand-cube-core" cx="16" cy="16" r="4.8" />
-      <circle className="brand-cube-glow" cx="16" cy="16" r="8.8" />
-    </svg>
   );
 }
 

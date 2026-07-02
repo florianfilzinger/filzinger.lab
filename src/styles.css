@@ -96,32 +96,10 @@ a:focus-visible {
 }
 
 .brand-cube {
-  width: 20px;
-  height: 20px;
-  overflow: visible;
+  width: 21px;
+  height: 21px;
+  display: block;
   filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.34));
-}
-
-.brand-cube-shell {
-  fill: rgba(13, 13, 22, 0.92);
-  stroke: rgba(216, 204, 255, 0.5);
-  stroke-width: 0.8;
-}
-
-.brand-cube-lines {
-  fill: none;
-  stroke: rgba(167, 139, 250, 0.62);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 0.72;
-}
-
-.brand-cube-core {
-  fill: rgba(139, 92, 246, 0.74);
-}
-
-.brand-cube-glow {
-  fill: rgba(124, 58, 237, 0.16);
 }
 
 .nav-links {
