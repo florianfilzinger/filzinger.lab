@@ -27,16 +27,16 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
     scene.add(group);
 
     const metal = new THREE.MeshPhysicalMaterial({
-      color: 0x0f0f16,
-      metalness: 0.88,
-      roughness: 0.24,
+      color: 0x0b0b11,
+      metalness: 0.92,
+      roughness: 0.28,
       transmission: 0,
       transparent: true,
       opacity: 0.94,
-      clearcoat: 0.92,
-      clearcoatRoughness: 0.16,
+      clearcoat: 0.96,
+      clearcoatRoughness: 0.18,
     });
-    const edgeMaterial = new THREE.LineBasicMaterial({ color: 0xd8ccff, transparent: true, opacity: 0.32 });
+    const edgeMaterial = new THREE.LineBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.18 });
     const shell = new THREE.Group();
     const shellMeshes: THREE.Mesh[] = [];
     const shellEdges: THREE.LineSegments[] = [];
@@ -79,22 +79,32 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       addRail([rail, depth, hole], [-railOffset, side * face, 0]);
     }
 
-    const coreMaterial = new THREE.MeshBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.62 });
-    const core = new THREE.Mesh(new THREE.BoxGeometry(0.74, 0.74, 0.74), coreMaterial);
+    const coreMaterial = new THREE.MeshBasicMaterial({ color: 0xc4b5fd, transparent: true, opacity: 0.78 });
+    const core = new THREE.Mesh(new THREE.BoxGeometry(0.66, 0.66, 0.66), coreMaterial);
     group.add(core);
 
     const coreGlowMaterial = new THREE.MeshBasicMaterial({
       color: 0x7c3aed,
       transparent: true,
-      opacity: 0.11,
+      opacity: 0.22,
       blending: THREE.AdditiveBlending,
     });
-    const coreGlow = new THREE.Mesh(new THREE.BoxGeometry(1.42, 1.42, 1.42), coreGlowMaterial);
+    const coreGlow = new THREE.Mesh(new THREE.BoxGeometry(1.56, 1.56, 1.56), coreGlowMaterial);
     group.add(coreGlow);
 
-    const count = reducedMotion ? 0 : 88;
-    const particleGeometry = new THREE.BoxGeometry(0.024, 0.024, 0.024);
-    const particleMaterial = new THREE.MeshBasicMaterial({ color: 0xbda8ff, transparent: true, opacity: 0.14 });
+    const reactorHaloMaterial = new THREE.MeshBasicMaterial({
+      color: 0x9f5cff,
+      transparent: true,
+      opacity: 0.12,
+      blending: THREE.AdditiveBlending,
+      side: THREE.DoubleSide,
+    });
+    const reactorHalo = new THREE.Mesh(new THREE.PlaneGeometry(2.18, 2.18), reactorHaloMaterial);
+    group.add(reactorHalo);
+
+    const count = reducedMotion ? 0 : 128;
+    const particleGeometry = new THREE.BoxGeometry(0.032, 0.032, 0.032);
+    const particleMaterial = new THREE.MeshBasicMaterial({ color: 0xbda8ff, transparent: true, opacity: 0.16 });
     const particles = new THREE.InstancedMesh(particleGeometry, particleMaterial, count);
     particles.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
     group.add(particles);
@@ -116,7 +126,7 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       if (side === 4) origin.z = 1.2;
       if (side === 5) origin.z = -1.2;
 
-      const radius = 1.55 + Math.random() * 0.72;
+      const radius = 1.7 + Math.random() * 1.05;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
       const target = new THREE.Vector3(
@@ -129,14 +139,14 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       targets.push(target);
     }
 
-    const ambient = new THREE.AmbientLight(0xffffff, 0.5);
-    const key = new THREE.DirectionalLight(0xffffff, 3.4);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.38);
+    const key = new THREE.DirectionalLight(0xffffff, 3.1);
     key.position.set(3.2, 4.8, 4.8);
-    const violet = new THREE.PointLight(0x8b5cf6, 7.8, 8.5);
-    violet.position.set(-1.55, 0.62, 2.4);
+    const violet = new THREE.PointLight(0x8b5cf6, 12.5, 9.5);
+    violet.position.set(-1.25, 0.36, 2.2);
     const rim = new THREE.PointLight(0xffffff, 4.2, 10);
     rim.position.set(3.4, -2.1, -1.3);
-    const floorGlow = new THREE.PointLight(0x6d28d9, 2.5, 8);
+    const floorGlow = new THREE.PointLight(0x6d28d9, 5.2, 9);
     floorGlow.position.set(0, -2.4, 2.2);
     scene.add(ambient, key, violet, rim, floorGlow);
 
@@ -183,21 +193,25 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       group.rotation.z = Math.sin(elapsed * 0.1) * 0.018;
 
       metal.opacity = 0.94 - phase * 0.1;
+      edgeMaterial.opacity = 0.16 + phase * 0.1;
       shellEdges.forEach((lines) => {
         lines.visible = phase < 0.78;
       });
-      core.scale.setScalar(1 + phase * 0.08 + Math.sin(elapsed * 0.55) * 0.012);
-      coreGlow.scale.setScalar(1 + phase * 0.2 + Math.sin(elapsed * 0.5) * 0.022);
+      core.scale.setScalar(1 + phase * 0.12 + Math.sin(elapsed * 0.55) * 0.014);
+      coreGlow.scale.setScalar(1 + phase * 0.34 + Math.sin(elapsed * 0.5) * 0.03);
+      reactorHalo.lookAt(camera.position);
+      reactorHalo.scale.setScalar(1 + phase * 0.42 + Math.sin(elapsed * 0.48) * 0.025);
+      reactorHaloMaterial.opacity = 0.1 + phase * 0.12;
 
       if (count && Math.abs(phase - lastParticlePhase) > 0.006) {
-        particleMaterial.opacity = 0.03 + phase * 0.14;
+        particleMaterial.opacity = 0.035 + phase * 0.18;
         for (let index = 0; index < count; index += 1) {
           const origin = origins[index];
           const target = targets[index];
           dummy.position.lerpVectors(origin, target, phase);
           dummy.position.x += Math.sin(index) * phase * 0.025;
-          dummy.position.y += Math.cos(index * 0.7) * phase * 0.025;
-          const scale = 0.38 + phase * 0.42;
+          dummy.position.y += Math.cos(index * 0.7) * phase * 0.025 - phase * phase * (0.38 + (index % 7) * 0.035);
+          const scale = 0.34 + phase * 0.54;
           dummy.scale.setScalar(scale);
           dummy.rotation.set(index, index * 0.4, elapsed * 0.04);
           dummy.updateMatrix();
@@ -242,6 +256,8 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       coreMaterial.dispose();
       coreGlow.geometry.dispose();
       coreGlowMaterial.dispose();
+      reactorHalo.geometry.dispose();
+      reactorHaloMaterial.dispose();
     };
   }, [progress]);
 
