@@ -114,6 +114,7 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
     const clock = new THREE.Clock();
     let frame = 0;
     let visible = true;
+    let hasRendered = false;
     let lastParticlePhase = -1;
     let lastRender = 0;
 
@@ -137,12 +138,14 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       }
       lastRender = now;
       const elapsed = clock.getElapsedTime();
+      const intro = reducedMotion ? 1 : Math.min(1, elapsed / 1.15);
       const phase = reducedMotion ? 0 : Math.sin(Math.min(1, Math.max(0, (scroll - 0.22) / 0.56)) * Math.PI);
       const floatY = reducedMotion ? 0 : Math.sin(elapsed * 0.34) * 0.05;
 
+      group.scale.setScalar(0.94 + intro * 0.06);
       group.position.y = 0.72 + floatY - scroll * 0.26;
-      group.rotation.x = 0.12 + elapsed * 0.026 + scroll * 0.22;
-      group.rotation.y = -0.56 + elapsed * 0.038 + scroll * 0.32;
+      group.rotation.x = 0.12 + intro * elapsed * 0.026 + scroll * 0.22;
+      group.rotation.y = -0.56 + intro * elapsed * 0.038 + scroll * 0.32;
       group.rotation.z = Math.sin(elapsed * 0.1) * 0.018;
 
       metal.opacity = 0.86 - phase * 0.14;
@@ -169,6 +172,10 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       }
 
       renderer.render(scene, camera);
+      if (!hasRendered) {
+        hasRendered = true;
+        window.requestAnimationFrame(() => host.classList.add('is-ready'));
+      }
       frame = reducedMotion ? 0 : window.requestAnimationFrame(render);
     }
 
@@ -186,6 +193,7 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       window.removeEventListener('resize', resize);
       observer.disconnect();
       unsubscribe();
+      host.classList.remove('is-ready');
       host.removeChild(renderer.domElement);
       renderer.dispose();
       particleGeometry.dispose();
