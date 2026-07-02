@@ -1,15 +1,23 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { MotionValue } from 'framer-motion';
 import * as THREE from 'three';
 
 export default function CubeSymbol({ progress }: { progress: MotionValue<number> }) {
   const mountRef = useRef<HTMLDivElement>(null);
+  const [webglUnavailable, setWebglUnavailable] = useState(false);
 
   useEffect(() => {
     const mount = mountRef.current;
-    if (!mount) return;
+    if (!mount || webglUnavailable) return;
     const host = mount;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    try {
+      const testCanvas = document.createElement('canvas');
+      const canUseWebgl = Boolean(testCanvas.getContext('webgl2') ?? testCanvas.getContext('webgl'));
+      if (!canUseWebgl) {
+        setWebglUnavailable(true);
+        return undefined;
+      }
 
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x05050a, 0.048);
@@ -252,7 +260,20 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       reactorHalo.geometry.dispose();
       reactorHaloMaterial.dispose();
     };
-  }, [progress]);
+    } catch (error) {
+      console.warn('CubeSymbol failed to initialize WebGL scene.', error);
+      setWebglUnavailable(true);
+      return undefined;
+    }
+  }, [progress, webglUnavailable]);
+
+  if (webglUnavailable) {
+    return (
+      <div className="cube-stage cube-stage--fallback" aria-hidden="true">
+        <div className="cube-fallback-core" />
+      </div>
+    );
+  }
 
   return <div className="cube-stage" ref={mountRef} aria-hidden="true" />;
 }
