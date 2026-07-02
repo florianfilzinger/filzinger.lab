@@ -179,7 +179,7 @@ export function App() {
           <a href="/impressum">Impressum</a>
           <a href="/datenschutz">Datenschutz</a>
           <a href="#contact">Kontakt</a>
-          <a href="https://www.linkedin.com/company/filzinger-lab/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/florian-filzinger" target="_blank" rel="noreferrer">LinkedIn</a>
         </nav>
       </footer>
     </div>
