@@ -51,12 +51,12 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
     const metal = new THREE.MeshPhysicalMaterial({
       color: 0x0b0b11,
       metalness: 0.92,
-      roughness: 0.28,
+      roughness: 0.34,
       transmission: 0,
       transparent: true,
       opacity: 0.94,
       clearcoat: 0.96,
-      clearcoatRoughness: 0.18,
+      clearcoatRoughness: 0.24,
     });
     const edgeMaterial = new THREE.LineBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.18 });
     const shell = new THREE.Group();
@@ -103,8 +103,9 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       transparent: true,
       opacity: 0.22,
       blending: THREE.AdditiveBlending,
+      depthWrite: false,
     });
-    const coreGlow = new THREE.Mesh(new THREE.BoxGeometry(1.72, 1.72, 1.72), coreGlowMaterial);
+    const coreGlow = new THREE.Mesh(new THREE.SphereGeometry(0.94, 32, 16), coreGlowMaterial);
     group.add(coreGlow);
 
     const reactorHaloMaterial = new THREE.MeshBasicMaterial({
@@ -112,9 +113,10 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       transparent: true,
       opacity: 0.12,
       blending: THREE.AdditiveBlending,
+      depthWrite: false,
       side: THREE.DoubleSide,
     });
-    const reactorHalo = new THREE.Mesh(new THREE.PlaneGeometry(2.56, 2.56), reactorHaloMaterial);
+    const reactorHalo = new THREE.Mesh(new THREE.SphereGeometry(1.42, 32, 16), reactorHaloMaterial);
     group.add(reactorHalo);
 
     const count = reducedMotion ? 0 : 128;
