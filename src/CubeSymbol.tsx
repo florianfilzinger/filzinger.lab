@@ -27,45 +27,69 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
     scene.add(group);
 
     const metal = new THREE.MeshPhysicalMaterial({
-      color: 0x15141b,
-      metalness: 0.82,
-      roughness: 0.19,
-      transmission: 0.12,
+      color: 0x0f0f16,
+      metalness: 0.88,
+      roughness: 0.24,
+      transmission: 0,
       transparent: true,
-      opacity: 0.86,
-      clearcoat: 0.86,
-      clearcoatRoughness: 0.14,
+      opacity: 0.94,
+      clearcoat: 0.92,
+      clearcoatRoughness: 0.16,
     });
-    const cubeGeometry = new THREE.BoxGeometry(2.34, 2.34, 2.34, 3, 3, 3);
-    const position = cubeGeometry.attributes.position as THREE.BufferAttribute;
-    for (let index = 0; index < position.count; index += 1) {
-      const x = position.getX(index);
-      const y = position.getY(index);
-      const z = position.getZ(index);
-      const corner = Math.abs(x * y * z) > 1.42 ? 0.035 : 0;
-      position.setXYZ(index, x - Math.sign(x) * corner, y - Math.sign(y) * corner, z - Math.sign(z) * corner);
+    const edgeMaterial = new THREE.LineBasicMaterial({ color: 0xd8ccff, transparent: true, opacity: 0.32 });
+    const shell = new THREE.Group();
+    const shellMeshes: THREE.Mesh[] = [];
+    const shellEdges: THREE.LineSegments[] = [];
+    group.add(shell);
+
+    const outer = 2.46;
+    const hole = 1.06;
+    const rail = (outer - hole) / 2;
+    const depth = 0.24;
+    const face = outer / 2;
+    const railOffset = hole / 2 + rail / 2;
+
+    function addRail(size: [number, number, number], position: [number, number, number]) {
+      const geometry = new THREE.BoxGeometry(...size);
+      const mesh = new THREE.Mesh(geometry, metal);
+      mesh.position.set(...position);
+      shell.add(mesh);
+      shellMeshes.push(mesh);
+
+      const lines = new THREE.LineSegments(new THREE.EdgesGeometry(geometry), edgeMaterial);
+      lines.position.copy(mesh.position);
+      shell.add(lines);
+      shellEdges.push(lines);
     }
-    cubeGeometry.computeVertexNormals();
-    const cube = new THREE.Mesh(cubeGeometry, metal);
-    group.add(cube);
 
-    const edgeLines = new THREE.LineSegments(
-      new THREE.EdgesGeometry(cube.geometry),
-      new THREE.LineBasicMaterial({ color: 0xd8ccff, transparent: true, opacity: 0.23 }),
-    );
-    group.add(edgeLines);
+    for (const side of [-1, 1]) {
+      addRail([outer, rail, depth], [0, railOffset, side * face]);
+      addRail([outer, rail, depth], [0, -railOffset, side * face]);
+      addRail([rail, hole, depth], [railOffset, 0, side * face]);
+      addRail([rail, hole, depth], [-railOffset, 0, side * face]);
 
-    const coreMaterial = new THREE.MeshBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.68 });
-    const core = new THREE.Mesh(new THREE.SphereGeometry(0.58, 36, 36), coreMaterial);
+      addRail([depth, outer, rail], [side * face, 0, railOffset]);
+      addRail([depth, outer, rail], [side * face, 0, -railOffset]);
+      addRail([depth, rail, hole], [side * face, railOffset, 0]);
+      addRail([depth, rail, hole], [side * face, -railOffset, 0]);
+
+      addRail([outer, depth, rail], [0, side * face, railOffset]);
+      addRail([outer, depth, rail], [0, side * face, -railOffset]);
+      addRail([rail, depth, hole], [railOffset, side * face, 0]);
+      addRail([rail, depth, hole], [-railOffset, side * face, 0]);
+    }
+
+    const coreMaterial = new THREE.MeshBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.62 });
+    const core = new THREE.Mesh(new THREE.BoxGeometry(0.74, 0.74, 0.74), coreMaterial);
     group.add(core);
 
     const coreGlowMaterial = new THREE.MeshBasicMaterial({
       color: 0x7c3aed,
       transparent: true,
-      opacity: 0.095,
+      opacity: 0.11,
       blending: THREE.AdditiveBlending,
     });
-    const coreGlow = new THREE.Mesh(new THREE.SphereGeometry(1.62, 36, 36), coreGlowMaterial);
+    const coreGlow = new THREE.Mesh(new THREE.BoxGeometry(1.42, 1.42, 1.42), coreGlowMaterial);
     group.add(coreGlow);
 
     const count = reducedMotion ? 0 : 88;
@@ -158,8 +182,10 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       group.rotation.y = -0.56 + intro * elapsed * 0.038 + scroll * 0.32;
       group.rotation.z = Math.sin(elapsed * 0.1) * 0.018;
 
-      metal.opacity = 0.86 - phase * 0.14;
-      edgeLines.visible = phase < 0.72;
+      metal.opacity = 0.94 - phase * 0.1;
+      shellEdges.forEach((lines) => {
+        lines.visible = phase < 0.78;
+      });
       core.scale.setScalar(1 + phase * 0.08 + Math.sin(elapsed * 0.55) * 0.012);
       coreGlow.scale.setScalar(1 + phase * 0.2 + Math.sin(elapsed * 0.5) * 0.022);
 
@@ -209,9 +235,9 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       particleGeometry.dispose();
       particleMaterial.dispose();
       metal.dispose();
-      cube.geometry.dispose();
-      edgeLines.geometry.dispose();
-      (edgeLines.material as THREE.Material).dispose();
+      edgeMaterial.dispose();
+      shellMeshes.forEach((mesh) => mesh.geometry.dispose());
+      shellEdges.forEach((lines) => lines.geometry.dispose());
       core.geometry.dispose();
       coreMaterial.dispose();
       coreGlow.geometry.dispose();
