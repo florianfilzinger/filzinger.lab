@@ -68,7 +68,7 @@ export function App() {
           <a href="/#vision">Vision</a>
           <a href="/#products">Produkte</a>
           <a href="/#factory">Dark Factory</a>
-          <a href="/#contact">Kontakt</a>
+          <a href={`mailto:${contactEmail}`}>Kontakt</a>
         </nav>
       </header>
 
@@ -187,7 +187,7 @@ export function App() {
           <a href="/impressum">Impressum</a>
           <a href="/datenschutz">Datenschutz</a>
           <a href="/nutzungsbedingungen">Nutzungsbedingungen</a>
-          <a href="/#contact">Kontakt</a>
+          <a href={`mailto:${contactEmail}`}>Kontakt</a>
           <a href="https://www.linkedin.com/in/florian-filzinger" target="_blank" rel="noreferrer">LinkedIn</a>
         </nav>
       </footer>
