@@ -6,41 +6,42 @@ const CubeSymbol = lazy(() => import('./CubeSymbol'));
 const products = [
   {
     name: 'WeightCoach AI',
-    text: 'Dokumentiert Gewicht, Mahlzeiten und Routinen an einem Ort, damit Fortschritt und Muster leichter sichtbar werden.',
+    text: 'Hilft beim Dokumentieren von Gewicht, Mahlzeiten und Routinen, damit Fortschritt im Alltag besser nachvollziehbar wird.',
     status: 'Live product',
-    focus: 'Alltagstracking',
-    proof: 'Gewicht, Ernährung, Verlauf',
+    focus: 'Gewichtsverlauf',
+    proof: 'Tracking, Ernährung, Routinen',
+    href: 'https://weightcoach-ai.de',
   },
   {
     name: 'Fußball Training AI',
-    text: 'Hilft dabei, Trainingseinheiten zu planen, Übungen zu strukturieren und Entwicklung über Zeit nachvollziehbar zu machen.',
+    text: 'Strukturiert Trainingseinheiten, Übungen und Entwicklung, damit Trainingsplanung weniger verstreut und besser auswertbar wird.',
     status: 'In build',
     focus: 'Trainingsplanung',
     proof: 'Übungen, Einheiten, Entwicklung',
   },
   {
     name: 'Weitere Produkte folgen',
-    text: 'Neue Anwendungen entstehen dort, wo wiederkehrende Arbeit klarer, schneller oder besser geführt werden kann.',
+    text: 'Neue Produkte entstehen dort, wo wiederkehrende Arbeit mit klarer Software einfacher, überprüfbarer und nützlicher wird.',
     status: 'Pipeline',
-    focus: 'Nützliche Werkzeuge',
-    proof: 'Automatisierung, Daten, einfache Oberflächen',
+    focus: 'Produktentwicklung',
+    proof: 'Workflows, Daten, Interfaces',
   },
 ];
 
-const principles = ['Ideas', 'AI', 'Automation', 'Products', 'Dark Factory'];
+const principles = ['AI Products', 'Automation', 'Data', 'Interfaces', 'Operations'];
 
 const factoryLayers = [
   {
     name: 'Verstehen',
-    detail: 'Aus wiederkehrenden Aufgaben und echten Problemen entstehen klare Produktideen.',
+    detail: 'Wiederkehrende Aufgaben werden so lange verdichtet, bis ein konkretes Produktproblem sichtbar ist.',
   },
   {
     name: 'Bauen',
-    detail: 'Software, KI und Automatisierung werden zu einfachen Werkzeugen für den Alltag verbunden.',
+    detail: 'AI, Automatisierung und Oberfläche werden zu einem Werkzeug verbunden, das im Alltag benutzt werden kann.',
   },
   {
     name: 'Verbessern',
-    detail: 'Produkte werden laufend geprüft, vereinfacht und an echte Nutzung angepasst.',
+    detail: 'Live-Produkte werden anhand echter Nutzung geprüft, vereinfacht und gezielt weiterentwickelt.',
   },
 ];
 
@@ -85,10 +86,11 @@ export function App() {
                 AI Product Studio
               </motion.p>
               <motion.h1 initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.08 }}>
-                AI products, built with intent.
+                Focused AI products.
               </motion.h1>
               <motion.p className="hero-copy" initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.16 }}>
-                filzinger.lab entwickelt AI-Produkte, Automatisierungen und digitale Systeme, die wiederkehrende Arbeit einfacher und besser nutzbar machen.
+                filzinger.lab ist ein AI Product Studio. Es entwickelt schlanke digitale Produkte, die wiederkehrende Aufgaben strukturieren,
+                Daten nutzbar machen und klare Entscheidungen unterstützen.
               </motion.p>
               <motion.div className="hero-actions" initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.24 }}>
                 <a className="primary-link" href="#products">Produkte ansehen</a>
@@ -99,15 +101,15 @@ export function App() {
           </section>
 
           <main>
-            <Section id="vision" label="Vision" title="Ein Studio für Produkte, die aus Systemen entstehen.">
+            <Section id="vision" label="Studio" title="Ein AI Product Studio für konkrete Arbeits- und Alltagssysteme.">
               <div className="vision-grid">
                 <p>
-                  filzinger.lab ist keine klassische Agentur und keine SaaS-Fassade. Es ist ein Produktstudio, das Ideen in robuste AI-Workflows,
-                  Interfaces und wiederverwendbare Bausteine übersetzt.
+                  filzinger.lab baut eigene AI-Produkte statt Projektpräsentationen. Der Fokus liegt auf kleinen, belastbaren Anwendungen,
+                  die ein klares Problem lösen und über Zeit besser werden.
                 </p>
                 <p>
-                  Jedes Produkt soll eigenständig funktionieren. Dahinter liegt dieselbe Logik: Daten verstehen, Abläufe automatisieren,
-                  Entscheidungen beschleunigen und dabei die Oberfläche radikal ruhig halten.
+                  Das erste Produkt ist WeightCoach AI: ein digitaler Begleiter für Gewichtsverlauf, Mahlzeiten und Routinen. Weitere Produkte
+                  folgen dort, wo Software wiederkehrende Arbeit spürbar ordnen kann.
                 </p>
               </div>
               <div className="principles">
@@ -117,12 +119,18 @@ export function App() {
               </div>
             </Section>
 
-            <Section id="products" label="Produkte" title="Kleine Produktlinien. Hohe Präzision.">
+            <Section id="products" label="Produkte" title="Eigene AI-Produkte mit klarem Nutzen.">
               <div className="product-grid">
                 {products.map((product) => (
                   <article className="product-card" key={product.name}>
                     <span>{product.status}</span>
-                    <h3>{product.name}</h3>
+                    <h3>
+                      {'href' in product ? (
+                        <a href={product.href} target="_blank" rel="noreferrer">{product.name}</a>
+                      ) : (
+                        product.name
+                      )}
+                    </h3>
                     <p>{product.text}</p>
                     <dl>
                       <div>
@@ -143,11 +151,11 @@ export function App() {
               <div className="factory-intro">
                 <div>
                   <p className="eyebrow">Dark Factory</p>
-                  <h2>Die Arbeitsweise hinter den Produkten.</h2>
+                  <h2>Die Arbeitsweise hinter dem Studio.</h2>
                 </div>
                 <p>
-                  Dark Factory ist der interne Name für die Art, wie filzinger.lab Produkte baut: Aufgaben verstehen, passende Automatisierung entwickeln
-                  und daraus einfache digitale Werkzeuge machen.
+                  Dark Factory beschreibt die interne Produktarbeit von filzinger.lab: Aufgaben verstehen, Datenflüsse ordnen,
+                  Automatisierung sinnvoll einsetzen und daraus nutzbare Software bauen.
                 </p>
               </div>
               <div className="factory-layers" aria-label="Dark Factory Ebenen">
@@ -160,21 +168,22 @@ export function App() {
               </div>
             </section>
 
-            <Section id="about" label="About" title="Gebaut für konzentrierte Produktarbeit.">
+            <Section id="about" label="About" title="Gebaut für ruhige, belastbare Produktarbeit.">
               <div className="about-copy">
                 <p>
-                  Der Fokus liegt auf wenigen, eigenständigen Produkten statt auf Präsentationsflächen. Design, Engineering und AI-Automation
-                  werden als ein System behandelt.
+                  Der Fokus liegt auf wenigen eigenen Produkten. Strategie, Design, Engineering und AI-Automation werden gemeinsam gedacht,
+                  damit aus einer Idee ein nutzbares System wird.
                 </p>
                 <p>
-                  Das gemeinsame Symbol ist der Würfel: ein kompaktes Objekt, das Idee, Kern, Maschine und Transformation verbindet.
+                  WeightCoach AI zeigt diesen Ansatz im ersten Live-Produkt. Es verbindet einfache Dokumentation mit strukturierter Auswertung,
+                  ohne Nutzerinnen und Nutzer mit unnötiger Komplexität zu belasten.
                 </p>
               </div>
             </Section>
 
             <section className="contact-section" id="contact">
               <p className="eyebrow">Kontakt</p>
-              <h2>Für AI-Produkte, Automatisierung und digitale Systeme.</h2>
+              <h2>Für Produktideen, AI-Systeme und fokussierte Automatisierung.</h2>
               <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
             </section>
           </main>
