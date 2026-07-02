@@ -36,12 +36,22 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       clearcoat: 0.86,
       clearcoatRoughness: 0.14,
     });
-    const cube = new THREE.Mesh(new THREE.BoxGeometry(2.34, 2.34, 2.34, 8, 8, 8), metal);
+    const cubeGeometry = new THREE.BoxGeometry(2.34, 2.34, 2.34, 3, 3, 3);
+    const position = cubeGeometry.attributes.position as THREE.BufferAttribute;
+    for (let index = 0; index < position.count; index += 1) {
+      const x = position.getX(index);
+      const y = position.getY(index);
+      const z = position.getZ(index);
+      const corner = Math.abs(x * y * z) > 1.42 ? 0.035 : 0;
+      position.setXYZ(index, x - Math.sign(x) * corner, y - Math.sign(y) * corner, z - Math.sign(z) * corner);
+    }
+    cubeGeometry.computeVertexNormals();
+    const cube = new THREE.Mesh(cubeGeometry, metal);
     group.add(cube);
 
     const edgeLines = new THREE.LineSegments(
       new THREE.EdgesGeometry(cube.geometry),
-      new THREE.LineBasicMaterial({ color: 0xd8ccff, transparent: true, opacity: 0.16 }),
+      new THREE.LineBasicMaterial({ color: 0xd8ccff, transparent: true, opacity: 0.23 }),
     );
     group.add(edgeLines);
 

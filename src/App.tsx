@@ -61,8 +61,8 @@ export function App() {
     <div className="site-shell">
       <header className="topbar">
         <a className="brand-mark" href="/" aria-label="filzinger.lab Start">
-          <img className="brand-cube" src="/favicon.svg" alt="" aria-hidden="true" />
-          filzinger.lab
+          <CubeMark />
+          <span className="wordmark"><span>filzinger</span><span>.lab</span></span>
         </a>
         <nav className="nav-links" aria-label="Hauptnavigation">
           <a href="/#vision">Vision</a>
@@ -357,6 +357,20 @@ function LegalPage({ page }: { page: LegalPageKey }) {
         </div>
       </section>
     </main>
+  );
+}
+
+function CubeMark() {
+  return (
+    <svg className="brand-cube" viewBox="0 0 64 64" aria-hidden="true">
+      <path className="brand-cube-shell" d="M32 7 54 20v24L32 57 10 44V20L32 7Z" />
+      <path className="brand-cube-top" d="M32 7 54 20 32 32 10 20 32 7Z" />
+      <path className="brand-cube-left" d="M10 20 32 32v25L10 44V20Z" />
+      <path className="brand-cube-right" d="M54 20 32 32v25l22-13V20Z" />
+      <path className="brand-cube-lines" d="M32 7v25M10 20l22 12 22-12M32 32v25" />
+      <circle className="brand-cube-core" cx="32" cy="32" r="8.4" />
+      <circle className="brand-cube-glow" cx="32" cy="32" r="15.5" />
+    </svg>
   );
 }
 

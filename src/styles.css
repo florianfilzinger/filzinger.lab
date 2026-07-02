@@ -88,18 +88,60 @@ a:focus-visible {
   display: inline-flex;
   min-height: 42px;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
   border-radius: var(--radius-pill);
-  padding: 0 14px 0 12px;
+  padding: 0 15px 0 12px;
   font-size: 14px;
-  font-weight: 620;
+  font-weight: 680;
 }
 
 .brand-cube {
-  width: 21px;
-  height: 21px;
-  display: block;
-  filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.34));
+  width: 22px;
+  height: 22px;
+  overflow: visible;
+  filter: drop-shadow(0 0 13px rgba(139, 92, 246, 0.38));
+}
+
+.brand-cube-shell {
+  fill: rgba(9, 9, 18, 0.88);
+  stroke: rgba(216, 204, 255, 0.38);
+  stroke-width: 1.2;
+}
+
+.brand-cube-top {
+  fill: rgba(245, 243, 255, 0.13);
+}
+
+.brand-cube-left {
+  fill: rgba(19, 18, 28, 0.92);
+}
+
+.brand-cube-right {
+  fill: rgba(124, 58, 237, 0.18);
+}
+
+.brand-cube-lines {
+  fill: none;
+  stroke: rgba(167, 139, 250, 0.64);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.15;
+}
+
+.brand-cube-core {
+  fill: rgba(139, 92, 246, 0.74);
+}
+
+.brand-cube-glow {
+  fill: rgba(124, 58, 237, 0.14);
+}
+
+.wordmark span:first-child {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.wordmark span:last-child {
+  color: var(--violet);
 }
 
 .nav-links {
