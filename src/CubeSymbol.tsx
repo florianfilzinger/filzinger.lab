@@ -43,11 +43,9 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
     group.add(shell);
 
     const outer = 2.46;
-    const hole = 1.06;
-    const rail = (outer - hole) / 2;
-    const depth = 0.24;
+    const beam = 0.42;
     const face = outer / 2;
-    const railOffset = hole / 2 + rail / 2;
+    const edgeOffset = face - beam / 2;
 
     function addRail(size: [number, number, number], position: [number, number, number]) {
       const geometry = new THREE.BoxGeometry(...size);
@@ -62,21 +60,16 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       shellEdges.push(lines);
     }
 
-    for (const side of [-1, 1]) {
-      addRail([outer, rail, depth], [0, railOffset, side * face]);
-      addRail([outer, rail, depth], [0, -railOffset, side * face]);
-      addRail([rail, hole, depth], [railOffset, 0, side * face]);
-      addRail([rail, hole, depth], [-railOffset, 0, side * face]);
+    for (const y of [-edgeOffset, edgeOffset]) {
+      for (const z of [-edgeOffset, edgeOffset]) addRail([outer, beam, beam], [0, y, z]);
+    }
 
-      addRail([depth, outer, rail], [side * face, 0, railOffset]);
-      addRail([depth, outer, rail], [side * face, 0, -railOffset]);
-      addRail([depth, rail, hole], [side * face, railOffset, 0]);
-      addRail([depth, rail, hole], [side * face, -railOffset, 0]);
+    for (const x of [-edgeOffset, edgeOffset]) {
+      for (const z of [-edgeOffset, edgeOffset]) addRail([beam, outer, beam], [x, 0, z]);
+    }
 
-      addRail([outer, depth, rail], [0, side * face, railOffset]);
-      addRail([outer, depth, rail], [0, side * face, -railOffset]);
-      addRail([rail, depth, hole], [railOffset, side * face, 0]);
-      addRail([rail, depth, hole], [-railOffset, side * face, 0]);
+    for (const x of [-edgeOffset, edgeOffset]) {
+      for (const y of [-edgeOffset, edgeOffset]) addRail([beam, beam, outer], [x, y, 0]);
     }
 
     const coreMaterial = new THREE.MeshBasicMaterial({ color: 0xc4b5fd, transparent: true, opacity: 0.78 });
@@ -89,7 +82,7 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       opacity: 0.22,
       blending: THREE.AdditiveBlending,
     });
-    const coreGlow = new THREE.Mesh(new THREE.BoxGeometry(1.56, 1.56, 1.56), coreGlowMaterial);
+    const coreGlow = new THREE.Mesh(new THREE.BoxGeometry(1.72, 1.72, 1.72), coreGlowMaterial);
     group.add(coreGlow);
 
     const reactorHaloMaterial = new THREE.MeshBasicMaterial({
@@ -99,7 +92,7 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       blending: THREE.AdditiveBlending,
       side: THREE.DoubleSide,
     });
-    const reactorHalo = new THREE.Mesh(new THREE.PlaneGeometry(2.18, 2.18), reactorHaloMaterial);
+    const reactorHalo = new THREE.Mesh(new THREE.PlaneGeometry(2.56, 2.56), reactorHaloMaterial);
     group.add(reactorHalo);
 
     const count = reducedMotion ? 0 : 128;
@@ -198,10 +191,10 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
         lines.visible = phase < 0.78;
       });
       core.scale.setScalar(1 + phase * 0.12 + Math.sin(elapsed * 0.55) * 0.014);
-      coreGlow.scale.setScalar(1 + phase * 0.34 + Math.sin(elapsed * 0.5) * 0.03);
+      coreGlow.scale.setScalar(1.04 + phase * 0.42 + Math.sin(elapsed * 0.5) * 0.035);
       reactorHalo.lookAt(camera.position);
-      reactorHalo.scale.setScalar(1 + phase * 0.42 + Math.sin(elapsed * 0.48) * 0.025);
-      reactorHaloMaterial.opacity = 0.1 + phase * 0.12;
+      reactorHalo.scale.setScalar(1.06 + phase * 0.5 + Math.sin(elapsed * 0.48) * 0.03);
+      reactorHaloMaterial.opacity = 0.13 + phase * 0.16;
 
       if (count && Math.abs(phase - lastParticlePhase) > 0.006) {
         particleMaterial.opacity = 0.035 + phase * 0.18;
