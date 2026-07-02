@@ -58,9 +58,9 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
     const coreGlow = new THREE.Mesh(new THREE.SphereGeometry(1.62, 36, 36), coreGlowMaterial);
     group.add(coreGlow);
 
-    const count = reducedMotion ? 0 : 72;
+    const count = reducedMotion ? 0 : 88;
     const particleGeometry = new THREE.BoxGeometry(0.024, 0.024, 0.024);
-    const particleMaterial = new THREE.MeshBasicMaterial({ color: 0xbda8ff, transparent: true, opacity: 0.12 });
+    const particleMaterial = new THREE.MeshBasicMaterial({ color: 0xbda8ff, transparent: true, opacity: 0.14 });
     const particles = new THREE.InstancedMesh(particleGeometry, particleMaterial, count);
     particles.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
     group.add(particles);
@@ -154,7 +154,7 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       coreGlow.scale.setScalar(1 + phase * 0.2 + Math.sin(elapsed * 0.5) * 0.022);
 
       if (count && Math.abs(phase - lastParticlePhase) > 0.006) {
-        particleMaterial.opacity = 0.02 + phase * 0.12;
+        particleMaterial.opacity = 0.03 + phase * 0.14;
         for (let index = 0; index < count; index += 1) {
           const origin = origins[index];
           const target = targets[index];

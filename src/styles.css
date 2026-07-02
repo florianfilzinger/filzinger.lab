@@ -127,8 +127,20 @@ a:focus-visible {
 
 .hero {
   position: relative;
-  min-height: 118vh;
+  min-height: 122vh;
   overflow: hidden;
+}
+
+.hero::after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  z-index: 3;
+  height: clamp(160px, 22vh, 260px);
+  background: linear-gradient(180deg, rgba(5, 5, 10, 0), rgba(5, 5, 10, 0.74) 58%, rgba(5, 5, 10, 0.98));
+  content: "";
+  pointer-events: none;
 }
 
 .cube-stage {
@@ -306,7 +318,7 @@ main {
   z-index: 5;
   display: grid;
   gap: 0;
-  margin-top: -2vh;
+  margin-top: -6vh;
   padding: 0 clamp(20px, 5vw, 72px) 64px;
   background:
     linear-gradient(180deg, rgba(5, 5, 10, 0), rgba(5, 5, 10, 0.78) 7rem, rgba(5, 5, 10, 0.98) 16rem),
@@ -680,7 +692,7 @@ main {
   }
 
   .hero {
-    min-height: 112vh;
+    min-height: 116vh;
   }
 
   .hero-content {
