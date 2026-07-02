@@ -143,7 +143,7 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
       const floatY = reducedMotion ? 0 : Math.sin(elapsed * 0.34) * 0.05;
 
       group.scale.setScalar(0.94 + intro * 0.06);
-      group.position.y = 0.72 + floatY - scroll * 0.26;
+      group.position.y = 0.24 + floatY - scroll * 0.26;
       group.rotation.x = 0.12 + intro * elapsed * 0.026 + scroll * 0.22;
       group.rotation.y = -0.56 + intro * elapsed * 0.038 + scroll * 0.32;
       group.rotation.z = Math.sin(elapsed * 0.1) * 0.018;
