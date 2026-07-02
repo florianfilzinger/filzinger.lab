@@ -742,10 +742,12 @@ main {
   }
 
   .hero h1 {
-    font-size: clamp(42px, 12.2vw, 62px);
+    max-width: 320px;
+    font-size: clamp(34px, 9.2vw, 44px);
   }
 
   .hero-copy {
+    max-width: 280px;
     margin-top: 22px;
   }
 

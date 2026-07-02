@@ -11,6 +11,8 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
     if (!mount || webglUnavailable) return;
     const host = mount;
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let disposed = false;
+
     try {
       const testCanvas = document.createElement('canvas');
       const canUseWebgl = Boolean(testCanvas.getContext('webgl2') ?? testCanvas.getContext('webgl'));
@@ -22,14 +24,26 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0x05050a, 0.048);
 
-    const camera = new THREE.PerspectiveCamera(34, host.clientWidth / host.clientHeight, 0.1, 100);
+    const getHostSize = () => ({
+      width: Math.max(1, host.clientWidth),
+      height: Math.max(1, host.clientHeight),
+    });
+    const initialSize = getHostSize();
+    const camera = new THREE.PerspectiveCamera(34, initialSize.width / initialSize.height, 0.1, 100);
     camera.position.set(0, 0.08, 6.1);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.6));
-    renderer.setSize(host.clientWidth, host.clientHeight);
+    renderer.setSize(initialSize.width, initialSize.height);
     renderer.setClearColor(0x05050a, 0);
     host.appendChild(renderer.domElement);
+
+    function handleContextLost(event: Event) {
+      event.preventDefault();
+      if (!disposed) setWebglUnavailable(true);
+    }
+
+    renderer.domElement.addEventListener('webglcontextlost', handleContextLost);
 
     const group = new THREE.Group();
     scene.add(group);
@@ -173,6 +187,7 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
     observer.observe(host);
 
     function render(now = 0) {
+      if (disposed) return;
       if (!visible || document.hidden) {
         frame = 0;
         return;
@@ -231,21 +246,24 @@ export default function CubeSymbol({ progress }: { progress: MotionValue<number>
     }
 
     function resize() {
-      camera.aspect = host.clientWidth / host.clientHeight;
+      const nextSize = getHostSize();
+      camera.aspect = nextSize.width / nextSize.height;
       camera.updateProjectionMatrix();
-      renderer.setSize(host.clientWidth, host.clientHeight);
+      renderer.setSize(nextSize.width, nextSize.height);
     }
 
     window.addEventListener('resize', resize);
     render();
 
     return () => {
+      disposed = true;
       window.cancelAnimationFrame(frame);
       window.removeEventListener('resize', resize);
       observer.disconnect();
       unsubscribe();
       host.classList.remove('is-ready');
-      host.removeChild(renderer.domElement);
+      renderer.domElement.removeEventListener('webglcontextlost', handleContextLost);
+      if (renderer.domElement.parentNode === host) host.removeChild(renderer.domElement);
       renderer.dispose();
       particleGeometry.dispose();
       particleMaterial.dispose();
