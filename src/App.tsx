@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useRef, type ReactNode } from 'react';
-import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
+import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 
 const CubeSymbol = lazy(() => import('./CubeSymbol'));
 
@@ -63,6 +63,7 @@ export function App() {
   });
   const heroOpacity = useTransform(scrollYProgress, [0, 0.64, 1], [1, 0.96, 0]);
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 42]);
+  const shouldReduceMotion = useReducedMotion();
   usePageMeta(legalPage);
 
   return (
@@ -127,8 +128,15 @@ export function App() {
 
             <Section id="products" label="Produkte" title="Eigene AI-Produkte mit klarem Nutzen.">
               <div className="product-grid">
-                {products.map((product) => (
-                  <article className="product-card" key={product.name}>
+                {products.map((product, index) => (
+                  <motion.article
+                    className="product-card"
+                    key={product.name}
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.24 }}
+                    transition={{ duration: shouldReduceMotion ? 0 : 0.55, delay: shouldReduceMotion ? 0 : index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                  >
                     <span>{product.status}</span>
                     <h3>
                       {'href' in product ? (
@@ -148,7 +156,7 @@ export function App() {
                         <dd>{product.proof}</dd>
                       </div>
                     </dl>
-                  </article>
+                  </motion.article>
                 ))}
               </div>
             </Section>
@@ -165,11 +173,17 @@ export function App() {
                 </p>
               </div>
               <div className="factory-layers" aria-label="Dark Factory Ebenen">
-                {factoryLayers.map((layer) => (
-                  <article key={layer.name}>
+                {factoryLayers.map((layer, index) => (
+                  <motion.article
+                    key={layer.name}
+                    initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.26 }}
+                    transition={{ duration: shouldReduceMotion ? 0 : 0.55, delay: shouldReduceMotion ? 0 : index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                  >
                     <strong>{layer.name}</strong>
                     <p>{layer.detail}</p>
-                  </article>
+                  </motion.article>
                 ))}
               </div>
             </section>
