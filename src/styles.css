@@ -306,6 +306,7 @@ a:focus-visible {
   gap: 12px;
   margin-top: 34px;
   pointer-events: auto;
+  transform: translateY(-32px);
 }
 
 .primary-link,
