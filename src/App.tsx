@@ -104,7 +104,6 @@ export function App() {
                 <a className="secondary-link" href={`mailto:${contactEmail}`}>Kontakt aufnehmen</a>
               </motion.div>
             </motion.div>
-            <div className="scroll-cue" aria-hidden="true">Scroll</div>
           </section>
 
           <main>
