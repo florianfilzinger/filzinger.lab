@@ -86,6 +86,7 @@ export function App() {
       ) : (
         <>
           <section className="hero" id="hero" ref={heroRef}>
+            <div className="hero-stars" aria-hidden="true" />
             <Suspense fallback={<CubeSymbolFallback />}>
               <CubeSymbol progress={scrollYProgress as MotionValue<number>} />
             </Suspense>

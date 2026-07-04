@@ -173,6 +173,65 @@ a:focus-visible {
   overflow: hidden;
 }
 
+.hero-stars,
+.hero-stars::before,
+.hero-stars::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-stars {
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.68;
+  background:
+    radial-gradient(circle at 9% 18%, rgba(255, 255, 255, 0.42) 0 1px, transparent 2.2px),
+    radial-gradient(circle at 18% 34%, rgba(221, 214, 254, 0.34) 0 1.1px, transparent 2.8px),
+    radial-gradient(circle at 24% 13%, rgba(255, 255, 255, 0.54) 0 0.8px, transparent 2.1px),
+    radial-gradient(circle at 34% 27%, rgba(255, 255, 255, 0.31) 0 1px, transparent 2.7px),
+    radial-gradient(circle at 41% 11%, rgba(216, 204, 255, 0.4) 0 1.2px, transparent 3px),
+    radial-gradient(circle at 52% 21%, rgba(255, 255, 255, 0.48) 0 0.9px, transparent 2.4px),
+    radial-gradient(circle at 61% 36%, rgba(255, 255, 255, 0.28) 0 1.1px, transparent 3px),
+    radial-gradient(circle at 68% 15%, rgba(221, 214, 254, 0.46) 0 1px, transparent 2.5px),
+    radial-gradient(circle at 77% 29%, rgba(255, 255, 255, 0.34) 0 1.3px, transparent 3.2px),
+    radial-gradient(circle at 88% 17%, rgba(255, 255, 255, 0.5) 0 0.9px, transparent 2.5px),
+    radial-gradient(circle at 14% 58%, rgba(255, 255, 255, 0.28) 0 1px, transparent 2.8px),
+    radial-gradient(circle at 27% 71%, rgba(221, 214, 254, 0.36) 0 1.2px, transparent 3.4px),
+    radial-gradient(circle at 43% 63%, rgba(255, 255, 255, 0.24) 0 1px, transparent 2.8px),
+    radial-gradient(circle at 58% 74%, rgba(255, 255, 255, 0.31) 0 1.1px, transparent 3px),
+    radial-gradient(circle at 72% 61%, rgba(216, 204, 255, 0.36) 0 1.4px, transparent 3.6px),
+    radial-gradient(circle at 84% 79%, rgba(255, 255, 255, 0.3) 0 1px, transparent 2.8px),
+    radial-gradient(circle at 93% 51%, rgba(255, 255, 255, 0.38) 0 0.8px, transparent 2.3px);
+  filter: blur(0.15px);
+}
+
+.hero-stars::before,
+.hero-stars::after {
+  content: "";
+  transform: translateZ(0);
+}
+
+.hero-stars::before {
+  opacity: 0.34;
+  background:
+    radial-gradient(circle at 21% 24%, rgba(255, 255, 255, 0.72) 0 1px, transparent 2.4px),
+    radial-gradient(circle at 47% 17%, rgba(221, 214, 254, 0.62) 0 1.1px, transparent 2.7px),
+    radial-gradient(circle at 63% 46%, rgba(255, 255, 255, 0.58) 0 0.9px, transparent 2.4px);
+  filter: blur(0.28px);
+  animation: star-twinkle-a 8.4s ease-in-out infinite alternate;
+}
+
+.hero-stars::after {
+  opacity: 0.3;
+  background:
+    radial-gradient(circle at 81% 34%, rgba(216, 204, 255, 0.66) 0 1.2px, transparent 3.1px),
+    radial-gradient(circle at 32% 82%, rgba(255, 255, 255, 0.48) 0 0.9px, transparent 2.6px),
+    radial-gradient(circle at 91% 69%, rgba(255, 255, 255, 0.56) 0 1px, transparent 2.7px);
+  filter: blur(0.35px);
+  animation: star-twinkle-b 11.2s ease-in-out infinite alternate;
+}
+
 .hero::after {
   position: absolute;
   left: 0;
@@ -185,9 +244,46 @@ a:focus-visible {
   pointer-events: none;
 }
 
+@keyframes star-twinkle-a {
+  0% {
+    opacity: 0.22;
+  }
+
+  43% {
+    opacity: 0.42;
+  }
+
+  71% {
+    opacity: 0.28;
+  }
+
+  100% {
+    opacity: 0.48;
+  }
+}
+
+@keyframes star-twinkle-b {
+  0% {
+    opacity: 0.38;
+  }
+
+  37% {
+    opacity: 0.24;
+  }
+
+  68% {
+    opacity: 0.46;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+
 .cube-stage {
   position: sticky;
   top: 0;
+  z-index: 1;
   height: 100vh;
   width: 100%;
   opacity: 1;
