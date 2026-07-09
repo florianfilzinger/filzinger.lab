@@ -34,6 +34,12 @@ const products = [
 
 const principles = ['AI Products', 'Automation', 'Data', 'Interfaces', 'Operations'];
 
+const ecosystemLinks = [
+  { label: 'Filzinger AI Consulting', href: 'https://www.filzinger-ai.de/' },
+  { label: 'filzinger.lab', href: 'https://filzingerlab.de/' },
+  { label: 'WeightCoach AI', href: 'https://weightcoach-ai.de/' },
+];
+
 const factoryLayers = [
   {
     name: 'Verstehen',
@@ -74,6 +80,7 @@ export function App() {
           <a href="/#vision">Vision</a>
           <a href="/#products">Produkte</a>
           <a href="/#factory">Dark Factory</a>
+          <a href="https://www.filzinger-ai.de/" target="_blank" rel="noreferrer">Consulting</a>
           <a href={`mailto:${contactEmail}`}>Kontakt</a>
         </nav>
       </header>
@@ -253,6 +260,9 @@ export function App() {
       <footer className="site-footer">
         <span>© 2026 filzinger.lab</span>
         <nav aria-label="Footer">
+          {ecosystemLinks.map((link) => (
+            <a href={link.href} key={link.href} target="_blank" rel="noreferrer">{link.label}</a>
+          ))}
           <a href="/impressum">Impressum</a>
           <a href="/datenschutz">Datenschutz</a>
           <a href="/nutzungsbedingungen">Nutzungsbedingungen</a>
