@@ -321,30 +321,49 @@ input:focus-visible {
 .hero-visual {
   position: relative;
   z-index: 1;
+  display: grid;
+  width: min(460px, 100%);
   min-width: 0;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: 0 0 60px rgba(125, 51, 255, 0.13);
-  backdrop-filter: blur(12px);
+  aspect-ratio: 1;
+  place-items: center;
+  justify-self: center;
 }
 
+.hero-visual::before,
 .hero-visual::after {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(125, 51, 255, 0.12));
   content: "";
   pointer-events: none;
 }
 
-.hero-visual img {
+.hero-visual::before {
+  inset: 12%;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(209, 188, 255, 0.24), transparent 24%),
+    radial-gradient(circle, rgba(125, 51, 255, 0.18), transparent 64%);
+  filter: blur(34px);
+}
+
+.hero-visual::after {
+  width: 54%;
+  height: 8%;
+  transform: translateY(210%);
+  border-radius: 999px;
+  background: rgba(125, 51, 255, 0.38);
+  filter: blur(20px);
+}
+
+.hero-visual .brand-cube {
+  position: relative;
+  z-index: 1;
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
+  width: clamp(190px, 26vw, 330px);
+  height: clamp(190px, 26vw, 330px);
+  filter:
+    drop-shadow(0 0 22px rgba(125, 51, 255, 0.72))
+    drop-shadow(0 28px 54px rgba(0, 0, 0, 0.46));
+  transform: rotate(-5deg);
 }
 
 main {
@@ -1057,8 +1076,9 @@ main {
     margin-top: 10px;
   }
 
-  .hero-visual img {
-    height: 100%;
+  .hero-visual .brand-cube {
+    width: clamp(180px, 62vw, 260px);
+    height: clamp(180px, 62vw, 260px);
   }
 
   .vision-grid,

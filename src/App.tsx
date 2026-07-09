@@ -101,7 +101,7 @@ export function App() {
               </div>
             </motion.div>
             <div className="hero-visual" aria-hidden="true">
-              <img src="/stitch/cube-logo-reference.png" alt="" />
+              <CubeMark />
             </div>
           </section>
 
