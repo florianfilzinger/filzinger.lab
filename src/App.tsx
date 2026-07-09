@@ -207,6 +207,40 @@ export function App() {
               </div>
             </Section>
 
+            <section className="founder-section" aria-labelledby="founder-title">
+              <article className="founder-card">
+                <div className="founder-media">
+                  <img src="/stitch/founder-florian-filzinger.png" alt="Florian Filzinger" loading="lazy" />
+                  <div className="founder-identity">
+                    <h2 id="founder-title">Florian<br />Filzinger</h2>
+                    <p>Gründer &amp; Lead Engineer</p>
+                  </div>
+                </div>
+                <div className="founder-body">
+                  <p>
+                    "Unser Fokus liegt auf der Entwicklung von Software, die komplexe Probleme löst. Wir schließen die Lücke zwischen
+                    AI-Forschung und Produktionsrealität, indem wir technisch fundierte und architektonisch robuste Produkte bauen."
+                  </p>
+                  <div className="founder-tags" aria-label="Schwerpunkte">
+                    <span>AI Engineering</span>
+                    <span>Systemarchitektur</span>
+                    <span>Produktentwicklung</span>
+                    <span>Automatisierung</span>
+                  </div>
+                </div>
+              </article>
+            </section>
+
+            <section className="updates-section" aria-labelledby="updates-title">
+              <h2 id="updates-title">Laboratory Updates</h2>
+              <p>Technische Einblicke in neue Produkte, Experimente und Alpha-Releases.</p>
+              <form className="updates-form" onSubmit={(event) => event.preventDefault()}>
+                <label className="sr-only" htmlFor="updates-email">E-Mail-Adresse</label>
+                <input id="updates-email" type="email" placeholder="hello@filzingerlab.de" autoComplete="email" />
+                <button className="primary-link" type="submit">Lab beitreten</button>
+              </form>
+            </section>
+
             <section className="contact-section" id="contact">
               <p className="eyebrow">Kontakt</p>
               <h2>Für Produktideen, AI-Systeme und fokussierte Automatisierung.</h2>
