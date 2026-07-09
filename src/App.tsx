@@ -1,30 +1,34 @@
-import { Suspense, lazy, useEffect, useRef, type ReactNode } from 'react';
-import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from 'framer-motion';
-
-const CubeSymbol = lazy(() => import('./CubeSymbol'));
+import { useEffect, type ReactNode } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 const products = [
   {
     name: 'WeightCoach AI',
     text: 'Hilft beim Dokumentieren von Gewicht, Mahlzeiten und Routinen, damit Fortschritt im Alltag besser nachvollziehbar wird.',
     status: 'Live product',
+    statusTone: 'live',
     focus: 'Gewichtsverlauf',
     proof: 'Tracking, Ernährung, Routinen',
     href: 'https://weightcoach-ai.de',
+    image: '/stitch/weightcoach-ai.png',
   },
   {
     name: 'Fußball Training AI',
     text: 'Strukturiert Trainingseinheiten, Übungen und Entwicklung, damit Trainingsplanung weniger verstreut und besser auswertbar wird.',
     status: 'In build',
+    statusTone: 'build',
     focus: 'Trainingsplanung',
     proof: 'Übungen, Einheiten, Entwicklung',
+    image: '/stitch/dark-factory-os.png',
   },
   {
     name: 'Weitere Produkte folgen',
     text: 'Neue Produkte entstehen dort, wo wiederkehrende Arbeit mit klarer Software einfacher, überprüfbarer und nützlicher wird.',
     status: 'Pipeline',
+    statusTone: 'pipeline',
     focus: 'Produktentwicklung',
     proof: 'Workflows, Daten, Interfaces',
+    image: '/stitch/cube-logo-reference.png',
   },
 ];
 
@@ -54,15 +58,8 @@ const homeMeta = {
 };
 
 export function App() {
-  const heroRef = useRef<HTMLElement>(null);
   const pathname = window.location.pathname;
   const legalPage = getLegalPage(pathname);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  });
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.64, 1], [1, 0.96, 0]);
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 42]);
   const shouldReduceMotion = useReducedMotion();
   usePageMeta(legalPage);
 
@@ -85,26 +82,29 @@ export function App() {
         <LegalPage page={legalPage} />
       ) : (
         <>
-          <section className="hero" id="hero" ref={heroRef}>
-            <Suspense fallback={<CubeSymbolFallback />}>
-              <CubeSymbol progress={scrollYProgress as MotionValue<number>} />
-            </Suspense>
-            <motion.div className="hero-content" style={{ opacity: heroOpacity, y: heroY }}>
-              <motion.p className="eyebrow" initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-                AI Product Studio
-              </motion.p>
-              <motion.h1 initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.08 }}>
-                Focused AI products.
-              </motion.h1>
-              <motion.p className="hero-copy" initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.16 }}>
+          <section className="hero" id="hero">
+            <div className="hero-orb" aria-hidden="true" />
+            <motion.div className="hero-content" initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+              <p className="eyebrow eyebrow-chip">AI Product Studio</p>
+              <h1>
+                Vom
+                <br />
+                Experiment
+                <br />
+                <span>zum Produkt.</span>
+              </h1>
+              <p className="hero-copy">
                 filzinger.lab ist ein AI Product Studio. Es entwickelt schlanke digitale Produkte, die wiederkehrende Aufgaben strukturieren,
                 Daten nutzbar machen und klare Entscheidungen unterstützen.
-              </motion.p>
-              <motion.div className="hero-actions" initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.24 }}>
+              </p>
+              <div className="hero-actions">
                 <a className="primary-link" href="#products">Produkte ansehen</a>
                 <a className="secondary-link" href={`mailto:${contactEmail}`}>Kontakt aufnehmen</a>
-              </motion.div>
+              </div>
             </motion.div>
+            <div className="hero-visual" aria-hidden="true">
+              <img src="/stitch/cube-logo-reference.png" alt="" />
+            </div>
           </section>
 
           <main>
@@ -137,7 +137,14 @@ export function App() {
                     viewport={{ once: true, amount: 0.24 }}
                     transition={{ duration: shouldReduceMotion ? 0 : 0.55, delay: shouldReduceMotion ? 0 : index * 0.06, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <span>{product.status}</span>
+                    <div className="product-media">
+                      <img src={product.image} alt="" loading="lazy" />
+                      <span className={`status-badge status-badge--${product.statusTone}`}>{product.status}</span>
+                    </div>
+                    <div className="product-tags" aria-label={`${product.name} Kategorien`}>
+                      <span>{product.focus}</span>
+                      <span>{product.proof}</span>
+                    </div>
                     <h3>
                       {'href' in product ? (
                         <a href={product.href} target="_blank" rel="noreferrer">{product.name}</a>
@@ -181,6 +188,7 @@ export function App() {
                     viewport={{ once: true, amount: 0.26 }}
                     transition={{ duration: shouldReduceMotion ? 0 : 0.55, delay: shouldReduceMotion ? 0 : index * 0.06, ease: [0.22, 1, 0.36, 1] }}
                   >
+                    <span>{String(index + 1).padStart(2, '0')}</span>
                     <strong>{layer.name}</strong>
                     <p>{layer.detail}</p>
                   </motion.article>
@@ -451,13 +459,5 @@ function Section({ children, id, label, title }: { children: ReactNode; id: stri
       </div>
       {children}
     </motion.section>
-  );
-}
-
-function CubeSymbolFallback() {
-  return (
-    <div className="cube-stage cube-stage--fallback" aria-hidden="true">
-      <div className="cube-fallback-core" />
-    </div>
   );
 }
