@@ -87,11 +87,9 @@ export function App() {
             <motion.div className="hero-content" initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
               <p className="eyebrow eyebrow-chip">AI Product Studio</p>
               <h1>
-                Vom
-                <br />
-                Experiment
-                <br />
-                <span>zum Produkt.</span>
+                <span className="hero-title-line">Vom</span>{' '}
+                <span className="hero-title-line">Experiment</span>{' '}
+                <span className="hero-title-line hero-title-accent">zum Produkt.</span>
               </h1>
               <p className="hero-copy">
                 filzinger.lab ist ein AI Product Studio. Es entwickelt schlanke digitale Produkte, die wiederkehrende Aufgaben strukturieren,

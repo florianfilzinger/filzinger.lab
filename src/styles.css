@@ -246,7 +246,11 @@ input:focus-visible {
   text-shadow: 0 0 22px rgba(209, 188, 255, 0.16);
 }
 
-.hero h1 span {
+.hero-title-line {
+  display: block;
+}
+
+.hero-title-accent {
   color: var(--primary);
   font-style: italic;
 }
