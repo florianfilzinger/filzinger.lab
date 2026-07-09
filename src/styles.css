@@ -480,9 +480,10 @@ main {
 }
 
 .product-card {
-  display: flex;
+  display: grid;
+  grid-template-rows: auto 44px 62px 136px 1fr;
   min-height: 100%;
-  flex-direction: column;
+  align-items: start;
   padding: 16px;
   transition:
     border-color var(--duration) var(--ease),
@@ -521,7 +522,7 @@ main {
 .product-media img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  height: clamp(150px, 12vw, 176px);
   object-fit: cover;
   object-position: top center;
   opacity: 0.86;
@@ -588,14 +589,17 @@ main {
   z-index: 1;
   display: flex;
   flex-wrap: wrap;
+  align-content: start;
   gap: 8px;
   margin-top: 16px;
+  min-height: 28px;
 }
 
 .product-card h3 {
   position: relative;
   z-index: 1;
-  margin: 18px 0 10px;
+  align-self: start;
+  margin: 18px 0 0;
   color: var(--text);
   font-family: "Hanken Grotesk", Inter, sans-serif;
   font-size: 26px;
@@ -608,11 +612,17 @@ main {
   z-index: 1;
 }
 
+.product-card p {
+  align-self: start;
+}
+
 .product-card dl {
+  align-self: end;
   display: grid;
   gap: 10px;
-  margin: auto 0 0;
-  padding-top: 24px;
+  width: 100%;
+  margin: 0;
+  padding-top: 18px;
 }
 
 .product-card dl div {
