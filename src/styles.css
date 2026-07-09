@@ -322,6 +322,7 @@ input:focus-visible {
   position: relative;
   z-index: 1;
   min-width: 0;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -341,7 +342,7 @@ input:focus-visible {
 .hero-visual img {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 100%;
   object-fit: contain;
   object-position: center;
 }
@@ -1057,8 +1058,7 @@ main {
   }
 
   .hero-visual img {
-    aspect-ratio: 16 / 10;
-    transform: scale(1.18);
+    height: 100%;
   }
 
   .vision-grid,
