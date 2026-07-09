@@ -4,6 +4,7 @@
   "description": "Premium landing page for filzinger.lab, an AI Product Studio.",
   "scripts": {
     "dev": "vite",
+    "lint": "tsc --noEmit",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview"
   },
