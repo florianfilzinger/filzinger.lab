@@ -49,7 +49,7 @@ const factoryLayers = [
   },
 ];
 
-const contactEmail = 'filzinger.lab@gmail.com';
+const contactEmail = 'hello@filzingerlab.de';
 const siteUrl = 'https://filzinger.lab';
 const homeMeta = {
   title: 'filzinger.lab | AI Product Studio for focused digital products',
@@ -232,12 +232,12 @@ export function App() {
             </section>
 
             <section className="updates-section" aria-labelledby="updates-title">
-              <h2 id="updates-title">Laboratory Updates</h2>
-              <p>Technische Einblicke in neue Produkte, Experimente und Alpha-Releases.</p>
+              <h2 id="updates-title">Early Access / Alpha Updates</h2>
+              <p>Frühe Einblicke in neue Produkte, Alpha-Releases und technische Produktentscheidungen.</p>
               <form className="updates-form" onSubmit={(event) => event.preventDefault()}>
                 <label className="sr-only" htmlFor="updates-email">E-Mail-Adresse</label>
                 <input id="updates-email" type="email" placeholder="hello@filzingerlab.de" autoComplete="email" />
-                <button className="primary-link" type="submit">Lab beitreten</button>
+                <button className="primary-link" type="submit">Updates anfragen</button>
               </form>
             </section>
 
