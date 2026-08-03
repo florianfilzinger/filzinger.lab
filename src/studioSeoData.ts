@@ -113,7 +113,7 @@ export const studioSeoPages = [
       {
         title: 'Product Discovery schafft einen belastbaren Fokus',
         paragraphs: [
-          'Product Discovery sammelt nicht möglichst viele Ideen. Sie reduziert Unsicherheit. Gespräche, Prozessbeobachtung, vorhandene Daten und Wettbewerbsumfeld können zeigen, wie Nutzer ein Problem heute lösen. Dabei wird zwischen geäußerten Wünschen und dem zugrunde liegenden Bedarf unterschieden. Ein gewünschtes Feature ist oft nur ein erster Lösungsvorschlag.',
+          'Product Discovery sammelt nicht möglichst viele Ideen. Sie reduziert Unsicherheit. Gespräche, Prozessbeobachtung, vorhandene Daten und das Wettbewerbsumfeld können zeigen, wie Nutzer ein Problem heute lösen. Dabei wird zwischen geäußerten Wünschen und dem zugrunde liegenden Bedarf unterschieden. Ein gewünschtes Feature ist oft nur ein erster Lösungsvorschlag.',
           'Die Discovery formuliert zentrale Annahmen: zur Zielgruppe, zum Problem, zur Nutzungssituation und zum möglichen Produktwert. Für jede Annahme wird ein angemessener Test gesucht. Manche Fragen lassen sich durch Recherche oder Gespräche klären, andere benötigen eine Oberfläche oder technische Interaktion. Nicht jede Unsicherheit rechtfertigt bereits vollständige Entwicklung.',
           'Das Ergebnis ist ein priorisierter Produktumfang mit bekannten offenen Punkten. Ebenso wichtig ist die Entscheidung, was bewusst nicht gebaut wird. Diese Begrenzung erleichtert die spätere Bewertung. Wenn ein Produkt zu viele unterschiedliche Aufgaben gleichzeitig lösen soll, bleibt unklar, welcher Teil tatsächlich nützlich ist.',
         ],

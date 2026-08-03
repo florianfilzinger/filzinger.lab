@@ -1,7 +1,11 @@
 import { seoPages } from './studioSeoData';
 
-export const siteUrl = 'https://filzinger.lab';
+export const siteUrl = 'https://filzingerlab.de';
 export const socialImage = `${siteUrl}/social-preview.png`;
+const personId = 'https://filzinger-ai.de/#person';
+const organizationId = `${siteUrl}/#organization`;
+const brandId = `${siteUrl}/#brand`;
+const websiteId = `${siteUrl}/#website`;
 
 export type StructuredData = Record<string, unknown>;
 
@@ -20,44 +24,65 @@ const homeRoute: RouteSeo = {
   indexable: true,
   jsonLd: {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'filzinger.lab',
-    url: `${siteUrl}/`,
-    description: 'filzinger.lab is an AI Product Studio building focused digital products, starting with WeightCoach AI.',
-    logo: `${siteUrl}/favicon.svg`,
-    sameAs: ['https://weightcoach-ai.de'],
-    makesOffer: [
+    '@graph': [
       {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'SoftwareApplication',
-          name: 'WeightCoach AI',
-          applicationCategory: 'HealthApplication',
-          url: 'https://weightcoach-ai.de',
-        },
+        '@type': 'Person', '@id': personId, name: 'Florian Filzinger', url: `${siteUrl}/`,
+        sameAs: ['https://www.linkedin.com/in/florian-filzinger'],
       },
       {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'SoftwareApplication',
-          name: 'Fußball Training AI',
-          applicationCategory: 'SportsApplication',
-        },
+        '@type': 'Brand', '@id': brandId, name: 'filzinger.lab', url: `${siteUrl}/`, logo: `${siteUrl}/favicon.svg`,
+      },
+      {
+        '@type': 'Organization', '@id': organizationId, name: 'filzinger.lab', url: `${siteUrl}/`,
+        description: 'filzinger.lab is an AI Product Studio building focused digital products, starting with WeightCoach AI.',
+        logo: `${siteUrl}/favicon.svg`, founder: { '@id': personId }, brand: { '@id': brandId },
+      },
+      {
+        '@type': 'WebSite', '@id': websiteId, name: 'filzinger.lab', url: `${siteUrl}/`,
+        publisher: { '@id': organizationId }, creator: { '@id': personId }, inLanguage: 'de-DE',
+      },
+      {
+        '@type': 'WebPage', '@id': `${siteUrl}/#webpage`, name: 'filzinger.lab | AI Product Studio', url: `${siteUrl}/`,
+        isPartOf: { '@id': websiteId }, about: { '@id': organizationId }, publisher: { '@id': organizationId },
+      },
+      {
+        '@type': 'SoftwareApplication', '@id': 'https://weightcoach-ai.de/#softwareapplication', name: 'WeightCoach AI',
+        applicationCategory: 'HealthApplication', operatingSystem: 'Web, Android', url: 'https://weightcoach-ai.de/',
+        creator: { '@id': organizationId }, publisher: { '@id': organizationId },
+        brand: { '@type': 'Brand', '@id': 'https://weightcoach-ai.de/#brand', name: 'WeightCoach AI' },
       },
     ],
   },
 };
 
+function withEcosystemGraph(url: string, page: { headline: string; description: string }, data: Record<string, unknown>) {
+  const graph = '@graph' in data
+    ? (data['@graph'] as Record<string, unknown>[])
+    : [{ ...data, '@context': undefined }];
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'Person', '@id': personId, name: 'Florian Filzinger', url: `${siteUrl}/`, sameAs: ['https://www.linkedin.com/in/florian-filzinger'] },
+      { '@type': 'Brand', '@id': brandId, name: 'filzinger.lab', url: `${siteUrl}/`, logo: `${siteUrl}/favicon.svg` },
+      { '@type': 'Organization', '@id': organizationId, name: 'filzinger.lab', url: `${siteUrl}/`, founder: { '@id': personId }, brand: { '@id': brandId } },
+      { '@type': 'WebSite', '@id': websiteId, name: 'filzinger.lab', url: `${siteUrl}/`, publisher: { '@id': organizationId }, creator: { '@id': personId }, inLanguage: 'de-DE' },
+      { '@type': 'WebPage', '@id': `${url}#webpage`, name: page.headline, description: page.description, url, isPartOf: { '@id': websiteId }, publisher: { '@id': organizationId } },
+      ...graph,
+    ],
+  };
+}
+
 const studioRoutes: RouteSeo[] = seoPages.map((page) => {
   const url = `${siteUrl}${page.path}`;
-  const jsonLd = page.schemaType === 'Service'
+  const routeData: Record<string, unknown> = page.schemaType === 'Service'
     ? {
         '@context': 'https://schema.org',
         '@type': 'Service',
         name: page.headline,
         description: page.description,
         url,
-        provider: { '@type': 'Organization', name: 'filzinger.lab', url: `${siteUrl}/` },
+        provider: { '@id': organizationId },
         areaServed: { '@type': 'Country', name: 'Deutschland' },
       }
     : page.schemaType === 'SoftwareApplication'
@@ -69,7 +94,9 @@ const studioRoutes: RouteSeo[] = seoPages.map((page) => {
           url,
           applicationCategory: 'HealthApplication',
           operatingSystem: 'Web',
-          creator: { '@type': 'Organization', name: 'filzinger.lab', url: `${siteUrl}/` },
+          creator: { '@id': organizationId },
+          publisher: { '@id': organizationId },
+          brand: { '@type': 'Brand', '@id': 'https://weightcoach-ai.de/#brand', name: 'WeightCoach AI' },
           sameAs: 'https://weightcoach-ai.de',
         }
       : page.schemaType === 'Article'
@@ -81,15 +108,15 @@ const studioRoutes: RouteSeo[] = seoPages.map((page) => {
                 headline: page.headline,
                 description: page.description,
                 url,
-                mainEntityOfPage: url,
-                author: { '@type': 'Organization', name: 'filzinger.lab', url: `${siteUrl}/` },
-                publisher: { '@type': 'Organization', name: 'filzinger.lab', url: `${siteUrl}/` },
+                mainEntityOfPage: { '@id': `${url}#webpage` },
+                author: { '@id': personId },
+                publisher: { '@id': organizationId },
               },
               {
                 '@type': 'BreadcrumbList',
                 itemListElement: [
                   { '@type': 'ListItem', position: 1, name: 'Startseite', item: `${siteUrl}/` },
-                  { '@type': 'ListItem', position: 2, name: 'WeightCoach AI Case Study', item: url },
+                  { '@type': 'ListItem', position: 2, name: page.headline, item: url },
                 ],
               },
               ...('faqs' in page && page.faqs
@@ -110,8 +137,10 @@ const studioRoutes: RouteSeo[] = seoPages.map((page) => {
         name: page.headline,
         description: page.description,
         url,
-        isPartOf: { '@type': 'WebSite', name: 'filzinger.lab', url: `${siteUrl}/` },
+        isPartOf: { '@id': websiteId },
       };
+
+  const jsonLd = withEcosystemGraph(url, page, routeData);
 
   return { path: page.path, title: page.title, description: page.description, indexable: true, jsonLd };
 });
@@ -141,7 +170,8 @@ const legalRoutes: RouteSeo[] = [
     name: route.title.replace(' | filzinger.lab', ''),
     description: route.description,
     url: `${siteUrl}${route.path}`,
-    isPartOf: { '@type': 'WebSite', name: 'filzinger.lab', url: `${siteUrl}/` },
+    isPartOf: { '@id': websiteId },
+    publisher: { '@id': organizationId },
   },
 }));
 

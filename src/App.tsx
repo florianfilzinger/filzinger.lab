@@ -38,7 +38,7 @@ const products = [
 const principles = ['AI Products', 'Automation', 'Data', 'Interfaces', 'Operations'];
 
 const ecosystemLinks = [
-  { label: 'Filzinger AI Consulting', href: 'https://www.filzinger-ai.de/' },
+  { label: 'Filzinger AI Consulting', href: 'https://filzinger-ai.de/' },
   { label: 'filzinger.lab', href: 'https://filzingerlab.de/' },
   { label: 'WeightCoach AI', href: 'https://weightcoach-ai.de/' },
 ];
@@ -78,7 +78,7 @@ export function App({ initialPathname }: { initialPathname?: string } = {}) {
           <a href="/#vision">Vision</a>
           <a href="/#products">Produkte</a>
           <a href="/#factory">Dark Factory</a>
-          <a href="https://www.filzinger-ai.de/" target="_blank" rel="noreferrer">Consulting</a>
+          <a href="https://filzinger-ai.de/" target="_blank" rel="noreferrer">Consulting</a>
           <a href={`mailto:${contactEmail}`}>Kontakt</a>
         </nav>
       </header>
@@ -262,6 +262,8 @@ export function App({ initialPathname }: { initialPathname?: string } = {}) {
       <footer className="site-footer">
         <span>© 2026 filzinger.lab</span>
         <nav aria-label="Footer">
+          <a href="/produkte">Produkte</a>
+          <a href="/case-studies/weightcoach-ai">Case Study</a>
           {ecosystemLinks.map((link) => (
             <a href={link.href} key={link.href} target="_blank" rel="noreferrer">{link.label}</a>
           ))}

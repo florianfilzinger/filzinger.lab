@@ -17,7 +17,7 @@ function escapeAttribute(value) {
 }
 
 function renderDocument(route, body) {
-  const url = `https://filzinger.lab${route.path}`;
+  const url = `https://filzingerlab.de${route.path}`;
   let html = template
     .replace(/<title>[^<]*<\/title>/, `<title>${escapeAttribute(route.title)}</title>`)
     .replace(/(<meta\s+name="description"\s+content=")[^"]*("\s*\/?>)/, `$1${escapeAttribute(route.description)}$2`)
@@ -50,7 +50,7 @@ await writeRoute(renderer.notFoundSeo);
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-  ...renderer.indexableRoutes.map((route) => `  <url><loc>https://filzinger.lab${route.path}</loc></url>`),
+  ...renderer.indexableRoutes.map((route) => `  <url><loc>https://filzingerlab.de${route.path}</loc></url>`),
   '</urlset>',
   '',
 ].join('\n');

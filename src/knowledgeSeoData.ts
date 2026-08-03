@@ -944,15 +944,15 @@ export const knowledgeSeoPages = [
   },
   {
     path: '/wissen/ai-interface-design',
-    title: 'AI Interface Design: variable Ergebnisse verständlich machen',
-    description: 'AI Interface Design für Eingaben, Zustände, variable Ergebnisse, Unsicherheit, Korrekturen, Freigaben und eine konsistente Nutzerführung.',
+    title: 'AI-Interface-Design: variable Ergebnisse verständlich machen',
+    description: 'AI-Interface-Design für Eingaben, Zustände, variable Ergebnisse, Unsicherheit, Korrekturen, Freigaben und eine konsistente Nutzerführung.',
     schemaType: 'Article',
     eyebrow: 'AI Product Design',
-    headline: 'Wie funktioniert gutes AI Interface Design?',
-    intro: 'AI Interface Design übersetzt variable Modellfähigkeiten in einen verständlichen Produktablauf. Nutzer müssen wissen, welche Eingaben benötigt werden, was das System gerade tut, wie ein Ergebnis einzuordnen ist und welche Kontrolle sie behalten.',
+    headline: 'Wie funktioniert gutes AI-Interface-Design?',
+    intro: 'AI-Interface-Design übersetzt variable Modellfähigkeiten in einen verständlichen Produktablauf. Nutzer müssen wissen, welche Eingaben benötigt werden, was das System gerade tut, wie ein Ergebnis einzuordnen ist und welche Kontrolle sie behalten.',
     ctaTitle: 'Eine AI-Funktion als verständlichen Ablauf gestalten',
     ctaText: 'Sie möchten aus einer Modelldemo eine klare Nutzererfahrung entwickeln? filzinger.lab verbindet Interface, Produktlogik und technische Grenzen.',
-    subject: 'AI Interface Design besprechen',
+    subject: 'AI-Interface-Design besprechen',
     sections: [
       {
         title: 'Das Interface beginnt vor der Modellantwort',
@@ -995,7 +995,7 @@ export const knowledgeSeoPages = [
         ],
       },
       {
-        title: 'AI Interface Design testen und weiterentwickeln',
+        title: 'AI-Interface-Design testen und weiterentwickeln',
         paragraphs: [
           'Prototypen prüfen zunächst Eingaben, Erwartung und Ergebnisdarstellung. Tests enthalten auch unvollständige oder ungeeignete Fälle. Die Seite <a href="/wissen/ai-produkte-testen">AI-Produkte testen</a> verbindet Interface-Beobachtung mit Modell- und Systemqualität. Eine gute Demo unter Anleitung belegt noch keine selbstständige Nutzung.',
           'Ein <a href="/ai-mvp-entwicklung">AI-MVP</a> bildet den Kernablauf unter realistischen Bedingungen ab. Für den Betrieb verbindet <a href="/ai-saas-entwicklung">AI-SaaS-Entwicklung</a> Interfacezustände mit Fehlern, Releases und Kosten. Beobachtungen fließen in die <a href="/produktentwicklung">Produktentwicklung</a>, ohne jede Rückmeldung direkt als Feature umzusetzen.',
@@ -1008,7 +1008,7 @@ export const knowledgeSeoPages = [
         ],
       },
       ...faqSections([
-        ['Was unterscheidet AI Interface Design von klassischem UI-Design?', 'Zusätzlich müssen variable Ergebnisse, längere Verarbeitungszeiten, Unsicherheit, Korrekturen und geeignete menschliche Kontrolle verständlich gestaltet werden.'],
+        ['Was unterscheidet AI-Interface-Design von klassischem UI-Design?', 'Zusätzlich müssen variable Ergebnisse, längere Verarbeitungszeiten, Unsicherheit, Korrekturen und geeignete menschliche Kontrolle verständlich gestaltet werden.'],
         ['Sollte jede AI-Funktion ein freies Texteingabefeld verwenden?', 'Nein. Strukturierte Felder, Beispiele und begrenzte Auswahl können bessere Eingaben und eine verständlichere Nutzerführung ermöglichen.'],
         ['Wie zeigt man Unsicherheit im Interface?', 'Durch klare Einordnung als Entwurf oder Vorschlag, sichtbare Grundlagen, konkrete Prüfschritte und Grenzen statt unbelegter präziser Prozentwerte.'],
         ['Wann braucht ein AI-Ergebnis eine Freigabe?', 'Wenn mögliche Folgen, Unsicherheit oder fehlende Rückgängigkeit eine bewusste menschliche Entscheidung erforderlich machen.'],
@@ -1016,7 +1016,7 @@ export const knowledgeSeoPages = [
       ]),
     ],
     faqs: faqData([
-      ['Was unterscheidet AI Interface Design von klassischem UI-Design?', 'Zusätzlich müssen variable Ergebnisse, längere Verarbeitungszeiten, Unsicherheit, Korrekturen und geeignete menschliche Kontrolle verständlich gestaltet werden.'],
+      ['Was unterscheidet AI-Interface-Design von klassischem UI-Design?', 'Zusätzlich müssen variable Ergebnisse, längere Verarbeitungszeiten, Unsicherheit, Korrekturen und geeignete menschliche Kontrolle verständlich gestaltet werden.'],
       ['Sollte jede AI-Funktion ein freies Texteingabefeld verwenden?', 'Nein. Strukturierte Felder, Beispiele und begrenzte Auswahl können bessere Eingaben und eine verständlichere Nutzerführung ermöglichen.'],
       ['Wie zeigt man Unsicherheit im Interface?', 'Durch klare Einordnung als Entwurf oder Vorschlag, sichtbare Grundlagen, konkrete Prüfschritte und Grenzen statt unbelegter präziser Prozentwerte.'],
       ['Wann braucht ein AI-Ergebnis eine Freigabe?', 'Wenn mögliche Folgen, Unsicherheit oder fehlende Rückgängigkeit eine bewusste menschliche Entscheidung erforderlich machen.'],
