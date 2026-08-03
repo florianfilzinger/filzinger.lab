@@ -781,6 +781,329 @@ export const knowledgeSeoPages = [
       ['Kann sicherer Betrieb garantiert werden?', 'Nein. Maßnahmen reduzieren bekannte Risiken, aber Produkte, Angriffe und Abhängigkeiten verändern sich. Sicherheit erfordert fortlaufende Prüfung und angemessene Reaktion.'],
     ]),
   },
+  {
+    path: '/wissen/build-vs-buy-bei-ai-produkten',
+    title: 'Build vs. Buy bei AI-Produkten: richtig entscheiden',
+    description: 'Build oder Buy bei AI-Produkten: Produktkern, Daten, Differenzierung, Kosten, Abhängigkeiten, Integration und Betrieb strukturiert bewerten.',
+    schemaType: 'Article',
+    eyebrow: 'AI Product Strategy',
+    headline: 'Build vs. Buy bei AI-Produkten',
+    intro: 'Die Entscheidung zwischen Eigenentwicklung und bestehender Lösung ist bei AI-Produkten selten binär. Ein Produkt kann Standarddienste einkaufen, eigene Produktlogik entwickeln und einzelne Komponenten später austauschen. Entscheidend ist, welcher Teil den eigentlichen Produktwert trägt.',
+    ctaTitle: 'Die passende Produkttiefe bestimmen',
+    ctaText: 'Sie prüfen Eigenentwicklung, Plattform oder eine Kombination? filzinger.lab ordnet Produktkern, technische Abhängigkeiten und einen sinnvollen Validierungsschritt ein.',
+    subject: 'Build-vs-Buy-Entscheidung besprechen',
+    sections: [
+      {
+        title: 'Build vs. Buy ist eine Produktentscheidung',
+        paragraphs: [
+          'Eine Build-vs.-Buy-Analyse beginnt nicht bei einer Liste technischer Funktionen. Zuerst wird geklärt, welche Aufgabe das Produkt für welche Zielgruppe löst. Liegt der zentrale Nutzen in einer allgemein verfügbaren Fähigkeit, kann eine bestehende Lösung genügen. Entsteht er aus besonderer Produktlogik, Daten oder Nutzerführung, braucht dieser Bereich mehr eigene Kontrolle.',
+          '„Build“ bedeutet zudem nicht, jedes Modell oder jede Infrastruktur selbst zu entwickeln. Viele AI-Produkte kombinieren externe Modelle, Hosting und Authentifizierung mit eigener Oberfläche, Datenstruktur und Orchestrierung. Umgekehrt ist „Buy“ selten ohne Anpassung: Einführung, Integration, Berechtigungen und laufender Betrieb verursachen weiterhin Produktarbeit.',
+          'Das <a href="/product-studio">Product Studio</a> betrachtet die Entscheidung entlang des realen Produkts. Technologie wird nicht allein wegen möglicher Differenzierung selbst gebaut. Jede eigene Komponente muss einen begründeten Beitrag leisten und dauerhaft gewartet werden können.',
+        ],
+      },
+      {
+        title: 'Den differenzierenden Produktkern erkennen',
+        paragraphs: [
+          'Der Produktkern ist der Ablauf, für den Nutzer das Produkt wiederholt einsetzen. Er kann in besonderem Fachwissen, einem Datenmodell, einer neuen Interaktion oder der Verbindung mehrerer Schritte liegen. Eine externe Standardlösung ist problematisch, wenn genau dieser Kern nur unzureichend angepasst oder kontrolliert werden kann.',
+          'Nicht jede sichtbare Funktion differenziert. Anmeldung, Zahlungsabwicklung oder grundlegende Dateispeicherung sind oft notwendige Voraussetzungen, aber selten das Alleinstellungsmerkmal. Bewährte Dienste können Entwicklungsaufwand reduzieren. Ihre Bedingungen, Kosten und Wechselmöglichkeiten müssen dennoch zum Produkt passen.',
+          'Die <a href="/wissen/ai-produktidee-validieren">Validierung der AI-Produktidee</a> hilft, angenommene Differenzierung von tatsächlichem Bedarf zu trennen. Eine aufwendige Eigenentwicklung ist nicht gerechtfertigt, nur weil sie technisch interessant ist. Nutzer müssen einen relevanten Unterschied erkennen können.',
+        ],
+      },
+      {
+        title: 'Daten, Datenschutz und Kontrolle bewerten',
+        paragraphs: [
+          'Bei eingekauften Diensten ist zu prüfen, welche Daten übertragen, gespeichert oder zur Leistungserbringung verarbeitet werden. Vertragsbedingungen, Standorte und Löschwege hängen vom Anbieter und konkreten Tarif ab. Pauschale Datenschutz- oder Sicherheitszusagen ersetzen diese Prüfung nicht.',
+          'Eigenentwicklung schafft ebenfalls keine automatische Datenhoheit. Hosting, Modellanbieter und weitere Infrastruktur bleiben mögliche Dritte. Sie ermöglicht jedoch, Datenwege und Produktregeln gezielter zu gestalten. Dieser Vorteil entsteht nur, wenn Architektur, Berechtigungen und Betrieb tatsächlich sorgfältig umgesetzt werden.',
+          'Die <a href="/wissen/ai-produkt-architektur">AI-Produkt-Architektur</a> dokumentiert Verantwortungsgrenzen und Abhängigkeiten. Besonders relevant ist, ob ein Anbieter Datenexport, Löschung und geeignete Schnittstellen unterstützt. Ein späterer Wechsel darf nicht nur theoretisch, sondern muss mit vertretbarem Produktaufwand möglich sein.',
+        ],
+      },
+      {
+        title: 'Kosten über den Lebenszyklus betrachten',
+        paragraphs: [
+          'Ein Kaufangebot wirkt anfangs häufig planbarer, kann aber mit Nutzung, Datenmenge, Nutzerzahl oder zusätzlichen Funktionen teurer werden. Eigenentwicklung benötigt mehr anfängliches Engineering und verursacht anschließend Wartung. Ein sinnvoller Vergleich betrachtet deshalb Einführung, Integration, Betrieb, Support und erwartbare Änderungen.',
+          'Exakte Langzeitkosten sind ohne konkrete Annahmen nicht belastbar. Szenarien machen sichtbar, welche Faktoren den größten Einfluss besitzen. Dazu gehören Modellverbrauch, Lizenzbedingungen, notwendige Anpassungen und Aufwand für Qualitätssicherung. Die Seite <a href="/wissen/kosten-eines-ai-mvp">Kosten eines AI-MVP</a> erläutert die frühe Budgetplanung.',
+          'Bereits investierter Aufwand sollte keinen unpassenden Weg festschreiben. Wenn ein externer Dienst den validierten Kern besser trägt, kann Migration sinnvoll sein. Umgekehrt kann wachsende Abhängigkeit eine eigene Komponente begründen. Entscheidungen werden zu definierten Zeitpunkten überprüft.',
+        ],
+      },
+      {
+        title: 'Integration und Anbieterabhängigkeit planen',
+        paragraphs: [
+          'Eine externe Lösung benötigt klare Schnittstellen zur eigenen Produktlogik. Datenformate, Fehlerzustände, Laufzeiten und Limits müssen im Interface berücksichtigt werden. Der Anbieter darf nicht unbemerkt bestimmen, wie Nutzer den gesamten Ablauf erleben. Produktseitige Zustände bleiben in eigener Verantwortung.',
+          'Abstraktionsschichten können einen späteren Wechsel erleichtern, aber nicht kostenlos machen. Modelle und Plattformen unterscheiden sich in Verhalten und Funktionen. Ein Austausch benötigt neue Tests, mögliche Datenmigrationen und Anpassungen der Nutzerführung. Vollständige Anbieterunabhängigkeit ist daher selten realistisch.',
+          'Der Artikel <a href="/wissen/llm-in-produkte-integrieren">LLM in Produkte integrieren</a> zeigt diese Anforderungen am Modellzugriff. Für den dauerhaften Einsatz ergänzt die <a href="/ai-saas-entwicklung">AI-SaaS-Entwicklung</a> Monitoring, Releases und Kostenkontrolle.',
+        ],
+      },
+      {
+        title: 'Eine schrittweise Entscheidung treffen',
+        paragraphs: [
+          'Ein begrenzter Prototyp kann eine externe und eine eigene Variante anhand derselben Produktfälle vergleichen. Bewertet werden nicht nur Modellausgaben, sondern Integration, Bedienung, Laufzeit und Fehlerwege. Ein <a href="/ai-mvp-entwicklung">AI-MVP</a> prüft anschließend den gewählten Kern unter realistischen Bedingungen.',
+          'Entscheidungskriterien werden vor dem Vergleich gewichtet. Datenschutz, Anpassbarkeit oder Kontrolle können in einem Produkt wichtiger sein als kurzfristige Geschwindigkeit. Eine universelle Matrix gibt es nicht. Das Ergebnis hängt von Zielgruppe, Daten, Team und geplantem Betrieb ab.',
+          'Die <a href="/case-studies/weightcoach-ai">WeightCoach-AI-Case-Study</a> und die <a href="/produkte/weightcoach-ai">Produktseite</a> zeigen reale Studioarbeit, liefern aber keine allgemeine Build-vs.-Buy-Vorgabe. Jede Produktidee braucht eine eigene <a href="/produktentwicklung">produktseitige und technische Bewertung</a>.',
+          'Die Entscheidung wird dokumentiert: Annahmen, ausgeschlossene Optionen, Abhängigkeiten und Zeitpunkt der nächsten Prüfung. So kann sie später anhand neuer Nutzung oder geänderter Anbieterbedingungen aktualisiert werden, statt zu einer unveränderlichen Grundsatzfrage zu werden.',
+          'Auch interne Fähigkeiten beeinflussen den Weg. Eine Eigenentwicklung benötigt Menschen, die Architektur, Qualität und Betrieb langfristig verantworten können. Fehlt diese Verantwortung, entsteht trotz technischer Kontrolle ein Wartungsrisiko. Ein externer Dienst reduziert bestimmte Aufgaben, verlangt aber Kompetenz für Integration, Anbietersteuerung und Produktgrenzen. Die Entscheidung sollte deshalb nicht nur den heutigen Projektaufwand, sondern auch die real verfügbare Verantwortung nach dem Launch berücksichtigen.',
+          'Ein hybrider Ansatz kann Lernrisiken begrenzen. Eine eingekaufte Komponente ermöglicht einen frühen Test, während Schnittstellen und Datenmodell bewusst auf einen späteren Wechsel vorbereitet werden. Diese Option ist sinnvoll, wenn sie echte Unsicherheit reduziert. Sie darf nicht als Ausrede dienen, zwei vollständige Lösungen parallel zu entwickeln oder eine notwendige Grundsatzentscheidung unbegrenzt aufzuschieben.',
+          'Vor einer verbindlichen Auswahl sollten außerdem Kündigungsfristen, Exportmöglichkeiten und der Umgang mit einem eingestellten Dienst bekannt sein. Diese scheinbar operativen Details können den Produktweg stärker begrenzen als eine einzelne technische Funktion.',
+        ],
+      },
+      ...faqSections([
+        ['Was bedeutet Build vs. Buy bei AI-Produkten?', 'Es bezeichnet die Entscheidung, welche Produktbestandteile selbst entwickelt und welche als bestehende Modelle, Plattformen oder Dienste eingekauft werden.'],
+        ['Muss ein differenziertes AI-Produkt ein eigenes Modell besitzen?', 'Nein. Differenzierung kann aus Produktlogik, Daten, Nutzerführung oder dem verbundenen Ablauf entstehen. Ein externes Modell kann dafür ein geeigneter Baustein sein.'],
+        ['Ist Buy grundsätzlich günstiger?', 'Nicht zwingend. Lizenz, Integration, Nutzung, Anpassungen und Wechselkosten müssen über den erwarteten Lebenszyklus betrachtet werden.'],
+        ['Wie lässt sich Anbieterabhängigkeit reduzieren?', 'Durch klare Schnittstellen, Datenexport, dokumentierte Formate und getrennte Produktlogik. Ein Wechsel bleibt dennoch mit Prüfung und Anpassung verbunden.'],
+        ['Kann ein Prototyp die Entscheidung unterstützen?', 'Ja. Ein begrenzter Vergleich mit realistischen Produktfällen kann Qualität, Integration, Laufzeit und Grenzen sichtbar machen, garantiert aber keinen späteren Erfolg.'],
+      ]),
+    ],
+    faqs: faqData([
+      ['Was bedeutet Build vs. Buy bei AI-Produkten?', 'Es bezeichnet die Entscheidung, welche Produktbestandteile selbst entwickelt und welche als bestehende Modelle, Plattformen oder Dienste eingekauft werden.'],
+      ['Muss ein differenziertes AI-Produkt ein eigenes Modell besitzen?', 'Nein. Differenzierung kann aus Produktlogik, Daten, Nutzerführung oder dem verbundenen Ablauf entstehen. Ein externes Modell kann dafür ein geeigneter Baustein sein.'],
+      ['Ist Buy grundsätzlich günstiger?', 'Nicht zwingend. Lizenz, Integration, Nutzung, Anpassungen und Wechselkosten müssen über den erwarteten Lebenszyklus betrachtet werden.'],
+      ['Wie lässt sich Anbieterabhängigkeit reduzieren?', 'Durch klare Schnittstellen, Datenexport, dokumentierte Formate und getrennte Produktlogik. Ein Wechsel bleibt dennoch mit Prüfung und Anpassung verbunden.'],
+      ['Kann ein Prototyp die Entscheidung unterstützen?', 'Ja. Ein begrenzter Vergleich mit realistischen Produktfällen kann Qualität, Integration, Laufzeit und Grenzen sichtbar machen, garantiert aber keinen späteren Erfolg.'],
+    ]),
+  },
+  {
+    path: '/wissen/produktmetriken-fuer-ai-anwendungen',
+    title: 'Produktmetriken für AI-Anwendungen sinnvoll wählen',
+    description: 'Produktmetriken für AI-Anwendungen: Nutzung, Ergebnisqualität, Korrekturen, Zuverlässigkeit, Kosten und verantwortliche Interpretation verbinden.',
+    schemaType: 'Article',
+    eyebrow: 'AI Product Analytics',
+    headline: 'Welche Produktmetriken sind für AI-Anwendungen sinnvoll?',
+    intro: 'Produktmetriken für AI-Anwendungen müssen Nutzerwert, Ergebnisqualität und technischen Betrieb gemeinsam betrachten. Eine hohe Zahl von Modellaufrufen sagt allein wenig darüber aus, ob Menschen ihre Aufgabe verstehen, brauchbare Ergebnisse erhalten oder unnötige Korrekturen leisten.',
+    ctaTitle: 'Messgrößen aus dem Produktziel ableiten',
+    ctaText: 'Sie möchten für ein AI-Produkt sinnvolle Signale definieren? filzinger.lab verbindet Produktannahme, Nutzerablauf und technische Beobachtbarkeit.',
+    subject: 'Produktmetriken für eine AI-Anwendung besprechen',
+    sections: [
+      {
+        title: 'Metriken beginnen mit einer Produktfrage',
+        paragraphs: [
+          'Eine Metrik ist nur hilfreich, wenn klar ist, welche Entscheidung sie unterstützt. „Mehr Nutzung“ kann positiv wirken, aber auch auf unnötige Wiederholungen oder fehlerhafte Ergebnisse hindeuten. Zuerst wird beschrieben, welche Aufgabe Nutzer erfolgreich abschließen sollen und welche Beobachtung dabei Unsicherheit reduziert.',
+          'Produktziele werden in messbare Ereignisse und qualitative Prüfungen übersetzt. Nicht jeder Wert muss in einem Dashboard stehen. Einige Fragen benötigen Interviews, Beobachtung oder fachliche Stichproben. Eine Kombination verhindert, dass leicht erfassbare Klicks den eigentlichen Produktwert ersetzen.',
+          'Das <a href="/product-studio">Product Studio</a> definiert Messgrößen bereits während Discovery und MVP-Planung. So wird nicht erst nach dem Launch gesammelt, was technisch verfügbar ist. Datensparsamkeit und Entscheidungsnutzen begrenzen die Erhebung.',
+        ],
+      },
+      {
+        title: 'Nutzung und Aufgabenerfolg unterscheiden',
+        paragraphs: [
+          'Aktive Nutzer, Sitzungen oder Aufrufe beschreiben Aktivität, aber nicht automatisch erfolgreichen Nutzen. Für einen zentralen Ablauf kann relevant sein, ob er begonnen, verstanden und vollständig abgeschlossen wird. Abbrüche werden im Kontext betrachtet und nicht pauschal als Desinteresse bewertet.',
+          'Wiederkehrende Nutzung kann ein wichtiges Signal sein, wenn das Produkt eine wiederholte Aufgabe unterstützt. Sie sagt jedoch nicht, warum Menschen zurückkehren. Qualitative Rückmeldungen helfen zu unterscheiden, ob der Ablauf hilfreich, alternativlos oder durch Fehler unnötig wiederholt wird.',
+          'Für ein <a href="/ai-mvp-entwicklung">AI-MVP</a> genügen wenige klar definierte Produktfragen. Eine große Sammlung von Ereignissen erschwert die Auswertung und kann Datenschutzrisiken erhöhen. Der Artikel <a href="/wissen/ai-produktidee-validieren">AI-Produktidee validieren</a> zeigt, wie Beobachtungen an Annahmen gebunden werden.',
+        ],
+      },
+      {
+        title: 'Ergebnisqualität produktbezogen messen',
+        paragraphs: [
+          'Qualität hängt von der Aufgabe ab. Bei einer Extraktion können Vollständigkeit und korrekte Felder zählen. Bei einem Entwurf sind fachliche Richtigkeit, Ton und verbotene Aussagen relevant. Ein allgemeiner Modellwert ersetzt diese produktspezifischen Kriterien nicht.',
+          'Modellausgaben variieren und benötigen repräsentative Testfälle. Automatisierte Prüfungen erkennen Formate und klare Regeln; offene Inhalte erfordern fachliche Bewertung. Die Seite <a href="/wissen/ai-produkte-testen">AI-Produkte testen</a> beschreibt den Aufbau dieser mehrschichtigen Qualitätssicherung.',
+          'Ein Durchschnittswert kann wichtige Fehlergruppen verdecken. Ergebnisse werden nach Fallart, Sprache oder Risikoklasse getrennt betrachtet, soweit dies sachlich und datenschutzgerecht möglich ist. Kleine Gruppen dürfen nicht mit scheinbarer statistischer Sicherheit interpretiert werden.',
+        ],
+      },
+      {
+        title: 'Korrekturen und Human in the Loop verstehen',
+        paragraphs: [
+          'Korrekturraten können zeigen, wie häufig Nutzer eingreifen. Eine niedrige Rate bedeutet aber nicht automatisch hohe Qualität: Vielleicht erkennen Nutzer Fehler nicht oder die Bearbeitung ist zu umständlich. Eine hohe Rate kann bei kreativen Entwürfen erwartbar sein. Kontext bestimmt die Interpretation.',
+          'Freigabezeiten und Eskalationen geben Hinweise auf den Kontrollablauf. Sie dürfen nicht ohne Einordnung zur Leistungsbewertung einzelner Personen verwendet werden. Relevant ist, ob das Produkt ausreichend Informationen liefert und ob die Verteilung zwischen automatischer und menschlicher Aufgabe praktikabel bleibt.',
+          'Der Artikel <a href="/wissen/human-in-the-loop-im-produktdesign">Human in the Loop im Produktdesign</a> vertieft diese Zusammenhänge. Korrekturen können neue Testfälle anregen, sind aber nicht automatisch geeignete Trainingsdaten und benötigen eine klare Zweckbindung.',
+        ],
+      },
+      {
+        title: 'Zuverlässigkeit, Laufzeit und Kosten verbinden',
+        paragraphs: [
+          'Technische Metriken umfassen Fehler, Zeitüberschreitungen, Laufzeit und Verfügbarkeit zentraler Abläufe. Ein System kann technisch erreichbar sein und dennoch keine brauchbaren Ergebnisse liefern. Produkt- und Betriebsmetriken werden deshalb nicht getrennt als vollständige Wahrheiten behandelt.',
+          'Modellverbrauch und Kosten werden je relevanter Produktaktion betrachtet. Ein günstiger Aufruf kann durch Wiederholungen teuer werden; ein teurerer Aufruf kann unnötige Korrekturen reduzieren. Optimierungen werden gegen Ergebnisqualität und Nutzererfahrung geprüft, statt nur den Einzelpreis zu minimieren.',
+          'Die <a href="/ai-saas-entwicklung">AI-SaaS-Entwicklung</a> verbindet diese Signale im laufenden Betrieb. Die <a href="/wissen/ai-produkte-sicher-betreiben">sichere Betriebsführung</a> ergänzt ungewöhnliche Zugriffe und Vorfälle, ohne Inhalte pauschal zu protokollieren.',
+        ],
+      },
+      {
+        title: 'Metriken verantwortungsvoll interpretieren',
+        paragraphs: [
+          'Vor der Erhebung werden Zweck, Zugriff und Aufbewahrung festgelegt. Personenbezogene Daten werden nicht gesammelt, nur weil eine spätere Analyse denkbar wäre. Ereignisse sollten so gestaltet sein, dass sie eine Produktfrage beantworten und gleichzeitig unnötige Detailtiefe vermeiden.',
+          'Dashboards ersetzen keine Entscheidung. Veränderungen können durch Produktupdates, Zielgruppenverschiebung oder technische Störungen entstehen. Teams dokumentieren relevante Ereignisse und prüfen alternative Erklärungen. Korrelationen werden nicht vorschnell als Ursache dargestellt.',
+          'Die <a href="/case-studies/weightcoach-ai">WeightCoach-AI-Case-Study</a> und die <a href="/produkte/weightcoach-ai">Produktseite</a> nennen bewusst keine erfundenen Nutzer- oder Erfolgswerte. Reale Produktmetriken benötigen eine veröffentlichungsfähige Grundlage und dürfen nicht aus dem Live-Status abgeleitet werden.',
+          'In der <a href="/produktentwicklung">Produktentwicklung</a> werden Messgrößen angepasst, wenn sich Kernablauf oder offene Frage verändern. Eine frühere Metrik kann später ihren Entscheidungswert verlieren. Dokumentierte Definitionen verhindern, dass gleich benannte Werte über Versionen hinweg etwas Unterschiedliches bedeuten.',
+          'Für jede Metrik sollten Datenquelle, Berechnung und bekannte Einschränkungen festgehalten werden. Ein scheinbar einfacher Abschlusswert kann sich verändern, wenn Ereignisse doppelt gesendet, Offline-Aktionen später synchronisiert oder technische Fehler ausgefiltert werden. Ohne Definition vergleichen Teams Zahlen, die nur denselben Namen tragen. Plausibilitätsprüfungen und gelegentliche Stichproben helfen, Instrumentierungsfehler zu erkennen, bevor daraus Produktentscheidungen entstehen.',
+          'Qualitative Erkenntnisse benötigen ebenfalls Struktur. Gesprächsnotizen werden nach wiederkehrenden Situationen geordnet, ohne einzelne Aussagen zu allgemeinen Wahrheiten zu erklären. Widersprechende Hinweise bleiben sichtbar. Eine Kombination aus Produktdaten und Gesprächen kann erklären, was passiert und warum es möglicherweise passiert; sie garantiert dennoch keine eindeutige Ursache.',
+          'Ziele dürfen keine unbeabsichtigten Anreize schaffen. Wird ausschließlich die Zahl erzeugter Ergebnisse optimiert, kann das Produkt zu häufige oder unnötige Generierung fördern. Ergänzende Qualitäts- und Belastungssignale helfen, solche Verschiebungen zu erkennen. Die Auswahl bleibt eine verantwortliche Produktentscheidung und kein automatisches Ergebnis des Analytics-Systems.',
+          'Metriken sollten außerdem einen festen Überprüfungsrhythmus haben. Teams klären dabei, welche Werte noch Entscheidungen unterstützen, welche Erhebung unnötig geworden ist und ob neue Produktgrenzen andere Signale verlangen. Nicht mehr benötigte Datenerfassung wird beendet, statt dauerhaft aus Gewohnheit weiterzulaufen.',
+        ],
+      },
+      ...faqSections([
+        ['Welche Metrik ist für AI-Produkte am wichtigsten?', 'Es gibt keine universelle Einzelmetrik. Sie muss aus der zentralen Nutzeraufgabe und der aktuellen Produktentscheidung abgeleitet werden.'],
+        ['Reicht die Zahl der Modellaufrufe als Nutzungssignal?', 'Nein. Viele Aufrufe können Nutzen, Wiederholung oder Fehler bedeuten. Aufgabenerfolg und qualitative Rückmeldungen liefern notwendigen Kontext.'],
+        ['Wie lässt sich Qualität einer AI-Ausgabe messen?', 'Mit produktspezifischen Kriterien, repräsentativen Testfällen, automatisierten Prüfungen und fachlicher Bewertung passend zur Aufgabe.'],
+        ['Ist eine niedrige Korrekturrate immer gut?', 'Nein. Nutzer könnten Fehler übersehen oder Korrekturen vermeiden. Die Rate muss gemeinsam mit Aufgabe, Interface und Ergebnisqualität betrachtet werden.'],
+        ['Dürfen alle Nutzungsdaten für spätere Analysen gespeichert werden?', 'Nein. Erhebung benötigt einen klaren Zweck und muss Datenschutz, Zugriffsrechte sowie angemessene Aufbewahrung berücksichtigen.'],
+      ]),
+    ],
+    faqs: faqData([
+      ['Welche Metrik ist für AI-Produkte am wichtigsten?', 'Es gibt keine universelle Einzelmetrik. Sie muss aus der zentralen Nutzeraufgabe und der aktuellen Produktentscheidung abgeleitet werden.'],
+      ['Reicht die Zahl der Modellaufrufe als Nutzungssignal?', 'Nein. Viele Aufrufe können Nutzen, Wiederholung oder Fehler bedeuten. Aufgabenerfolg und qualitative Rückmeldungen liefern notwendigen Kontext.'],
+      ['Wie lässt sich Qualität einer AI-Ausgabe messen?', 'Mit produktspezifischen Kriterien, repräsentativen Testfällen, automatisierten Prüfungen und fachlicher Bewertung passend zur Aufgabe.'],
+      ['Ist eine niedrige Korrekturrate immer gut?', 'Nein. Nutzer könnten Fehler übersehen oder Korrekturen vermeiden. Die Rate muss gemeinsam mit Aufgabe, Interface und Ergebnisqualität betrachtet werden.'],
+      ['Dürfen alle Nutzungsdaten für spätere Analysen gespeichert werden?', 'Nein. Erhebung benötigt einen klaren Zweck und muss Datenschutz, Zugriffsrechte sowie angemessene Aufbewahrung berücksichtigen.'],
+    ]),
+  },
+  {
+    path: '/wissen/ai-interface-design',
+    title: 'AI Interface Design: variable Ergebnisse verständlich machen',
+    description: 'AI Interface Design für Eingaben, Zustände, variable Ergebnisse, Unsicherheit, Korrekturen, Freigaben und eine konsistente Nutzerführung.',
+    schemaType: 'Article',
+    eyebrow: 'AI Product Design',
+    headline: 'Wie funktioniert gutes AI Interface Design?',
+    intro: 'AI Interface Design übersetzt variable Modellfähigkeiten in einen verständlichen Produktablauf. Nutzer müssen wissen, welche Eingaben benötigt werden, was das System gerade tut, wie ein Ergebnis einzuordnen ist und welche Kontrolle sie behalten.',
+    ctaTitle: 'Eine AI-Funktion als verständlichen Ablauf gestalten',
+    ctaText: 'Sie möchten aus einer Modelldemo eine klare Nutzererfahrung entwickeln? filzinger.lab verbindet Interface, Produktlogik und technische Grenzen.',
+    subject: 'AI Interface Design besprechen',
+    sections: [
+      {
+        title: 'Das Interface beginnt vor der Modellantwort',
+        paragraphs: [
+          'Viele AI-Oberflächen konzentrieren sich auf das ausgegebene Ergebnis. Qualität beginnt jedoch bei der Eingabe. Nutzer brauchen eine verständliche Aufgabe, passende Felder und Hinweise auf erforderlichen Kontext. Ein leeres Texteingabefeld überträgt die gesamte Strukturierungsarbeit auf die Person und erzeugt schwer vergleichbare Ergebnisse.',
+          'Beispiele können Erwartungen erklären, dürfen aber nicht nur ideale Fälle zeigen. Einschränkungen und ungeeignete Eingaben sollten früh erkennbar sein. Das Produkt entscheidet, welche Informationen notwendig sind, statt später jede Unklarheit mit einem längeren Prompt zu kompensieren.',
+          'Die <a href="/wissen/llm-in-produkte-integrieren">LLM-Integration</a> verbindet diese Eingaben mit Kontext und Ergebnisformat. Interface und Backend benötigen dieselbe Vorstellung vom Produktzustand. Andernfalls sehen Nutzer eine einfache Aktion, während das System unkontrolliert mehrere Schritte ausführt.',
+        ],
+      },
+      {
+        title: 'Verarbeitungszustände sichtbar machen',
+        paragraphs: [
+          'Modellaufrufe können länger dauern als klassische Interaktionen. Das Interface zeigt, dass eine Verarbeitung läuft und welche Aktion betroffen ist. Eine animierte Anzeige allein genügt nicht, wenn Nutzer nicht wissen, ob sie warten, abbrechen oder weiterarbeiten können.',
+          'Bei mehreren Schritten kann eine angemessene Fortschrittsdarstellung helfen. Sie darf keinen exakten Stand vortäuschen, den das System nicht kennt. Zeitüberschreitungen und technische Fehler benötigen eigene Zustände mit verständlichen nächsten Möglichkeiten, etwa erneut versuchen, Eingabe ändern oder später fortsetzen.',
+          'Doppelte Aktionen werden technisch verhindert oder eindeutig behandelt. Wenn ein Nutzer wegen fehlender Rückmeldung erneut klickt, dürfen nicht unbemerkt mehrere kostenpflichtige Aufrufe oder Veröffentlichungen entstehen. Interface und Produktlogik teilen diese Verantwortung.',
+        ],
+      },
+      {
+        title: 'Variable Ergebnisse angemessen darstellen',
+        paragraphs: [
+          'Eine flüssige Formulierung kann mehr Sicherheit vermitteln, als das Modell besitzt. Darstellung sollte daher nicht automatisch den Ton einer endgültigen Entscheidung verwenden. Überschriften, Labels und Begleittexte ordnen ein, ob es sich um Entwurf, Vorschlag, Extraktion oder überprüfte Information handelt.',
+          'Struktur erleichtert Prüfung. Felder, Kategorien oder Abschnitte machen sichtbar, ob wichtige Bestandteile fehlen. Bei wissensbasierten Ergebnissen können nachvollziehbare Quellenhinweise relevant sein. Eine Quelle ist jedoch kein automatischer Beleg dafür, dass die abgeleitete Aussage korrekt ist.',
+          'Das Interface zeigt nicht jede technische Kennzahl. Unsicherheitswerte sind nur hilfreich, wenn sie belastbar und verständlich interpretiert werden können. Allgemeine Prozentangaben können falsche Präzision erzeugen. Häufig sind klare Grenzen und konkrete Prüfschritte hilfreicher.',
+        ],
+      },
+      {
+        title: 'Korrektur, Freigabe und Rückgängigkeit',
+        paragraphs: [
+          'Nutzer sollten AI-Ergebnisse dort bearbeiten können, wo Bearbeitung zum Produktziel gehört. Änderungen müssen ohne vollständigen Neustart möglich sein. Gleichzeitig bleibt erkennbar, welche Fassung gespeichert oder weitergegeben wird. Versionen und Zustände verhindern, dass Entwurf und freigegebenes Ergebnis verwechselt werden.',
+          'Aktionen mit größeren Folgen benötigen eine bewusste Freigabe. Eine Vorschau zeigt Ziel, Inhalt und relevante Auswirkungen. Der Artikel <a href="/wissen/human-in-the-loop-im-produktdesign">Human in the Loop im Produktdesign</a> erklärt, wie Kontrolle, Ablehnung und Eskalation als echte Arbeitswege gestaltet werden.',
+          'Rückgängigkeit reduziert Risiken, ist aber technisch nicht immer vollständig möglich. Veröffentlichte Inhalte oder externe Aktionen können bereits Folgen haben. Das Interface darf deshalb keine Undo-Funktion versprechen, wenn nur ein lokaler Zustand zurückgesetzt wird. Grenzen werden vor der Aktion verständlich gemacht.',
+        ],
+      },
+      {
+        title: 'Konsistenz, Vertrauen und Barrierefreiheit',
+        paragraphs: [
+          'AI-Funktionen sollten dieselben Begriffe und Interaktionsmuster wie das übrige Produkt verwenden. Ein eigener experimenteller Bereich mit wechselnden Bezeichnungen erhöht Lernaufwand. Nutzer müssen erkennen, welche Teile AI-gestützt sind, ohne bei jedem Schritt mit technischen Details überladen zu werden.',
+          'Vertrauen entsteht durch nachvollziehbares Verhalten, nicht durch absolute Werbeaussagen. Das Produkt zeigt Grenzen, behandelt Fehler konsistent und behält Nutzereingaben bei einem erneuten Versuch, soweit dies angemessen ist. Versteckte Automatisierung kann kurzfristig bequem wirken, erschwert aber Korrektur und Verantwortung.',
+          'Barrierefreiheit gilt auch für Ladezustände, Fehlermeldungen und dynamisch erzeugte Inhalte. Fokusführung, semantische Struktur und verständliche Sprache müssen bei veränderten Ergebnissen funktionieren. AI-Ausgaben dürfen keine grundlegenden Interface-Anforderungen umgehen.',
+        ],
+      },
+      {
+        title: 'AI Interface Design testen und weiterentwickeln',
+        paragraphs: [
+          'Prototypen prüfen zunächst Eingaben, Erwartung und Ergebnisdarstellung. Tests enthalten auch unvollständige oder ungeeignete Fälle. Die Seite <a href="/wissen/ai-produkte-testen">AI-Produkte testen</a> verbindet Interface-Beobachtung mit Modell- und Systemqualität. Eine gute Demo unter Anleitung belegt noch keine selbstständige Nutzung.',
+          'Ein <a href="/ai-mvp-entwicklung">AI-MVP</a> bildet den Kernablauf unter realistischen Bedingungen ab. Für den Betrieb verbindet <a href="/ai-saas-entwicklung">AI-SaaS-Entwicklung</a> Interfacezustände mit Fehlern, Releases und Kosten. Beobachtungen fließen in die <a href="/produktentwicklung">Produktentwicklung</a>, ohne jede Rückmeldung direkt als Feature umzusetzen.',
+          'Das <a href="/product-studio">Product Studio</a> betrachtet Design und Engineering gemeinsam. Die <a href="/case-studies/weightcoach-ai">WeightCoach-AI-Case-Study</a> und <a href="/produkte/weightcoach-ai">Produktseite</a> zeigen reale Produktarbeit, enthalten aber keine erfundenen Nutzungs- oder Erfolgswerte.',
+          'Metriken werden passend zum Ablauf gewählt. Abbrüche, Korrekturen und wiederholte Versuche können Hinweise geben, benötigen aber Kontext. Die Seite <a href="/wissen/produktmetriken-fuer-ai-anwendungen">Produktmetriken für AI-Anwendungen</a> erläutert die verantwortliche Interpretation.',
+          'Ein Designsystem kann wiederkehrende AI-Zustände konsistent abbilden. Dazu gehören Verarbeitung, unvollständiges Ergebnis, notwendige Prüfung, Fehler und Freigabe. Gemeinsame Muster reduzieren Entwicklungsaufwand und erleichtern Nutzern die Orientierung. Sie dürfen jedoch nicht jede AI-Funktion in denselben Ablauf zwingen. Ein persönlicher Entwurf und eine risikoreiche externe Aktion benötigen unterschiedliche Kontrolltiefe, auch wenn beide dieselben visuellen Grundbausteine verwenden.',
+          'Texte im Interface werden wie andere Produktbestandteile getestet. Formulierungen wie „analysiert“, „empfohlen“ oder „bestätigt“ können unterschiedliche Erwartungen erzeugen. Eine technisch korrekte Meldung kann trotzdem missverständlich sein. Verständliche, sachliche Sprache erklärt den aktuellen Zustand und die nächste Handlung, ohne Modellfähigkeiten zu übertreiben oder Verantwortung unklar zu verteilen.',
+          'Auch mobile Nutzung und unterschiedliche Bildschirmgrößen verändern die Prüfung. Lange Ergebnisse, Quellen und Bearbeitungswerkzeuge müssen erreichbar bleiben, ohne zentrale Warnungen zu verdrängen. Responsive Gestaltung darf wichtige Kontrollinformationen nicht nur aus Platzgründen verbergen.',
+          'Tastaturbedienung und verständliche Fokusreihenfolgen bleiben dabei ebenso erforderlich.',
+        ],
+      },
+      ...faqSections([
+        ['Was unterscheidet AI Interface Design von klassischem UI-Design?', 'Zusätzlich müssen variable Ergebnisse, längere Verarbeitungszeiten, Unsicherheit, Korrekturen und geeignete menschliche Kontrolle verständlich gestaltet werden.'],
+        ['Sollte jede AI-Funktion ein freies Texteingabefeld verwenden?', 'Nein. Strukturierte Felder, Beispiele und begrenzte Auswahl können bessere Eingaben und eine verständlichere Nutzerführung ermöglichen.'],
+        ['Wie zeigt man Unsicherheit im Interface?', 'Durch klare Einordnung als Entwurf oder Vorschlag, sichtbare Grundlagen, konkrete Prüfschritte und Grenzen statt unbelegter präziser Prozentwerte.'],
+        ['Wann braucht ein AI-Ergebnis eine Freigabe?', 'Wenn mögliche Folgen, Unsicherheit oder fehlende Rückgängigkeit eine bewusste menschliche Entscheidung erforderlich machen.'],
+        ['Kann gutes Interface Design Modellfehler verhindern?', 'Nein. Es kann Eingaben verbessern, Fehler erkennbarer machen und Kontrolle ermöglichen, beseitigt aber nicht grundsätzlich falsche oder ungeeignete Modellausgaben.'],
+      ]),
+    ],
+    faqs: faqData([
+      ['Was unterscheidet AI Interface Design von klassischem UI-Design?', 'Zusätzlich müssen variable Ergebnisse, längere Verarbeitungszeiten, Unsicherheit, Korrekturen und geeignete menschliche Kontrolle verständlich gestaltet werden.'],
+      ['Sollte jede AI-Funktion ein freies Texteingabefeld verwenden?', 'Nein. Strukturierte Felder, Beispiele und begrenzte Auswahl können bessere Eingaben und eine verständlichere Nutzerführung ermöglichen.'],
+      ['Wie zeigt man Unsicherheit im Interface?', 'Durch klare Einordnung als Entwurf oder Vorschlag, sichtbare Grundlagen, konkrete Prüfschritte und Grenzen statt unbelegter präziser Prozentwerte.'],
+      ['Wann braucht ein AI-Ergebnis eine Freigabe?', 'Wenn mögliche Folgen, Unsicherheit oder fehlende Rückgängigkeit eine bewusste menschliche Entscheidung erforderlich machen.'],
+      ['Kann gutes Interface Design Modellfehler verhindern?', 'Nein. Es kann Eingaben verbessern, Fehler erkennbarer machen und Kontrolle ermöglichen, beseitigt aber nicht grundsätzlich falsche oder ungeeignete Modellausgaben.'],
+    ]),
+  },
+  {
+    path: '/wissen/warum-ai-prototypen-im-produktbetrieb-scheitern',
+    title: 'Warum AI-Prototypen im Produktbetrieb scheitern',
+    description: 'Warum überzeugende AI-Prototypen im Produktbetrieb scheitern können: Daten, Nutzerführung, Qualität, Architektur, Kosten, Sicherheit und Betrieb.',
+    schemaType: 'Article',
+    eyebrow: 'AI Product Engineering',
+    headline: 'Warum scheitern AI-Prototypen im Produktbetrieb?',
+    intro: 'Ein AI-Prototyp kann mit vorbereiteten Beispielen überzeugen und trotzdem im Alltag versagen. Im Produktbetrieb treffen variable Eingaben, echte Daten, wiederkehrende Nutzung, Kosten, Berechtigungen und technische Störungen aufeinander. Diese Bedingungen müssen vor dem Ausbau sichtbar werden.',
+    ctaTitle: 'Den Prototyp vor dem Produktbetrieb prüfen',
+    ctaText: 'Sie möchten einen AI-Prototyp in ein reales Produkt überführen? filzinger.lab ordnet Produktkern, Risiken und notwendige Betriebsgrundlagen ein.',
+    subject: 'AI-Prototyp für den Produktbetrieb prüfen',
+    sections: [
+      {
+        title: 'Der Prototyp beantwortet eine kleinere Frage',
+        paragraphs: [
+          'Ein Prototyp prüft typischerweise einen Ablauf, eine Modellfähigkeit oder eine Designidee. Testdaten sind vorbereitet, Fehler werden durch das Team ausgeglichen und Nutzer erhalten möglicherweise zusätzliche Erklärungen. Das ist für frühes Lernen sinnvoll, bildet aber nicht automatisch den späteren Betrieb ab.',
+          'Probleme entstehen, wenn dieser begrenzte Beleg als fertiger Produktkern interpretiert wird. Eine gute Beispielantwort sagt wenig über schwierige Eingaben, Verfügbarkeit oder langfristige Wartung aus. Vor dem Ausbau muss dokumentiert sein, welche Annahmen tatsächlich geprüft wurden und welche offen bleiben.',
+          'Der Artikel <a href="/wissen/vom-prototyp-zum-ai-produkt">Vom Prototyp zum AI-Produkt</a> beschreibt die notwendigen Übergänge. Ein <a href="/ai-mvp-entwicklung">AI-MVP</a> prüft einen vollständigen Kernablauf unter realistischeren Bedingungen, ohne bereits jedes spätere Feature zu enthalten.',
+        ],
+      },
+      {
+        title: 'Echte Eingaben unterscheiden sich von Demo-Fällen',
+        paragraphs: [
+          'Im Alltag fehlen Informationen, Begriffe sind widersprüchlich und Eingaben können sehr kurz oder unerwartet lang sein. Nutzer kennen interne Prompt-Annahmen nicht. Ein System, das nur sorgfältig formulierte Beispiele verarbeitet, verlagert die eigentliche Produktarbeit auf seine Nutzer.',
+          'Repräsentative Testfälle müssen deshalb typische, schwierige und unzulässige Situationen abdecken. Die Seite <a href="/wissen/ai-produkte-testen">AI-Produkte testen</a> zeigt, wie klassische Softwareprüfungen und Modellbewertungen verbunden werden. Einzelne gute Ausgaben sind keine verlässliche Qualitätsaussage.',
+          'Das Interface kann Eingaben strukturieren, Beispiele geben und fehlende Angaben erkennen. Es kann Modellfehler jedoch nicht vollständig verhindern. Die <a href="/wissen/ai-interface-design">Gestaltung des AI-Interfaces</a> macht Zustände, Korrekturen und Grenzen für Nutzer verständlich.',
+        ],
+      },
+      {
+        title: 'Produktlogik fehlt oder steckt nur im Prompt',
+        paragraphs: [
+          'Prototypen bündeln Regeln häufig in einem Prompt. Im Produkt müssen Berechtigungen, Statuswechsel und feste Berechnungen unabhängig vom Modell durchgesetzt werden. Ein probabilistisches System ist keine geeignete Sicherheitsgrenze und darf nicht allein entscheiden, welche Daten ein Nutzer sehen kann.',
+          'Ergebnisformate werden validiert, bevor weitere Aktionen erfolgen. Fehlende Felder, unerlaubte Werte und Zeitüberschreitungen benötigen definierte Wege. Automatische Wiederholungen können helfen, erhöhen aber Kosten und beseitigen nicht jede inhaltliche Abweichung. Manchmal ist eine Rückfrage oder ein Abbruch angemessener.',
+          'Eine tragfähige <a href="/wissen/ai-produkt-architektur">AI-Produkt-Architektur</a> trennt Modellintegration, Produktlogik und Daten. Dadurch können Komponenten getestet und verändert werden. Ohne diese Grenzen wachsen Fehler, Abhängigkeiten und Wartungsaufwand mit jeder zusätzlichen Funktion.',
+        ],
+      },
+      {
+        title: 'Daten und Berechtigungen sind nicht produktreif',
+        paragraphs: [
+          'Eine Demo nutzt lokale Dateien oder kopierte Texte. Ein Produkt benötigt definierte Quellen, Aktualisierung, Zugriff und Löschung. Nutzer dürfen nur Kontext erhalten, für den sie berechtigt sind. Suche oder Vektordatenbank allein löst diese organisatorischen und technischen Fragen nicht.',
+          'Sensible Daten können an externe Anbieter übertragen werden. Bedingungen und Datenwege müssen konkret geprüft werden. Allgemeine Aussagen über Sicherheit oder Datenschutz wären ohne Kontext unangemessen. Der Artikel <a href="/wissen/ai-produkte-sicher-betreiben">AI-Produkte sicher betreiben</a> ordnet diese Verantwortung ein.',
+          'Migrationen werden relevant, sobald echte Informationen gespeichert sind. Eine Änderung am Datenmodell darf frühere Einträge nicht unbemerkt falsch interpretieren. Backups, Korrektur und Wiederherstellung gehören zum Betrieb und fehlen in einem austauschbaren Prototyp häufig bewusst.',
+        ],
+      },
+      {
+        title: 'Laufzeit, Kosten und Anbieteränderungen werden unterschätzt',
+        paragraphs: [
+          'Während einer Demo fällt ein einzelner langsamer Aufruf kaum auf. Wiederkehrende Nutzung macht Laufzeiten, Fehler und variable Kosten sichtbar. Wiederholungen, großer Kontext und zusätzliche Prüfschritte können den Verbrauch erhöhen. Optimierung muss deshalb Produktqualität und Kosten gemeinsam betrachten.',
+          'Externe Modelle und Schnittstellen verändern sich. Eine neue Version kann bessere Durchschnittsergebnisse und zugleich neue Fehlerarten erzeugen. Releases benötigen versionierte Tests, begrenzte Einführung und einen Rückweg. Vollständige Anbieterunabhängigkeit ist trotz Abstraktionsschicht selten erreichbar.',
+          'Die <a href="/ai-saas-entwicklung">AI-SaaS-Entwicklung</a> behandelt Monitoring, Releases und Anbieterabhängigkeiten als Produktbestandteil. Ein einmaliges Deployment verwandelt einen Prototyp nicht in ein dauerhaft betreibbares SaaS-Produkt.',
+        ],
+      },
+      {
+        title: 'Fehlender Lern- und Verantwortungsprozess',
+        paragraphs: [
+          'Im Betrieb muss klar sein, wer Fehler untersucht, Modelländerungen freigibt und auf Vorfälle reagiert. Ohne Zuständigkeit bleiben Warnungen unbeachtet oder Produktentscheidungen werden durch technische Standardwerte getroffen. Prozesse sollten proportional sein, aber tatsächlich existieren.',
+          'Produktmetriken verbinden Nutzung, Qualität und Betrieb. Der Artikel <a href="/wissen/produktmetriken-fuer-ai-anwendungen">Produktmetriken für AI-Anwendungen</a> zeigt, warum Aufrufzahlen allein nicht genügen. Rückmeldungen werden eingeordnet und nicht automatisch als Featurewunsch oder Erfolg interpretiert.',
+          'Das <a href="/product-studio">Product Studio</a> verbindet diese Lernschleife mit <a href="/produktentwicklung">Product Engineering</a>. Die <a href="/case-studies/weightcoach-ai">WeightCoach-AI-Case-Study</a> und <a href="/produkte/weightcoach-ai">Produktseite</a> dokumentieren reale Studioarbeit, ohne erfundene Nutzerzahlen oder allgemeine Erfolgsversprechen.',
+          'Ein Prototyp muss nicht alle Betriebsanforderungen erfüllen. Sein Zweck und seine Grenzen müssen jedoch klar bleiben. Der Übergang erfolgt schrittweise: offene Annahmen prüfen, Kern fokussieren, notwendige Architektur ergänzen und erst danach unter kontrollierten Bedingungen veröffentlichen.',
+          'Ein weiterer Grund für Probleme ist fehlende Rückwärtskompatibilität. Änderungen an Prompt, Datenmodell oder Ausgabeformat können bereits gespeicherte Ergebnisse und nachgelagerte Prozesse beeinflussen. Im Prototyp lassen sich Testdaten einfach ersetzen; im Produkt müssen Migration, Versionierung und Wiederherstellung geplant werden. Ohne diese Wege kann eine kleine Verbesserung neue Inkonsistenzen erzeugen, die erst später sichtbar werden.',
+          'Auch organisatorische Übergaben sind kritisch. Das Team, das die Demo erstellt, besitzt oft implizites Wissen über geeignete Eingaben und manuelle Korrekturen. Für den Betrieb müssen diese Annahmen in Produktlogik, Dokumentation und Zuständigkeiten überführt werden. Andernfalls hängt die Anwendung dauerhaft von einzelnen Personen ab und wirkt nur solange stabil, wie sie jeden Sonderfall persönlich begleiten.',
+          'Ein kontrollierter Pilot kann die Lücke zwischen Prototyp und breiter Bereitstellung verkleinern. Zielgruppe, Daten und Folgen werden begrenzt, während reale Betriebsfragen beobachtet werden. Ein Pilot ist dennoch keine Erfolgsgarantie. Er liefert zusätzliche Hinweise für Ausbau, Anpassung oder Stopp und muss klar von einem allgemein verfügbaren fertigen Produkt unterschieden werden.',
+          'Schon die eindeutige Benennung von Demo, Prototyp, Pilot und Live-Produkt reduziert falsche Erwartungen. Jede Stufe besitzt einen anderen Zweck und andere Betriebszusagen. Produktkommunikation sollte diesen Status ebenso klar zeigen wie interne technische Dokumentation.',
+        ],
+      },
+      ...faqSections([
+        ['Warum funktioniert eine AI-Demo nicht automatisch im Alltag?', 'Demos nutzen häufig vorbereitete Daten und Betreuung. Im Alltag treten variable Eingaben, Berechtigungen, Fehler, Kosten und wiederkehrende Nutzung hinzu.'],
+        ['Was fehlt einem AI-Prototyp typischerweise für den Betrieb?', 'Häufig fehlen belastbare Datenwege, Authentifizierung, Fehlerbehandlung, Tests, Monitoring, kontrollierte Releases und klare Verantwortlichkeiten.'],
+        ['Kann ein besseres Modell die Betriebsprobleme lösen?', 'Nicht allein. Modellqualität hilft, ersetzt aber keine Produktlogik, Nutzerführung, Zugriffskontrolle und Betriebsprozesse.'],
+        ['Wie wird aus dem Prototyp ein MVP?', 'Durch einen fokussierten vollständigen Kernablauf, realistische Daten- und Nutzungsbedingungen sowie notwendige technische und produktseitige Kontrollen.'],
+        ['Lässt sich das Scheitern im Betrieb vollständig verhindern?', 'Nein. Frühe Tests und geeignete Architektur reduzieren Risiken. Neue Eingaben, Anbieteränderungen und reale Nutzung erfordern fortlaufendes Lernen.'],
+      ]),
+    ],
+    faqs: faqData([
+      ['Warum funktioniert eine AI-Demo nicht automatisch im Alltag?', 'Demos nutzen häufig vorbereitete Daten und Betreuung. Im Alltag treten variable Eingaben, Berechtigungen, Fehler, Kosten und wiederkehrende Nutzung hinzu.'],
+      ['Was fehlt einem AI-Prototyp typischerweise für den Betrieb?', 'Häufig fehlen belastbare Datenwege, Authentifizierung, Fehlerbehandlung, Tests, Monitoring, kontrollierte Releases und klare Verantwortlichkeiten.'],
+      ['Kann ein besseres Modell die Betriebsprobleme lösen?', 'Nicht allein. Modellqualität hilft, ersetzt aber keine Produktlogik, Nutzerführung, Zugriffskontrolle und Betriebsprozesse.'],
+      ['Wie wird aus dem Prototyp ein MVP?', 'Durch einen fokussierten vollständigen Kernablauf, realistische Daten- und Nutzungsbedingungen sowie notwendige technische und produktseitige Kontrollen.'],
+      ['Lässt sich das Scheitern im Betrieb vollständig verhindern?', 'Nein. Frühe Tests und geeignete Architektur reduzieren Risiken. Neue Eingaben, Anbieteränderungen und reale Nutzung erfordern fortlaufendes Lernen.'],
+    ]),
+  },
 ] as const satisfies readonly StudioSeoPage[];
 
 type FaqTuple = readonly [question: string, answer: string];
