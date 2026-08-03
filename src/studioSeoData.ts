@@ -2,7 +2,7 @@ export type StudioSeoPage = {
   path: string;
   title: string;
   description: string;
-  schemaType: 'WebPage' | 'Service';
+  schemaType: 'WebPage' | 'Service' | 'CollectionPage' | 'SoftwareApplication';
   eyebrow: string;
   headline: string;
   intro: string;
@@ -229,6 +229,223 @@ export const studioSeoPages = [
           'Wenn die zentrale Annahme trägt, folgt keine automatische Vollausstattung. Die nächste Version konzentriert sich auf die größten Hindernisse im validierten Ablauf. Das können bessere Eingaben, verständlichere Ergebnisse, stabilere Datenwege oder ausgewählte SaaS-Funktionen sein. Jede Erweiterung erhält einen Bezug zur Nutzung und wird nicht nur aufgenommen, weil sie technisch verfügbar ist.',
           'Wenn die Annahme nicht trägt, wird unterschieden, ob Problem, Zielgruppe, Interface oder technische Umsetzung die Ursache sind. Ein begründeter Stopp kann die richtige Produktentscheidung sein. Ebenso kann ein kleinerer, anders fokussierter Produktkern entstehen. Dokumentierte Erkenntnisse verhindern, dass dieselben offenen Fragen in einer späteren Version lediglich mit mehr Funktionen überdeckt werden.',
           'Der MVP bleibt dabei ein Mittel zur Produktentscheidung und kein Selbstzweck. Zeit und Engineering fließen bevorzugt in den Ablauf, der die wichtigste Annahme sichtbar macht. Technische Nebenprojekte, umfangreiche Administrationsbereiche oder mehrere Zielgruppen werden zurückgestellt, wenn sie für diese Prüfung nicht notwendig sind. So bleibt die Auswertung verständlich und der nächste Schritt lässt sich auf konkrete Beobachtungen stützen.',
+        ],
+      },
+    ],
+  },
+  {
+    path: '/ai-saas-entwicklung',
+    title: 'AI-SaaS-Entwicklung für betreibbare Produkte | filzinger.lab',
+    description: 'AI-SaaS-Entwicklung von Produktlogik und Architektur bis Nutzerführung, Betrieb und kontrollierter Weiterentwicklung.',
+    schemaType: 'Service',
+    eyebrow: 'AI-SaaS-Entwicklung',
+    headline: 'AI-SaaS-Produkte entwickeln und verlässlich betreiben',
+    intro: 'filzinger.lab entwickelt AI-SaaS-Produkte als zusammenhängende digitale Systeme. Produktlogik, Nutzerführung, Softwarearchitektur und Betrieb werden gemeinsam gestaltet, damit aus einer AI-Funktion ein verständliches, wartbares und real nutzbares Produkt entstehen kann.',
+    ctaTitle: 'Ein konkretes AI-SaaS-Produkt besprechen',
+    ctaText: 'Sie entwickeln ein AI-SaaS-Produkt oder wollen einen bestehenden Prototyp in ein betreibbares System überführen? Beschreiben Sie Zielgruppe, Produktkern und aktuellen technischen Stand. Gemeinsam lässt sich ein sinnvoll begrenzter nächster Produktschritt einordnen.',
+    subject: 'Anfrage zur AI-SaaS-Entwicklung',
+    sections: [
+      {
+        title: 'AI-SaaS ist mehr als ein Modellzugang',
+        paragraphs: [
+          'Ein AI-SaaS-Produkt verbindet eine dauerhaft erreichbare Software mit einer klaren Aufgabe, Nutzerkonten, Daten und einer kontrollierten AI-Funktion. Der Zugriff auf ein Sprach- oder Analysemodell ist dabei nur ein Baustein. Erst Produktlogik, Interface und ein belastbarer Betrieb machen daraus ein Angebot, das Menschen wiederholt verwenden und in ihren Alltag einordnen können.',
+          'Die Entwicklung beginnt deshalb beim Produktproblem. Welche Situation soll verbessert werden, welche Eingaben liegen realistisch vor und welches Ergebnis ist für die Zielgruppe verständlich? Aus diesen Fragen entsteht der zentrale Ablauf. Das Modell wird dort eingesetzt, wo es einen erkennbaren Beitrag leistet. Deterministische Regeln bleiben sinnvoll, wenn feste Berechnungen, Berechtigungen oder eindeutige Zustände erforderlich sind.',
+          'filzinger.lab arbeitet als <a href="/product-studio">AI Product Studio</a> an dieser Verbindung von Produkt und Engineering. Der Fokus liegt nicht auf allgemeiner KI-Beratung, sondern auf einem konkreten digitalen Produkt. Entscheidungen müssen sich im Interface, im Code und später im Betrieb bewähren. Eine überzeugende Demo allein beantwortet diese Anforderungen noch nicht.',
+        ],
+      },
+      {
+        title: 'Produktlogik mit klaren Grenzen entwerfen',
+        paragraphs: [
+          'Produktlogik beschreibt, wie Eingaben, Zustände, Regeln und AI-Ausgaben zusammenspielen. Ein Nutzer muss erkennen können, was das System gerade verarbeitet, welches Ergebnis entstanden ist und welche Handlung als Nächstes möglich ist. Unklare Zustände werden nicht durch flüssige Modelltexte gelöst. Sie benötigen eine nachvollziehbare Struktur und eindeutige Übergänge im Produkt.',
+          'Bei probabilistischen Ausgaben gehören Unsicherheit und Fehlerfälle zur Konzeption. Eingaben können fehlen, widersprüchlich sein oder außerhalb des vorgesehenen Bereichs liegen. Ein Modell kann unpassende Inhalte erzeugen oder ein erwartetes Format verfehlen. Das Produkt braucht daher Validierung, begrenzte Wiederholungsversuche und verständliche Rückmeldungen, statt jedes Ergebnis ungeprüft als richtig zu behandeln.',
+          'Menschliche Kontrolle wird passend zur Tragweite einer Aktion eingeplant. Ein Entwurf darf anders behandelt werden als eine Veröffentlichung oder eine dauerhafte Änderung von Nutzerdaten. Freigaben, Korrekturen und Abbruchmöglichkeiten sind Teil der Produktlogik. Sie werden nicht erst ergänzt, wenn der Kern technisch bereits auf vollständige Automatisierung ausgerichtet wurde.',
+        ],
+      },
+      {
+        title: 'Softwarearchitektur für einen fokussierten Produktkern',
+        paragraphs: [
+          'Die Architektur eines AI-SaaS-Produkts verbindet Frontend, Backend, Datenhaltung, Authentifizierung und externe Modelldienste. Ihre Aufgabe ist nicht, jede denkbare spätere Erweiterung vorwegzunehmen. Sie muss den aktuellen Produktkern sauber tragen und Stellen sichtbar machen, an denen Daten, Modellanbieter oder Produktregeln kontrolliert verändert werden können.',
+          'Modellzugriffe gehören auf eine geschützte Serverseite. API-Schlüssel und interne Anweisungen dürfen nicht im Browser offengelegt werden. Eingaben werden nur in dem Umfang weitergegeben, der für die jeweilige Funktion erforderlich ist. Zugriffsrechte, Mandantentrennung und Löschwege richten sich nach den tatsächlich verarbeiteten Daten und dem vorgesehenen Nutzungskontext.',
+          'Eine klare Trennung zwischen Produktlogik und Modellintegration reduziert Abhängigkeiten. Prompts, Modellparameter und Ergebnisverarbeitung können sich verändern, ohne dass die gesamte Nutzerführung neu gebaut werden muss. Gleichzeitig bleibt sichtbar, welche Teile zuverlässig getestet werden können und an welchen Stellen Stichproben oder qualitative Prüfungen notwendig sind. Das erleichtert eine kontrollierte Weiterentwicklung.',
+        ],
+      },
+      {
+        title: 'Nutzerführung für variable AI-Ergebnisse',
+        paragraphs: [
+          'Ein gutes Interface erklärt nicht die Technologie, sondern führt durch eine konkrete Aufgabe. Eingabefelder, Beispiele und Einschränkungen helfen Nutzern, geeignete Informationen bereitzustellen. Während der Verarbeitung zeigt das Produkt einen verständlichen Zustand. Anschließend wird das Ergebnis so dargestellt, dass es gelesen, geprüft und bei Bedarf korrigiert werden kann.',
+          'AI-Ergebnisse benötigen häufig mehr Kontext als eine gewöhnliche Erfolgsmeldung. Das Interface kann kenntlich machen, auf welchen Eingaben ein Ergebnis beruht oder wo Annahmen enthalten sind. Es sollte keine Sicherheit suggerieren, die das System nicht liefern kann. Hilfreich sind klare Formulierungen, begrenzte Auswahlmöglichkeiten und ein Weg zurück zur Ausgangseingabe.',
+          'Wiederkehrende Nutzung stellt andere Anforderungen als ein einmaliger Prototyp. Nutzer müssen frühere Zustände finden, Daten nachvollziehen und ihre Arbeit fortsetzen können. Konsistente Begriffe und stabile Interaktionsmuster werden wichtiger als spektakuläre Einzelantworten. Die <a href="/produktentwicklung">digitale Produktentwicklung</a> betrachtet diese Nutzerführung gemeinsam mit den technischen Folgen jeder Entscheidung.',
+        ],
+      },
+      {
+        title: 'Vom MVP zum betreibbaren SaaS-Produkt',
+        paragraphs: [
+          'Ein MVP begrenzt den Funktionsumfang, nicht die Verantwortung für den vorgesehenen Einsatz. Der zentrale Ablauf muss vollständig nutzbar sein. Dazu können Anmeldung, Datenspeicherung, Fehlerbehandlung und ein geeigneter Schutz sensibler Zugänge gehören. Funktionen ohne direkten Bezug zur wichtigsten Produktannahme bleiben zunächst außen vor.',
+          'Die <a href="/ai-mvp-entwicklung">AI-MVP-Entwicklung</a> dient dazu, Produktwert, Verständlichkeit und technische Machbarkeit unter realistischen Bedingungen zu prüfen. Nach dieser Phase werden Beobachtungen getrennt ausgewertet: Liegt ein Problem an der Aufgabe, an der Nutzerführung, an der Modellqualität oder am Betrieb? Erst diese Einordnung liefert eine brauchbare Grundlage für weitere Investitionen.',
+          'Der Übergang zu einem dauerhaften SaaS-Produkt erfolgt schrittweise. Priorität haben wiederkehrende Hindernisse im Kernablauf, Stabilität und ein nachvollziehbarer Umgang mit Daten. Rollen, Integrationen oder umfangreiche Administrationsfunktionen folgen nur, wenn der Produktkontext sie tatsächlich verlangt. So bleibt die Architektur proportional und die Bedienung verständlich.',
+        ],
+      },
+      {
+        title: 'Betrieb, Beobachtbarkeit und laufende Kosten',
+        paragraphs: [
+          'AI-SaaS endet nicht mit dem Deployment. Der Betrieb umfasst Verfügbarkeit, Fehlerprotokolle, kontrollierte Releases und die Überwachung zentraler Produktwege. Technische Signale müssen datensparsam erhoben und so aufbereitet werden, dass konkrete Probleme erkennbar sind. Eine Sammlung möglichst vieler Ereignisse ersetzt keine gezielte Beobachtbarkeit.',
+          'Modellaufrufe verursachen variable Laufzeiten und Kosten. Deshalb werden Verbrauch, Fehlerquoten und technische Grenzen entlang der realen Funktion betrachtet. Caching, kleinere Modelle oder vorberechnete Ergebnisse können sinnvoll sein, wenn sie zum Produkt passen. Eine Optimierung darf jedoch nicht dazu führen, dass Nutzer veraltete oder für ihren Kontext ungeeignete Ausgaben erhalten.',
+          'Änderungen an Modellen oder Prompts werden wie Produktänderungen behandelt. Vergleichbare Testfälle helfen, unerwünschte Abweichungen zu erkennen. Bei wichtigen Funktionen werden neue Varianten kontrolliert eingeführt und beobachtet. Es gibt dennoch keine technische Garantie für vollständig fehlerfreie Modellantworten oder unterbrechungsfreien Betrieb; Produkt und Kommunikation müssen diese Grenzen angemessen berücksichtigen.',
+        ],
+      },
+      {
+        title: 'Weiterentwicklung anhand realer Produktfragen',
+        paragraphs: [
+          'Nach dem Start konkurrieren neue Ideen schnell um Aufmerksamkeit. Eine belastbare Roadmap ordnet sie nach dem Produktproblem, beobachteten Hindernissen und technischem Risiko. Rückmeldungen werden nicht unmittelbar als Feature-Auftrag verstanden. Zuerst wird geklärt, welche Situation dahintersteht und ob eine Änderung den zentralen Ablauf tatsächlich verbessert.',
+          'AI-Funktionen werden gemeinsam mit Datenwegen und Interface weiterentwickelt. Eine neue Modellversion allein löst selten jedes Produktproblem. Häufig liegen Verbesserungen in klareren Eingaben, besser strukturierten Ergebnissen oder einer sinnvolleren Kontrolle. Jede Änderung sollte im Zusammenspiel geprüft werden, bevor sie dauerhaft Teil des Produkts wird.',
+          'filzinger.lab verbindet dafür Product Discovery und Product Engineering in einem durchgängigen Rahmen. Ein erster Austausch klärt, ob ein neuer Produktkern, ein bestehender Prototyp oder ein laufendes SaaS-System die geeignete Ausgangslage bildet. Daraus entsteht keine Zusage für Markt- oder Geschäftserfolg, sondern ein begründeter nächster Schritt für reale Produktentwicklung.',
+          'Zu diesem nächsten Schritt gehört eine klare Verantwortungsverteilung. Fachliche Entscheidungen, Zugang zur Zielgruppe und Prioritäten des Geschäftsmodells bleiben beim Produktverantwortlichen verankert. Das Studio übersetzt diese Voraussetzungen in Produktabläufe und technische Entscheidungen, weist auf Abhängigkeiten hin und macht offene Annahmen sichtbar. Für bestehende Systeme wird außerdem betrachtet, welche Datenwege und Komponenten bereits belastbar sind und wo eine schrittweise Ablösung sinnvoller ist als ein vollständiger Neubau. So entsteht kein pauschaler Technologievorschlag, sondern ein Arbeitsrahmen für das konkrete SaaS-Produkt. Umfang, Mitwirkung und erwartetes Ergebnis werden für jede Phase getrennt beschrieben. Erst nach ihrer Auswertung wird entschieden, ob und in welcher Form die Entwicklung fortgesetzt wird.',
+          'Auch die Wahl externer Dienste folgt diesem Rahmen. Modellanbieter, Hosting und weitere Plattformen werden nach Produktanforderungen, Datenkontext, technischer Eignung und Wechselaufwand bewertet. Eine frühe Entscheidung ist nicht automatisch dauerhaft. Schnittstellen und Datenflüsse sollten so dokumentiert sein, dass spätere Anpassungen nachvollziehbar bleiben. Vollständige Unabhängigkeit von Drittanbietern ist bei einem SaaS-Produkt selten realistisch; entscheidend ist ein bewusster Umgang mit diesen Abhängigkeiten.',
+        ],
+      },
+    ],
+  },
+  {
+    path: '/produkte',
+    title: 'Produkte aus dem AI Product Studio | filzinger.lab',
+    description: 'Produkte von filzinger.lab: WeightCoach AI als Live-Produkt und Fußball Training AI als Produkt in Entwicklung.',
+    schemaType: 'CollectionPage',
+    eyebrow: 'Produkte',
+    headline: 'Reale Produkte aus dem filzinger.lab Product Studio',
+    intro: 'filzinger.lab entwickelt eigene digitale Produkte mit einem klaren Problemfokus. WeightCoach AI ist als erstes Produkt live. Fußball Training AI befindet sich in Entwicklung und wird bewusst nicht als fertiges oder verfügbares Produkt dargestellt.',
+    ctaTitle: 'Über ein fokussiertes Produktvorhaben sprechen',
+    ctaText: 'Sie arbeiten an einer konkreten Produktidee und suchen einen Studio-Partner für Discovery, Prototyping oder Engineering? Beschreiben Sie Problem, Zielgruppe und aktuellen Stand. Der erste Austausch dient der sachlichen Einordnung eines möglichen nächsten Schritts.',
+    subject: 'Produktvorhaben für filzinger.lab',
+    sections: [
+      {
+        title: 'Produkte statt abstrakter Technologie-Demos',
+        paragraphs: [
+          'Die Produktübersicht zeigt nur Vorhaben, an denen filzinger.lab tatsächlich arbeitet. Ein Produkt erhält seinen Platz nicht deshalb, weil eine technische Idee interessant klingt. Es braucht ein benennbares Problem, eine erkennbare Zielgruppe und einen konkreten Status. Live, in Entwicklung und frühe Annahme sind unterschiedliche Zustände und werden entsprechend bezeichnet.',
+          'Digitale Produkte bestehen aus mehr als einer einzelnen AI-Funktion. Nutzerführung, Datenstruktur, verständliche Rückmeldungen und ein betreibbarer technischer Rahmen gehören zusammen. Deshalb werden keine losgelösten Modell-Demos als fertige Produkte präsentiert. Eine Demo kann eine Annahme prüfen, bildet aber noch keine verlässliche Nutzung über einen längeren Zeitraum ab.',
+          'Diese Haltung gehört zur Arbeit als <a href="/product-studio">Product Studio</a>. Produktideen werden fokussiert, prototypisch geprüft und nur mit begründetem Umfang weiterentwickelt. Nicht jede Idee erreicht denselben Stand. Die Übersicht bleibt deshalb bewusst konkret und unterscheidet ein verfügbares Produkt von einem Produkt, das sich noch in Entwicklung befindet.',
+        ],
+      },
+      {
+        title: 'WeightCoach AI: das erste Live-Produkt',
+        paragraphs: [
+          'WeightCoach AI ist das erste Live-Produkt von filzinger.lab. Es unterstützt dabei, Gewichtsverlauf, Mahlzeiten und Routinen an einem Ort zu dokumentieren und über die Zeit nachvollziehbar zu halten. Der Produktkern liegt in einer übersichtlichen persönlichen Dokumentation, nicht in medizinischer Diagnose, Behandlung oder einem versprochenen körperlichen Ergebnis.',
+          'Die wiederkehrende Nutzung prägt die Produktentscheidungen. Eingaben müssen im Alltag verständlich bleiben, gespeicherte Informationen müssen wieder auffindbar sein und Entwicklungen dürfen nicht durch unnötige Komplexität verdeckt werden. Funktionen werden deshalb danach bewertet, ob sie diesen Kern stärken und in eine konsistente Nutzerführung passen.',
+          'Weitere Informationen zu Problem, Zielgruppe, Funktionsrahmen und Produktstatus stehen auf der Seite <a href="/produkte/weightcoach-ai">WeightCoach AI</a>. Das Produkt besitzt außerdem eine eigene externe Website unter <a href="https://weightcoach-ai.de" target="_blank" rel="noreferrer">weightcoach-ai.de</a>. Dort befindet sich der direkte Zugang zum aktuellen Produktangebot.',
+        ],
+      },
+      {
+        title: 'Fußball Training AI: in Entwicklung',
+        paragraphs: [
+          'Fußball Training AI befindet sich in Entwicklung. Das Vorhaben beschäftigt sich mit der Strukturierung von Trainingseinheiten, Übungen und Entwicklung im Fußballkontext. Dieser Status bedeutet ausdrücklich, dass hier kein fertiges, öffentlich verfügbares Produkt beschrieben wird. Funktionsumfang, Ausgestaltung und spätere Bereitstellung können sich während der Produktarbeit verändern.',
+          'In einer Entwicklungsphase werden Problemverständnis, Datenstruktur und zentrale Abläufe geprüft. Dabei kann sich zeigen, dass Annahmen angepasst, Funktionen verworfen oder Zielgruppen enger gefasst werden müssen. Solche Änderungen sind kein Widerspruch, sondern Teil verantwortlicher Produktentwicklung. Erst ein tatsächlich erreichter Produktstatus wird als solcher kommuniziert.',
+          'Für Fußball Training AI werden deshalb weder Nutzungserfolge noch Verfügbarkeit, Veröffentlichungstermine oder Leistungswirkungen behauptet. Die Nennung dokumentiert ein reales Vorhaben im Studio und seinen derzeitigen Stand. Sobald belastbare Produktinformationen vorhanden sind, können sie in einer eigenen Produktdarstellung nachvollziehbar beschrieben werden.',
+        ],
+      },
+      {
+        title: 'Wie Produktstatus bei filzinger.lab verstanden wird',
+        paragraphs: [
+          'Ein Live-Produkt ist erreichbar und kann im vorgesehenen Rahmen genutzt werden. Das sagt noch nichts über Reichweite, wirtschaftlichen Erfolg oder eine bestimmte Wirkung aus. Es beschreibt den operativen Status. Ein Produkt in Entwicklung durchläuft dagegen noch Discovery, Prototyping oder Engineering und wird nicht so dargestellt, als könnten Interessierte bereits auf einen stabilen Leistungsumfang zugreifen.',
+          'Diese Trennung sorgt für eine überprüfbare Kommunikation. Produktseiten nennen nur Funktionen und Eigenschaften, die zum aktuellen Stand gehören. Geplante Möglichkeiten werden nicht mit vorhandenen verwechselt. Auch interne Experimente oder noch nicht validierte Ideen werden nicht als Produktportfolio aufgefüllt, nur um eine größere Auswahl zu zeigen.',
+          'Status kann sich verändern. Ein Produkt kann weiterentwickelt, enger fokussiert oder auch beendet werden, wenn zentrale Annahmen nicht tragen. Die Entscheidung richtet sich nach Produktproblem, Nutzung und technischem Aufwand. Erfolgsversprechen wären mit diesem offenen Entwicklungsprozess nicht vereinbar und werden daher nicht aus dem Status abgeleitet.',
+        ],
+      },
+      {
+        title: 'Was die Produkte über die Studioarbeit zeigen',
+        paragraphs: [
+          'Eigene Produkte machen Entscheidungen konkret. Eine Idee muss in ein Interface übersetzt, technisch umgesetzt, bereitgestellt und weiter gepflegt werden. Dabei werden Zielkonflikte sichtbar: zusätzliche Funktionen erhöhen den Umfang, Daten benötigen klare Strukturen und jede Vereinfachung hat Auswirkungen auf die Nutzerführung. Diese Erfahrungen lassen sich nicht vollständig durch Konzepte ersetzen.',
+          'WeightCoach AI zeigt den Umgang mit wiederkehrender persönlicher Dokumentation und einem fokussierten Produktkern. Fußball Training AI zeigt einen laufenden Entwicklungszustand, in dem Struktur und Ausgestaltung noch nicht als abgeschlossen gelten. Beide Vorhaben werden entsprechend ihrem tatsächlichen Stand eingeordnet, ohne daraus allgemeine Erfolgsbelege abzuleiten.',
+          'Diese praktische Perspektive fließt in die <a href="/produktentwicklung">Produktentwicklung</a> ein. Discovery, Prototyping und Engineering werden nicht als getrennte Übergaben betrachtet. Entscheidungen werden entlang des Produkts verfolgt, damit technische Konsequenzen und Nutzererfahrung gemeinsam sichtbar bleiben.',
+        ],
+      },
+      {
+        title: 'Von einer Produktannahme zu einem belastbaren Kern',
+        paragraphs: [
+          'Am Anfang steht eine Annahme über ein Problem und eine Zielgruppe. Product Discovery schärft diese Annahme und identifiziert die wichtigste Unsicherheit. Ein Prototyp kann anschließend einen Ablauf, ein Interface oder eine technische Kernfunktion prüfbar machen. Sein Umfang richtet sich nach der Frage, die beantwortet werden soll.',
+          'Ein <a href="/ai-mvp-entwicklung">AI-MVP</a> geht einen Schritt weiter. Er bildet den zentralen Nutzen als zusammenhängendes Produkt unter realistischen Bedingungen ab. Notwendige Datenwege, Nutzerkonten oder Sicherheitsmechanismen werden nicht durch eine Präsentation ersetzt. Gleichzeitig bleiben Funktionen außen vor, die für die Kernannahme noch nicht erforderlich sind.',
+          'Nach dieser Prüfung folgt keine automatische Skalierung. Beobachtungen können für Ausbau, neue Fokussierung oder einen bewussten Stopp sprechen. Das Studio behandelt alle drei Ergebnisse als mögliche Produktentscheidungen. Ziel ist ein nachvollziehbarer Umgang mit Unsicherheit und nicht die nachträgliche Rechtfertigung jeder begonnenen Idee.',
+        ],
+      },
+      {
+        title: 'Ein Produktvorhaben passend einordnen',
+        paragraphs: [
+          'filzinger.lab passt zu Vorhaben, bei denen ein digitales Produkt entstehen oder ein vorhandener Produktkern weiterentwickelt werden soll. Ein klar benennbares Problem, Zugang zum fachlichen Kontext und die Bereitschaft zur Priorisierung sind dafür wichtige Voraussetzungen. Eine lange Liste feststehender Funktionen ersetzt diese Grundlage nicht.',
+          'Der erste Austausch betrachtet Zielgruppe, Nutzungssituation, aktuellen Stand und offene Annahmen. Daraus kann ein Discovery-Schritt, ein begrenzter Prototyp oder konkretes Product Engineering folgen. Umfang und Ergebnis werden für die jeweilige Phase beschrieben. Eine Aussage über spätere Marktakzeptanz oder wirtschaftlichen Erfolg ist damit nicht verbunden.',
+          'Die Produktübersicht bleibt währenddessen eine Darstellung realer Studioarbeit. WeightCoach AI ist live, Fußball Training AI ist in Entwicklung. Weitere Einträge werden erst ergänzt, wenn ein tatsächliches Vorhaben mit einem sinnvoll kommunizierbaren Status vorhanden ist. So bleibt erkennbar, was heute existiert und was sich noch im Aufbau befindet.',
+          'Für neue Produktideen bedeutet diese Transparenz, dass auch Zwischenstände sauber benannt werden. Ein klickbarer Prototyp kann einen Ablauf zeigen, ist aber noch kein betriebenes SaaS-Produkt. Ein technischer Versuch kann eine Integration prüfen, beantwortet aber noch nicht die Frage nach verständlicher Nutzung. Ein MVP kann den Kern unter realistischen Bedingungen abbilden, ohne bereits den Umfang eines langfristig ausgebauten Produkts zu besitzen. Diese Begriffe helfen, Erwartungen, Aufwand und Risiken einer Phase einzuordnen. Sie verhindern außerdem, dass unfertige Funktionen als Leistungsbeleg erscheinen. Die <a href="/produkte/weightcoach-ai">Detailseite zum Live-Produkt</a> dokumentiert den heute bekannten Rahmen von WeightCoach AI; für Fußball Training AI bleibt es bei der eindeutigen Kennzeichnung als in Entwicklung.',
+          'Die Übersicht ist damit zugleich ein Arbeitsstand und eine Grenze. Sie nennt keine hypothetischen Produktlinien, keine erfundenen Roadmaps und keine Termine ohne belastbare Grundlage. Externe Besucher können den aktuellen Status nachvollziehen, während das Studio intern weiter prüfen und priorisieren kann. Wenn sich ein Status ändert, muss auch seine Darstellung angepasst werden. Produktkommunikation bleibt so an die tatsächliche Entwicklung gebunden.',
+        ],
+      },
+    ],
+  },
+  {
+    path: '/produkte/weightcoach-ai',
+    title: 'WeightCoach AI – Produkt aus dem Studio | filzinger.lab',
+    description: 'WeightCoach AI ist das Live-Produkt von filzinger.lab für die strukturierte Dokumentation von Gewichtsverlauf, Mahlzeiten und Routinen.',
+    schemaType: 'SoftwareApplication',
+    eyebrow: 'Live-Produkt',
+    headline: 'WeightCoach AI: Gewichtsverlauf, Mahlzeiten und Routinen dokumentieren',
+    intro: 'WeightCoach AI ist das erste Live-Produkt von filzinger.lab. Es führt persönliche Einträge zu Gewicht, Mahlzeiten und Routinen in einem fokussierten digitalen Produkt zusammen. Es dient der eigenen Dokumentation und ersetzt keine medizinische Beratung, Diagnose oder Behandlung.',
+    ctaTitle: 'Ein eigenes fokussiertes Produktvorhaben besprechen',
+    ctaText: 'WeightCoach AI zeigt, wie filzinger.lab einen klaren Produktkern in ein nutzbares Live-Produkt überführt. Wenn Sie an einem eigenen digitalen Produkt arbeiten, beschreiben Sie Zielgruppe, Problem und aktuellen Entwicklungsstand für eine erste Einordnung.',
+    subject: 'Produktvorhaben mit filzinger.lab',
+    sections: [
+      {
+        title: 'Das Problem hinter WeightCoach AI',
+        paragraphs: [
+          'Persönliche Informationen zu Gewicht, Mahlzeiten und Routinen entstehen häufig zu unterschiedlichen Zeitpunkten und in verschiedenen Formen. Ohne eine gemeinsame Struktur ist später schwer nachvollziehbar, was dokumentiert wurde und wie einzelne Einträge zeitlich zusammenhängen. WeightCoach AI bündelt diese Bereiche in einem fokussierten Produkt, das auf wiederkehrende Dokumentation ausgelegt ist.',
+          'Das Produkt löst damit kein medizinisches Problem und bewertet keine individuelle Gesundheit. Es schafft einen digitalen Ort für persönliche Aufzeichnungen und deren übersichtliche Betrachtung. Nutzer behalten die Verantwortung dafür, wie sie Informationen einordnen und welche Entscheidungen sie daraus ableiten. Bei gesundheitlichen Fragen ist qualifiziertes medizinisches Fachpersonal die richtige Anlaufstelle.',
+          'Der Produktkern bleibt bewusst enger als der allgemeine Anspruch einer umfassenden Gesundheitsplattform. Gewicht, Mahlzeiten und Routinen bilden einen nachvollziehbaren Zusammenhang für die Dokumentation. Weitere Funktionen müssen sich daran messen lassen, ob sie diesen Ablauf verständlicher machen, statt lediglich die Zahl verfügbarer Optionen zu erhöhen.',
+        ],
+      },
+      {
+        title: 'Für wen das Produkt gedacht ist',
+        paragraphs: [
+          'WeightCoach AI richtet sich an Menschen, die ihre persönlichen Einträge zu Gewichtsverlauf, Mahlzeiten und Routinen strukturiert an einem Ort festhalten möchten. Voraussetzung ist keine bestimmte sportliche Erfahrung oder ein vorgegebenes Ziel. Das Produkt stellt die Dokumentation in den Mittelpunkt und schreibt keinen individuellen Lebensstil vor.',
+          'Die Nutzung ist persönlich und selbstbestimmt. Einträge können dabei helfen, die eigene Dokumentation über einen Zeitraum konsistent zu halten. Sie sind jedoch keine objektive Bewertung des Gesundheitszustands und liefern keinen Beleg für Ursache oder Wirkung. Veränderungen können viele Gründe haben, die eine Software nicht abschließend einordnen kann.',
+          'Für akute Beschwerden, Essstörungen, medizinische Gewichtsfragen oder individuelle Therapieentscheidungen ist WeightCoach AI nicht vorgesehen. Das Produkt ersetzt weder ärztliche Untersuchung noch Ernährungs- oder psychotherapeutische Behandlung. Diese Grenze gehört zur ehrlichen Beschreibung von Zielgruppe und Funktionsrahmen.',
+        ],
+      },
+      {
+        title: 'Der funktionale Produktkern',
+        paragraphs: [
+          'Im Zentrum steht die Dokumentation des Gewichtsverlaufs. Einzelne Einträge werden nicht isoliert betrachtet, sondern in einen zeitlichen Zusammenhang gebracht. Dadurch lässt sich die eigene Aufzeichnung über einen längeren Zeitraum lesen. Das Produkt verspricht daraus weder einen bestimmten Verlauf noch eine automatische Verbesserung.',
+          'Mahlzeiten bilden einen zweiten Dokumentationsbereich. Nutzer können festhalten, was für ihre persönliche Aufzeichnung relevant ist. Die Funktion dient nicht dazu, Lebensmittel medizinisch zu bewerten oder eine individuelle Ernährungstherapie zu erstellen. Ihr Wert liegt in der Verbindung mit der übrigen Dokumentation innerhalb desselben Produkts.',
+          'Routinen ergänzen die Momentaufnahmen um wiederkehrende Handlungen. Sie machen sichtbar, welche persönlichen Abläufe festgehalten wurden. Gewicht, Mahlzeiten und Routinen bleiben dabei unterscheidbare Informationen, werden aber in einer gemeinsamen Nutzererfahrung zusammengeführt. Weitere Details und der Zugang zum Produkt stehen auf <a href="https://weightcoach-ai.de" target="_blank" rel="noreferrer">weightcoach-ai.de</a>.',
+        ],
+      },
+      {
+        title: 'Produktentscheidungen für wiederkehrende Nutzung',
+        paragraphs: [
+          'Ein Produkt für regelmäßige Dokumentation muss die Hürde für einen neuen Eintrag begrenzen. Jede zusätzliche Auswahl kann zwar Details erfassen, aber auch den Alltag unnötig unterbrechen. Deshalb werden Eingaben, Navigation und Rückblicke als zusammenhängender Ablauf betrachtet. Eine Funktion ist nur dann hilfreich, wenn sie verständlich bleibt und tatsächlich zum Produktkern beiträgt.',
+          'Konsistente Begriffe sind besonders wichtig, weil Nutzer über längere Zeit mit denselben Bereichen arbeiten. Zustände und Rückmeldungen müssen wiedererkennbar sein. Änderungen an der Oberfläche werden daher nicht allein nach visueller Neuheit beurteilt, sondern danach, ob vorhandene Informationen weiterhin auffindbar bleiben und neue Einträge klar eingeordnet werden können.',
+          'Diese Entscheidungen entsprechen der Arbeitsweise des <a href="/product-studio">Product Studios</a>: Ein konkretes Problem wird fokussiert, in reale Nutzung übersetzt und anschließend weiter beobachtet. WeightCoach AI ist dabei kein erfundener Case und kein bloßes Konzept, sondern das erste Live-Produkt von filzinger.lab. Nutzerzahlen oder Erfolgsaussagen werden daraus nicht abgeleitet.',
+        ],
+      },
+      {
+        title: 'Technische Entscheidungen hinter einem Live-Produkt',
+        paragraphs: [
+          'Die technische Struktur muss wiederkehrende Einträge verlässlich einem Nutzer und einem Zeitpunkt zuordnen. Oberfläche, Datenmodell und Zugriffswege werden deshalb gemeinsam betrachtet. Ein flexibles Interface ohne klare Datenstruktur würde spätere Verläufe unübersichtlich machen; ein detailliertes Datenmodell ohne verständliche Eingabe würde die tatsächliche Nutzung erschweren.',
+          'Persönliche Daten erfordern einen angemessenen Umgang mit Zugriff und Speicherung. Technische Entscheidungen orientieren sich am konkreten Funktionsumfang und werden nicht durch pauschale Sicherheitsversprechen ersetzt. Informationen zu den jeweils geltenden Bedingungen und zur Datenverarbeitung stellt die externe Produktwebsite bereit. Nutzer sollten diese Angaben vor der Nutzung prüfen.',
+          'Auch ein Live-Produkt bleibt veränderbar. Releases müssen bestehende Abläufe berücksichtigen, Fehler nachvollziehbar machen und Datenmigrationen kontrolliert behandeln. Technischer Betrieb bedeutet deshalb mehr als das einmalige Bereitstellen einer Anwendung. Wartung und fokussierte Weiterentwicklung gehören zur realen <a href="/produktentwicklung">Produktentwicklung</a>.',
+        ],
+      },
+      {
+        title: 'Produktstatus und verantwortliche Einordnung',
+        paragraphs: [
+          'WeightCoach AI ist live. Diese Bezeichnung beschreibt, dass das Produkt bereitgestellt wird. Sie ist keine Aussage über eine bestimmte Zahl von Nutzern, über wirtschaftliche Ergebnisse oder über gesundheitliche Wirkungen. Solche Kennzahlen werden auf dieser Seite weder behauptet noch aus dem Produktstatus abgeleitet.',
+          'Der aktuelle Funktionsrahmen kann im Zuge der Weiterentwicklung angepasst werden. Produktentscheidungen richten sich nach Verständlichkeit, technischem Betrieb und der Frage, ob eine Änderung den fokussierten Ablauf unterstützt. Geplante Funktionen werden nicht als bereits verfügbar dargestellt. Maßgeblich für das aktuelle Angebot ist die Produktwebsite.',
+          'WeightCoach AI ist Teil der <a href="/produkte">Produktübersicht von filzinger.lab</a>. Dort wird es klar vom zweiten Vorhaben Fußball Training AI unterschieden, das sich noch in Entwicklung befindet. Diese Statusangaben schaffen Transparenz darüber, welches Produkt genutzt werden kann und welches noch keinen fertigen Leistungsumfang besitzt.',
+        ],
+      },
+      {
+        title: 'Was die Entwicklung für weitere Produkte bedeutet',
+        paragraphs: [
+          'Die Arbeit an WeightCoach AI verbindet Product Discovery, Nutzerführung, Datenmodell, Engineering und Betrieb. Entscheidungen können nicht nur im Konzept plausibel wirken; sie müssen in einer laufenden Anwendung bestehen. Dadurch werden Abhängigkeiten sichtbar, die bei einem isolierten Prototyp leicht unbemerkt bleiben, etwa zwischen einfacher Eingabe und langfristig lesbarer Datenstruktur.',
+          'Diese Erfahrung ersetzt keine Prüfung eines neuen Produktproblems. Jede Zielgruppe, Datenart und Nutzungssituation benötigt eigene Entscheidungen. Sie prägt aber den Studioansatz: früh fokussieren, den wichtigsten Ablauf real bauen und Erweiterungen anhand konkreter Produktfragen priorisieren. Für neue AI-Produkte kann ein begrenztes <a href="/ai-mvp-entwicklung">AI-MVP</a> der passende Zwischenschritt sein.',
+          'Ein Austausch mit filzinger.lab beginnt daher nicht mit einer pauschalen Funktionsliste. Relevant sind Problem, Zielgruppe, vorhandener Stand und die größte offene Annahme. Daraus lässt sich ein geeigneter nächster Schritt für ein digitales Produkt ableiten. WeightCoach AI dient als transparenter Einblick in reale Studioarbeit, nicht als Versprechen eines übertragbaren Erfolgs.',
+          'Für die weitere Entwicklung werden Produktfragen und technische Folgen gemeinsam priorisiert. Eine zusätzliche Eingabe beeinflusst nicht nur die Oberfläche, sondern möglicherweise auch Datenmodell, Auswertung und spätere Rückblicke. Eine neue Darstellung kann verständlicher wirken, muss aber mit bereits gespeicherten Informationen umgehen können. Diese Zusammenhänge sprechen für kleine, kontrollierte Änderungen mit einem klaren Bezug zum Produktkern.',
+          'Auch AI-Funktionen werden nicht allein nach der Qualität einzelner Beispielausgaben beurteilt. Entscheidend ist, ob sie im vorgesehenen Ablauf verständlich bleiben, geeignete Eingaben erhalten und Fehler angemessen behandeln. Ausgaben dürfen keine medizinische Autorität vortäuschen. Wo eine Einordnung durch Software nicht zuverlässig möglich ist, muss das Produkt Grenzen zeigen und Nutzern die Kontrolle über ihre Dokumentation lassen. Diese produktseitige Zurückhaltung ist Teil einer verantwortlichen Umsetzung und kein Ersatz für individuelle fachliche Beratung.',
+          'Der externe Produktauftritt ist für aktuelle Verfügbarkeit, konkrete Nutzungsbedingungen und Datenschutzinformationen maßgeblich. Diese Studioseite ordnet WeightCoach AI als reales Produkt von filzinger.lab ein und beschreibt die dahinterliegenden Entscheidungen. Sie erweitert das Angebot nicht und nennt keine geplanten Funktionen als vorhanden. Wer das Produkt ansehen oder nutzen möchte, gelangt über <a href="https://weightcoach-ai.de" target="_blank" rel="noreferrer">die offizielle WeightCoach-AI-Website</a> zum aktuellen Stand.',
         ],
       },
     ],

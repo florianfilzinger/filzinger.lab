@@ -60,9 +60,21 @@ const studioRoutes: RouteSeo[] = studioSeoPages.map((page) => {
         provider: { '@type': 'Organization', name: 'filzinger.lab', url: `${siteUrl}/` },
         areaServed: { '@type': 'Country', name: 'Deutschland' },
       }
-    : {
+    : page.schemaType === 'SoftwareApplication'
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'SoftwareApplication',
+          name: 'WeightCoach AI',
+          description: page.description,
+          url,
+          applicationCategory: 'HealthApplication',
+          operatingSystem: 'Web',
+          creator: { '@type': 'Organization', name: 'filzinger.lab', url: `${siteUrl}/` },
+          sameAs: 'https://weightcoach-ai.de',
+        }
+      : {
         '@context': 'https://schema.org',
-        '@type': 'WebPage',
+        '@type': page.schemaType,
         name: page.headline,
         description: page.description,
         url,
