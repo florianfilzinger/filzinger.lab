@@ -386,6 +386,401 @@ export const knowledgeSeoPages = [
       ['Wie lässt sich ein Budget realistisch planen?', 'Durch einen klaren Kernablauf, dokumentierte Annahmen, getrennte optionale Funktionen, technische Vorprüfungen und eine Schätzung, die auch laufenden Betrieb berücksichtigt.'],
     ]),
   },
+  {
+    path: '/wissen/ai-produkt-architektur',
+    title: 'AI-Produkt-Architektur: Bausteine und Entscheidungen',
+    description: 'Wie eine tragfähige AI-Produkt-Architektur Frontend, Backend, Daten, Modelle, Sicherheit, Beobachtbarkeit und Betrieb verbindet.',
+    schemaType: 'Article',
+    eyebrow: 'Product Engineering Wissen',
+    headline: 'Wie ist eine AI-Produkt-Architektur aufgebaut?',
+    intro: 'Eine AI-Produkt-Architektur verbindet Nutzerführung, Produktlogik, Datenhaltung und Modellzugriffe zu einem kontrollierbaren System. Sie muss den aktuellen Produktkern tragen, variable Ergebnisse angemessen behandeln und Änderungen ermöglichen, ohne vorsorglich jede denkbare Skalierung abzubilden.',
+    ctaTitle: 'Eine passende Architektur für den Produktkern planen',
+    ctaText: 'Sie entwickeln ein AI-Produkt und möchten Produktlogik, Datenwege und Betrieb gemeinsam strukturieren? filzinger.lab ordnet den technischen Rahmen entlang des konkreten Produkts ein.',
+    subject: 'AI-Produkt-Architektur besprechen',
+    sections: [
+      {
+        title: 'Architektur folgt dem Produktproblem',
+        paragraphs: [
+          'Eine Architektur ist kein allgemeiner Katalog moderner Technologien. Sie beschreibt, wie ein konkretes Produkt seine zentrale Aufgabe erfüllt. Ausgangspunkt sind Nutzer, Eingaben, gewünschte Ergebnisse und die Folgen möglicher Fehler. Erst daraus ergeben sich Anforderungen an Oberfläche, Backend, Datenmodell und externe Dienste.',
+          'Ein früher Produktkern benötigt selten die Infrastruktur einer großen Plattform. Zu viele vorsorgliche Schichten erhöhen Entwicklungs- und Wartungsaufwand, ohne aktuelle Risiken zu lösen. Gleichzeitig dürfen grundlegende Anforderungen wie geschützte Zugangsdaten, Zugriffstrennung und nachvollziehbare Datenwege nicht mit dem Hinweis auf einen MVP ignoriert werden.',
+          'Das <a href="/product-studio">Product Studio</a> verbindet deshalb Architekturentscheidungen mit Discovery und Produktpriorisierung. Eine technische Option wird danach bewertet, welchen Beitrag sie zur Nutzung leistet und welche Abhängigkeiten sie erzeugt. Die Architektur bleibt proportional, aber nicht beliebig.',
+        ],
+      },
+      {
+        title: 'Frontend, Backend und Produktlogik trennen',
+        paragraphs: [
+          'Das Frontend führt Nutzer durch Eingaben, Bearbeitungszustände und Ergebnisse. Es darf geheime Schlüssel oder interne Modellanweisungen nicht enthalten. Modellzugriffe und sensible Produktregeln gehören in ein geschütztes Backend. Diese Trennung schützt nicht vor jedem Risiko, schafft aber eine klare technische Verantwortungsgrenze.',
+          'Produktlogik sollte nicht vollständig in Prompts verschwinden. Berechtigungen, feste Berechnungen und eindeutige Statuswechsel lassen sich deterministisch besser prüfen. Ein Modell übernimmt Aufgaben, bei denen variable Sprache, Klassifikation oder Strukturierung einen sinnvollen Beitrag leisten. Beide Bereiche werden über definierte Schnittstellen verbunden.',
+          'Eine solche Struktur erleichtert Tests und spätere Änderungen. Ein Modell kann ausgetauscht oder ein Prompt angepasst werden, ohne die gesamte Nutzerführung neu zu entwickeln. Umgekehrt bleibt sichtbar, welche Regeln das Produkt unabhängig von der Modellantwort durchsetzt. Das reduziert schwer nachvollziehbares Verhalten.',
+        ],
+      },
+      {
+        title: 'Datenmodell, Kontext und Zugriff',
+        paragraphs: [
+          'Das Datenmodell bildet relevante Produktzustände ab. Es sollte nicht nur die aktuelle Oberfläche kopieren, sondern auch Rückblicke, Korrekturen und kontrollierte Migrationen ermöglichen. Nutzer, Organisationen und Rollen benötigen eindeutige Beziehungen, sobald nicht alle Daten für jeden Zugriff bestimmt sind.',
+          'Für ein Modell wird nur der Kontext zusammengestellt, der zur jeweiligen Aufgabe gehört. Mehr Daten verbessern ein Ergebnis nicht automatisch. Unnötiger Kontext erhöht Kosten, Laufzeit und Datenschutzrisiken. Herkunft, Aktualität und Zugriffsberechtigung der verwendeten Informationen müssen technisch nachvollziehbar bleiben.',
+          'Bei wissensbasierten Funktionen können Suche und Abruf eine eigene Architekturschicht bilden. Dokumente benötigen Aufbereitung, Berechtigungen und Aktualisierungswege. Eine Vektorsuche allein löst diese Aufgaben nicht. Das Produkt muss außerdem zeigen, wie Nutzer ein Ergebnis prüfen und bei fehlender Grundlage reagieren können.',
+        ],
+      },
+      {
+        title: 'Modellintegration und Ergebnisverarbeitung',
+        paragraphs: [
+          'Die Modellintegration umfasst Anbieterzugang, Modellauswahl, Prompt, Parameter, Kontext und Verarbeitung der Antwort. Ein direkter Aufruf ohne Validierung genügt selten. Strukturierte Ausgaben werden gegen erwartete Felder geprüft; unzulässige Werte, fehlende Inhalte und Zeitüberschreitungen benötigen definierte Fehlerwege.',
+          'Fallbacks müssen zum Produkt passen. Ein erneuter Aufruf kann bei einem Formatfehler sinnvoll sein, erhöht aber Kosten und Laufzeit. Ein anderes Modell kann abweichende Eigenschaften besitzen. Manchmal ist eine verständliche Fehlermeldung besser als ein weiterer automatischer Versuch, dessen Ergebnis Nutzer nicht einordnen können.',
+          'Der Artikel <a href="/wissen/llm-in-produkte-integrieren">LLM in Produkte integrieren</a> vertieft diese Entscheidungen. Wichtig bleibt die Trennung zwischen Modellfähigkeit und Produktqualität. Selbst gute Einzelausgaben ergeben noch keine verlässliche Nutzererfahrung, wenn Kontext, Interface oder Fehlerbehandlung ungeklärt sind.',
+        ],
+      },
+      {
+        title: 'Beobachtbarkeit, Tests und Sicherheit',
+        paragraphs: [
+          'Technische Beobachtbarkeit erfasst gezielt Laufzeiten, Fehlerzustände und zentrale Systemwege. Inhalte und personenbezogene Daten sollten nicht pauschal protokolliert werden. Welche Signale erforderlich sind, hängt vom Produkt und den Folgen eines Fehlers ab. Datensparsamkeit und Diagnosefähigkeit müssen gemeinsam geplant werden.',
+          'Tests verbinden deterministische Prüfungen mit repräsentativen AI-Fällen. Schnittstellen, Berechtigungen und Datenoperationen lassen sich klassisch automatisieren. Modellausgaben benötigen zusätzlich Kriterien, Stichproben und schwierige Eingaben. Die Seite <a href="/wissen/ai-produkte-testen">AI-Produkte testen</a> beschreibt diese mehrschichtige Qualitätssicherung.',
+          'Sicherheit umfasst geheime Schlüssel, Eingabevalidierung, Zugriffsschutz und den Umgang mit externen Diensten. Es gibt keine Architektur, die vollständige Sicherheit garantiert. Die Anforderungen müssen regelmäßig anhand von Produktänderungen, Daten und Bedrohungen überprüft werden. Sensible Einsatzfelder benötigen zusätzliche fachliche Prüfung.',
+        ],
+      },
+      {
+        title: 'Vom MVP zur betreibbaren Architektur',
+        paragraphs: [
+          'Ein <a href="/ai-mvp-entwicklung">AI-MVP</a> prüft den Kern unter realistischen Bedingungen. Seine Architektur darf begrenzt sein, muss aber den geplanten Test tragen. Nach der Auswertung werden Engpässe, Betriebserfahrung und neue Anforderungen priorisiert. Skalierung wird dort ergänzt, wo tatsächliche Nutzung sie verlangt.',
+          'Die <a href="/ai-saas-entwicklung">AI-SaaS-Entwicklung</a> ergänzt kontrollierte Releases, Kostenbeobachtung und den Umgang mit Anbieteränderungen. Externe Modelle, Hosting und Schnittstellen bleiben Abhängigkeiten. Klare Adapter und dokumentierte Datenflüsse erleichtern einen Wechsel, können ihn aber nicht kostenlos oder vollständig risikofrei machen.',
+          'WeightCoach AI zeigt als <a href="/produkte/weightcoach-ai">Live-Produkt</a>, dass Datenstruktur, Nutzerführung und Betrieb gemeinsam betrachtet werden müssen. Die <a href="/case-studies/weightcoach-ai">Case Study</a> ordnet diese Entscheidungen ein, ohne daraus eine allgemeingültige Referenzarchitektur oder erfundene Erfolgswerte abzuleiten.',
+          'Architektur bleibt damit eine fortlaufende Produktentscheidung. Neue Funktionen verändern Daten, Schnittstellen und Betriebsanforderungen. Die <a href="/produktentwicklung">Produktentwicklung</a> sollte diese Folgen vor der Umsetzung sichtbar machen und nicht erst nach einem wachsenden technischen Problem reagieren.',
+          'Dokumentation unterstützt diese Entwicklung. Sie hält Verantwortlichkeiten, zentrale Datenflüsse und begründete Grenzen fest, ohne jede Implementierungszeile zu wiederholen. Neue Teammitglieder können dadurch verstehen, warum eine Komponente existiert und welche Annahme sie trägt. Wenn sich das Produkt verändert, wird auch diese Beschreibung angepasst. Veraltete Architekturdiagramme schaffen sonst nur eine scheinbare Sicherheit und erschweren Entscheidungen.',
+          'Entscheidungsprotokolle halten zusätzlich fest, welche Alternativen geprüft und warum sie verworfen wurden. Dadurch müssen spätere Teams dieselben Fragen nicht ohne Kontext erneut beantworten.',
+        ],
+      },
+      ...faqSections([
+        ['Welche Bausteine gehören zu einer AI-Produkt-Architektur?', 'Typisch sind Frontend, Backend, Produktlogik, Datenhaltung, Authentifizierung, Modellintegration, Ergebnisvalidierung und Betriebswerkzeuge. Der konkrete Umfang hängt vom Produkt ab.'],
+        ['Sollte die Modelllogik direkt im Frontend liegen?', 'Nein. Geheimnisse, sensible Regeln und Modellzugriffe gehören in der Regel in ein geschütztes Backend. Das Frontend übernimmt die verständliche Interaktion.'],
+        ['Braucht ein AI-MVP bereits eine skalierbare Architektur?', 'Es braucht eine Architektur, die den vorgesehenen Test trägt. Hypothetische Großskalierung ist selten nötig, zentrale Daten- und Sicherheitsentscheidungen bleiben jedoch wichtig.'],
+        ['Wie lässt sich ein Modell später austauschen?', 'Durch klar definierte Schnittstellen, getrennte Produktlogik und dokumentierte Ergebnisformate. Ein Austausch bleibt dennoch mit Tests und möglichen Anpassungen verbunden.'],
+        ['Kann eine Architektur vollständige Sicherheit garantieren?', 'Nein. Sie kann Risiken reduzieren und Kontrollen ermöglichen. Sicherheit muss passend zu Daten, Nutzung und Veränderungen regelmäßig geprüft werden.'],
+      ]),
+    ],
+    faqs: faqData([
+      ['Welche Bausteine gehören zu einer AI-Produkt-Architektur?', 'Typisch sind Frontend, Backend, Produktlogik, Datenhaltung, Authentifizierung, Modellintegration, Ergebnisvalidierung und Betriebswerkzeuge. Der konkrete Umfang hängt vom Produkt ab.'],
+      ['Sollte die Modelllogik direkt im Frontend liegen?', 'Nein. Geheimnisse, sensible Regeln und Modellzugriffe gehören in der Regel in ein geschütztes Backend. Das Frontend übernimmt die verständliche Interaktion.'],
+      ['Braucht ein AI-MVP bereits eine skalierbare Architektur?', 'Es braucht eine Architektur, die den vorgesehenen Test trägt. Hypothetische Großskalierung ist selten nötig, zentrale Daten- und Sicherheitsentscheidungen bleiben jedoch wichtig.'],
+      ['Wie lässt sich ein Modell später austauschen?', 'Durch klar definierte Schnittstellen, getrennte Produktlogik und dokumentierte Ergebnisformate. Ein Austausch bleibt dennoch mit Tests und möglichen Anpassungen verbunden.'],
+      ['Kann eine Architektur vollständige Sicherheit garantieren?', 'Nein. Sie kann Risiken reduzieren und Kontrollen ermöglichen. Sicherheit muss passend zu Daten, Nutzung und Veränderungen regelmäßig geprüft werden.'],
+    ]),
+  },
+  {
+    path: '/wissen/llm-in-produkte-integrieren',
+    title: 'LLM in Produkte integrieren: vom Modell zur Funktion',
+    description: 'Wie Large Language Models sinnvoll in digitale Produkte integriert werden: Anwendungsfall, Kontext, Prompts, Ausgaben, Tests, Kosten und Betrieb.',
+    schemaType: 'Article',
+    eyebrow: 'LLM Product Engineering',
+    headline: 'Wie lassen sich LLMs in Produkte integrieren?',
+    intro: 'Die Integration eines Large Language Models ist keine einzelne API-Aufgabe. Eine brauchbare Produktfunktion entsteht erst, wenn Anwendungsfall, Kontext, Nutzerführung, Ergebnisprüfung, Kosten und Betrieb als zusammenhängendes System gestaltet werden.',
+    ctaTitle: 'Eine LLM-Funktion als Produktkern prüfen',
+    ctaText: 'Sie möchten ein LLM in ein digitales Produkt integrieren? filzinger.lab hilft, Nutzen, Datenwege und einen sinnvoll begrenzten technischen Versuch zu bestimmen.',
+    subject: 'LLM-Produktintegration besprechen',
+    sections: [
+      {
+        title: 'Mit einer konkreten Aufgabe beginnen',
+        paragraphs: [
+          'Ein LLM sollte nicht integriert werden, nur weil Sprache im Produkt vorkommt. Zuerst wird beschrieben, welche Aufgabe Nutzer erledigen, welche Eingaben vorhanden sind und welches Ergebnis weiterverwendet werden soll. Zusammenfassung, Extraktion, Klassifikation und Entwurf stellen unterschiedliche Anforderungen an Modell und Interface.',
+          'Feste Regeln bleiben sinnvoll, wenn Werte eindeutig berechnet, Berechtigungen geprüft oder Status kontrolliert werden müssen. Ein LLM ergänzt Produktlogik dort, wo variable Sprache oder komplexe Muster relevant sind. Diese Abgrenzung verhindert, dass ein probabilistisches System unnötig Aufgaben übernimmt, die klassisch zuverlässiger lösbar sind.',
+          'Eine <a href="/wissen/ai-produktidee-validieren">AI-Produktidee sollte validiert</a> werden, bevor umfangreiche Integration beginnt. Ein begrenzter technischer Versuch kann prüfen, ob repräsentative Eingaben brauchbare Ergebnisse liefern. Er ersetzt noch kein vollständiges Produkt und keine Nachfrageprüfung.',
+        ],
+      },
+      {
+        title: 'Modell auswählen und Abhängigkeiten verstehen',
+        paragraphs: [
+          'Modelle unterscheiden sich in Fähigkeiten, Kontextumfang, Geschwindigkeit, Kosten und Betriebsbedingungen. Die Auswahl folgt dem konkreten Anwendungsfall. Ein leistungsstärkeres Modell kann bessere Ergebnisse liefern, aber zu langsam oder teuer für den Ablauf sein. Behauptete Benchmarks ersetzen keinen Test mit eigenen repräsentativen Fällen.',
+          'Externe Anbieter schaffen Abhängigkeiten bei Verfügbarkeit, Preisen, Datenverarbeitung und Modelländerungen. Schnittstellen sollten diese Abhängigkeit sichtbar kapseln. Vollständige Austauschbarkeit ist trotzdem selten: Modelle reagieren unterschiedlich, besitzen andere Formate und benötigen erneut Qualitätsprüfung. Ein Wechsel ist ein Produkt- und kein bloßer Konfigurationsschritt.',
+          'Für sensible Daten müssen Übertragung, Speicherung und vertragliche Bedingungen konkret geprüft werden. Nicht jede Modelloption eignet sich für jeden Kontext. Allgemeine Datenschutz- oder Sicherheitsgarantien wären unangebracht. Produktverantwortliche benötigen eine fachliche und gegebenenfalls rechtliche Einordnung ihres Einsatzfalls.',
+        ],
+      },
+      {
+        title: 'Kontext und Prompts als System gestalten',
+        paragraphs: [
+          'Ein Prompt beschreibt Aufgabe, Grenzen und erwartetes Ausgabeformat. Seine Wirkung hängt jedoch vom Kontext und den Eingaben ab. Lange Anweisungen lösen keine unklare Produktdefinition. Gute Promptarbeit beginnt mit einer verständlichen Aufgabe und Testfällen, die typische sowie schwierige Situationen abdecken.',
+          'Kontext kann aus Nutzereingaben, Produktzustand oder freigegebenem Wissen stammen. Jede Information benötigt einen Zweck und eine Zugriffsberechtigung. Unbegrenzter Kontext erhöht nicht automatisch die Qualität. Er kann relevante Inhalte verdecken, Laufzeit erhöhen und unnötige Daten an einen Anbieter übertragen.',
+          'Bei Dokumentwissen müssen Suche, Aktualität und Berechtigungen gemeinsam funktionieren. Gefundene Passagen können unvollständig oder widersprüchlich sein. Das Produkt sollte kenntlich machen, auf welcher Grundlage ein Ergebnis entstanden ist, wenn Nutzer diese Information für ihre Prüfung benötigen.',
+        ],
+      },
+      {
+        title: 'Strukturierte Ausgaben und Fehlerbehandlung',
+        paragraphs: [
+          'Wo Ergebnisse von Software weiterverarbeitet werden, sind definierte Felder hilfreicher als freie Texte. Das Backend prüft Format, Datentypen und zulässige Werte. Eine formal gültige Antwort kann inhaltlich dennoch ungeeignet sein. Technische und fachliche Validierung erfüllen deshalb verschiedene Aufgaben.',
+          'Fehlerwege berücksichtigen Zeitüberschreitungen, Inhaltsgrenzen, fehlenden Kontext und unzulässige Ausgaben. Automatische Wiederholungen werden begrenzt und beobachtet. Sie können Kosten erhöhen oder denselben Fehler erneut erzeugen. Manchmal ist eine Rückfrage oder eine transparente Fehlermeldung die bessere Produktentscheidung.',
+          'Nutzer brauchen Korrektur- und Abbruchmöglichkeiten. Ein Entwurf kann bearbeitet werden; eine Aktion mit größeren Folgen benötigt möglicherweise Freigabe. Der Artikel <a href="/wissen/human-in-the-loop-im-produktdesign">Human in the Loop im Produktdesign</a> erklärt, wie Kontrolle als echter Arbeitsschritt statt als dekorativer Button gestaltet wird.',
+        ],
+      },
+      {
+        title: 'Testen, beobachten und Kosten kontrollieren',
+        paragraphs: [
+          'Testfälle werden aus realistischen Eingaben und bekannten Risiken abgeleitet. Format, Vollständigkeit und unerlaubte Inhalte können teilweise automatisiert geprüft werden. Qualitative Aufgaben benötigen klare Bewertungskriterien und fachliche Stichproben. Einzelne überzeugende Beispiele sind keine ausreichende Qualitätssicherung.',
+          'Im Betrieb werden Laufzeit, Fehler und Verbrauch gezielt beobachtet. Inhalte sollten nicht pauschal protokolliert werden. Caching, kleinere Modelle oder Vorverarbeitung können Kosten senken, wenn die Aktualität und Bedeutung der Ergebnisse erhalten bleiben. Jede Optimierung wird gegen Produktqualität geprüft.',
+          'Die Wissensseite <a href="/wissen/ai-produkte-testen">AI-Produkte testen</a> vertieft die Teststrategie. Für den dauerhaften Einsatz verbindet <a href="/ai-saas-entwicklung">AI-SaaS-Entwicklung</a> Modellbetrieb mit Releases, Datenwegen und Nutzerführung. Vollständige Fehlerfreiheit bleibt bei variablen Ausgaben nicht garantierbar.',
+        ],
+      },
+      {
+        title: 'Vom Versuch zur realen Produktfunktion',
+        paragraphs: [
+          'Ein Prototyp kann die grundsätzliche Modellfähigkeit zeigen. Der Weg zum Produkt ergänzt Anmeldung, Datenhaltung, Zugriffsschutz, verständliche Zustände und kontrollierten Betrieb. Die Seite <a href="/wissen/vom-prototyp-zum-ai-produkt">Vom Prototyp zum AI-Produkt</a> beschreibt diese Übergänge im Zusammenhang.',
+          'Ein <a href="/ai-mvp-entwicklung">AI-MVP</a> begrenzt den Umfang auf einen vollständigen Kernablauf. Die <a href="/wissen/ai-produkt-architektur">AI-Produkt-Architektur</a> muss diesen Ablauf tragen, ohne jede spätere Erweiterung vorwegzunehmen. Nach der Validierung werden Änderungen anhand beobachteter Hindernisse priorisiert.',
+          'Das <a href="/product-studio">Product Studio</a> behandelt die LLM-Integration als Product Engineering. Die <a href="/case-studies/weightcoach-ai">WeightCoach-AI-Case-Study</a> zeigt reale Produktarbeit, ohne ein allgemeines LLM-Erfolgsrezept zu behaupten. <a href="/produkte/weightcoach-ai">WeightCoach AI</a> bleibt ein konkretes Produkt und keine übertragbare Garantie.',
+          'Eine verantwortliche Integration macht Grenzen sichtbar. Nutzer sollten wissen, wann sie ein Ergebnis prüfen müssen und welche Handlung das System tatsächlich ausführt. Klarheit im Interface ist dabei ebenso wichtig wie Modellqualität. Produktvertrauen entsteht nicht durch absolute Aussagen, sondern durch nachvollziehbare Abläufe.',
+          'Vor der Veröffentlichung sollte außerdem ein Rückweg definiert sein. Eine neue Modell- oder Promptversion kann trotz vorheriger Tests unerwartete Abweichungen zeigen. Versionierte Konfiguration, kontrollierte Releases und die Möglichkeit zur Rücknahme begrenzen die Auswirkungen. Bei dauerhaften Datenänderungen reicht ein technisches Rollback allein möglicherweise nicht; das Produkt benötigt dann Korrektur- oder Wiederherstellungswege. Diese Betriebsfragen gehören bereits in die Planung der Integration und nicht erst in die Reaktion auf einen Vorfall.',
+          'Ebenso wichtig ist eine eindeutige Zuständigkeit für laufende Modelländerungen. Ohne verantwortliche Produktentscheidung können technische Updates unbemerkt Bedeutung, Ton oder Grenzen einer Funktion verschieben.',
+        ],
+      },
+      ...faqSections([
+        ['Wann ist ein LLM für eine Produktfunktion sinnvoll?', 'Wenn variable Sprache oder komplexe Strukturierung einen klaren Beitrag zur Nutzeraufgabe leistet und die entstehende Unsicherheit im Produkt angemessen behandelt werden kann.'],
+        ['Sollte immer das leistungsstärkste Modell verwendet werden?', 'Nein. Qualität, Laufzeit, Kosten, Datenkontext und Betriebsbedingungen müssen gemeinsam zum Anwendungsfall passen.'],
+        ['Was ist wichtiger: Prompt oder Modell?', 'Beides wirkt zusammen mit Kontext, Daten und Produktlogik. Ein guter Prompt kann eine unklare Aufgabe oder ungeeignete Daten nicht grundsätzlich ausgleichen.'],
+        ['Wie werden LLM-Ausgaben verlässlich weiterverarbeitet?', 'Durch strukturierte Formate, technische Validierung, fachliche Kriterien, begrenzte Fehlerwege und menschliche Kontrolle passend zur Folge einer Aktion.'],
+        ['Kann eine LLM-Integration fehlerfreie Ergebnisse garantieren?', 'Nein. Tests und Kontrollen reduzieren Risiken, probabilistische Ausgaben können aber weiterhin ungeeignet oder falsch sein. Das Produkt muss diese Grenze berücksichtigen.'],
+      ]),
+    ],
+    faqs: faqData([
+      ['Wann ist ein LLM für eine Produktfunktion sinnvoll?', 'Wenn variable Sprache oder komplexe Strukturierung einen klaren Beitrag zur Nutzeraufgabe leistet und die entstehende Unsicherheit im Produkt angemessen behandelt werden kann.'],
+      ['Sollte immer das leistungsstärkste Modell verwendet werden?', 'Nein. Qualität, Laufzeit, Kosten, Datenkontext und Betriebsbedingungen müssen gemeinsam zum Anwendungsfall passen.'],
+      ['Was ist wichtiger: Prompt oder Modell?', 'Beides wirkt zusammen mit Kontext, Daten und Produktlogik. Ein guter Prompt kann eine unklare Aufgabe oder ungeeignete Daten nicht grundsätzlich ausgleichen.'],
+      ['Wie werden LLM-Ausgaben verlässlich weiterverarbeitet?', 'Durch strukturierte Formate, technische Validierung, fachliche Kriterien, begrenzte Fehlerwege und menschliche Kontrolle passend zur Folge einer Aktion.'],
+      ['Kann eine LLM-Integration fehlerfreie Ergebnisse garantieren?', 'Nein. Tests und Kontrollen reduzieren Risiken, probabilistische Ausgaben können aber weiterhin ungeeignet oder falsch sein. Das Produkt muss diese Grenze berücksichtigen.'],
+    ]),
+  },
+  {
+    path: '/wissen/ai-produkte-testen',
+    title: 'AI-Produkte testen: Qualität systematisch prüfen',
+    description: 'Wie AI-Produkte mit klassischen Tests, Modellfällen, Qualitätskriterien, Human Review, Sicherheitsprüfungen und Monitoring getestet werden.',
+    schemaType: 'Article',
+    eyebrow: 'AI Product Quality',
+    headline: 'Wie lassen sich AI-Produkte testen?',
+    intro: 'AI-Produkte benötigen mehrere Testebenen. Klassische Softwaretests prüfen definierte Logik und Schnittstellen, während variable Modellausgaben mit repräsentativen Fällen, fachlichen Kriterien und geeigneter menschlicher Bewertung untersucht werden.',
+    ctaTitle: 'Eine Teststrategie für den Produktkern entwickeln',
+    ctaText: 'Sie möchten ein AI-Produkt nicht nur anhand guter Demo-Ausgaben bewerten? filzinger.lab strukturiert Testfälle, Qualitätskriterien und technische Prüfwege passend zum Produkt.',
+    subject: 'AI-Produkt testen',
+    sections: [
+      {
+        title: 'Warum klassische Tests nicht ausreichen',
+        paragraphs: [
+          'Ein großer Teil eines AI-Produkts bleibt deterministische Software. Anmeldung, Berechtigungen, Datenoperationen und Schnittstellen können mit bekannten Methoden geprüft werden. Die Modellantwort selbst kann jedoch bei gleicher Aufgabe variieren. Ein exakter Textvergleich würde sinnvolle Varianten ablehnen oder wichtige inhaltliche Fehler übersehen.',
+          'Deshalb wird Qualität in Kriterien übersetzt. Für eine Extraktion können Vollständigkeit, Feldformat und zulässige Werte relevant sein. Für einen Entwurf zählen möglicherweise fachliche Richtigkeit, Ton und unerlaubte Behauptungen. Kriterien müssen aus dem Produktziel stammen und dürfen nicht nur allgemeine Modellqualität beschreiben.',
+          'Die <a href="/wissen/ai-produkt-architektur">AI-Produkt-Architektur</a> sollte Testbarkeit unterstützen. Modellzugriffe, Produktlogik und Ergebnisverarbeitung werden getrennt, damit Fehler lokalisiert werden können. Wenn alle Entscheidungen in einem langen Prompt verborgen sind, bleibt eine Ursache schwer nachvollziehbar.',
+        ],
+      },
+      {
+        title: 'Testfälle aus realer Nutzung ableiten',
+        paragraphs: [
+          'Eine Testsammlung enthält typische, schwierige und unzulässige Eingaben. Leere Felder, widersprüchlicher Kontext, ungewöhnliche Sprache und sehr lange Inhalte gehören dazu, wenn sie im Produkt vorkommen können. Ausschließlich sorgfältig vorbereitete Beispiele erzeugen ein verzerrtes Bild der tatsächlichen Qualität.',
+          'Fälle werden versioniert und mit erwarteten Eigenschaften versehen. Nicht jede Antwort benötigt einen einzigen Idealtext. Häufig genügt eine Liste notwendiger Informationen, verbotener Aussagen oder zulässiger Kategorien. So lassen sich Varianten vergleichen, ohne sprachliche Gleichheit mit inhaltlicher Qualität zu verwechseln.',
+          'Testdaten dürfen keine ungeprüfte Sammlung sensibler Produktionsinhalte sein. Sie werden passend zum Kontext ausgewählt, anonymisiert oder synthetisch erstellt, sofern dadurch die relevante Eigenschaft erhalten bleibt. Datenschutz und Aussagekraft müssen gemeinsam betrachtet werden.',
+        ],
+      },
+      {
+        title: 'Automatisierte Prüfungen und fachliche Bewertung',
+        paragraphs: [
+          'Automatisierte Tests eignen sich für Formate, Pflichtfelder, Grenzwerte, unerlaubte Aktionen und Schnittstellenverhalten. Auch Laufzeit und Fehlercodes lassen sich überwachen. Solche Prüfungen erkennen klare Abweichungen schnell, bewerten aber nicht automatisch die fachliche Angemessenheit eines freien Ergebnisses.',
+          'Fachliche Bewertung benötigt verständliche Kriterien und geeignete Prüfer. Mehrere Personen können bei offenen Aufgaben unterschiedlich urteilen. Uneinigkeit ist ein Hinweis, Kriterien oder Produktanforderung zu schärfen. Eine einzelne Bewertung sollte nicht ohne Kontext als objektive Wahrheit behandelt werden.',
+          'Modelle können bei Bewertungen unterstützen, ersetzen aber keine unabhängige Qualitätssicherung. Ein Bewertungsmodell besitzt eigene Fehler und mögliche Verzerrungen. Seine Ergebnisse werden kalibriert und durch Stichproben kontrolliert. Es darf nicht lediglich dieselben Annahmen wie das getestete System wiederholen.',
+        ],
+      },
+      {
+        title: 'Human in the Loop und Freigaben testen',
+        paragraphs: [
+          'Menschliche Kontrolle muss selbst getestet werden. Können Nutzer erkennen, was geprüft werden soll? Sind Eingabe, Ergebnis und relevante Grundlage vergleichbar? Ein Bestätigungsbutton ohne ausreichende Information führt leicht zu routinemäßiger Freigabe und reduziert das Risiko nicht zuverlässig.',
+          'Die notwendige Kontrolle richtet sich nach der Folge einer Aktion. Ein persönlicher Entwurf kann anders behandelt werden als eine Veröffentlichung oder eine Änderung wichtiger Daten. Der Artikel <a href="/wissen/human-in-the-loop-im-produktdesign">Human in the Loop im Produktdesign</a> beschreibt Rollen, Eskalation und Korrekturwege.',
+          'Tests berücksichtigen auch Zeitdruck und wiederkehrende Nutzung. Ein Verfahren, das in einer moderierten Sitzung funktioniert, kann im Alltag zu umständlich sein. Umgekehrt darf Vereinfachung nicht dazu führen, dass Nutzer ungeprüfte Modellausgaben als verlässlich übernehmen.',
+        ],
+      },
+      {
+        title: 'Sicherheit und Missbrauchsfälle',
+        paragraphs: [
+          'Eingaben können versuchen, interne Anweisungen zu verändern, fremde Daten abzurufen oder unerlaubte Aktionen auszulösen. Schutz entsteht nicht allein durch einen Prompt. Berechtigungen, Werkzeugzugriffe und Datenfilter müssen unabhängig vom Modell durchgesetzt werden. Kritische Aktionen benötigen serverseitige Kontrollen.',
+          'Tests prüfen, ob Nutzer nur vorgesehene Informationen sehen und Handlungen ausführen können. Externe Inhalte werden als potenziell unzuverlässig behandelt. Auch Dateitypen, Größen und Verarbeitungslimits gehören zur Angriffsfläche. Ergebnisse hängen vom konkreten Produkt und den verbundenen Systemen ab.',
+          'Die Seite <a href="/wissen/ai-produkte-sicher-betreiben">AI-Produkte sicher betreiben</a> behandelt diese Kontrollen im laufenden Betrieb. Kein Testverfahren garantiert vollständige Sicherheit. Neue Funktionen, Anbieteränderungen und entdeckte Schwachstellen verlangen wiederholte Prüfungen.',
+        ],
+      },
+      {
+        title: 'Tests im Produktlebenszyklus',
+        paragraphs: [
+          'Vor einem Release werden bekannte Fälle gegen die neue Version geprüft. Änderungen an Modell, Prompt, Kontext oder Ergebnisverarbeitung können unerwartete Auswirkungen haben. Vergleichstests machen Abweichungen sichtbar, entscheiden aber nicht allein, ob eine Veränderung für Nutzer besser ist.',
+          'Im Betrieb ergänzen datensparsame Signale die Tests. Fehler, Laufzeiten und Abbrüche können auf neue Fälle hinweisen. Inhalte werden nicht ungegrenzt gespeichert. Beobachtungen werden geprüft und geeignete neue Testfälle in die Sammlung übernommen. So entwickelt sich Qualitätssicherung mit dem Produkt weiter.',
+          'Ein <a href="/ai-mvp-entwicklung">AI-MVP</a> benötigt bereits eine zum Einsatz passende Teststrategie. Für ein dauerhaftes <a href="/ai-saas-entwicklung">AI-SaaS-Produkt</a> kommen Releases und Monitoring hinzu. Das <a href="/product-studio">Product Studio</a> verbindet diese Prüfungen mit Produktentscheidungen statt nur mit Modellmetriken.',
+          'Die <a href="/case-studies/weightcoach-ai">WeightCoach-AI-Case-Study</a> und die <a href="/produkte/weightcoach-ai">Produktseite</a> zeigen einen realen Produktkontext, liefern aber keine erfundenen Testergebnisse. Ein neues Produkt benötigt eigene Fälle und fachliche Kriterien.',
+          'Testergebnisse sollten nachvollziehbar dokumentiert werden. Dazu gehören Version von Modell und Produktlogik, verwendete Kriterien, bekannte Einschränkungen und die Entscheidung, die daraus folgt. Ein einzelner zusammengefasster Qualitätswert kann wichtige Unterschiede zwischen Fallgruppen verdecken. Besonders relevante Fehlerarten werden getrennt betrachtet und mit ihrer möglichen Folge eingeordnet. So bleibt sichtbar, ob eine Verbesserung nur häufige einfache Fälle betrifft oder auch schwierige Situationen angemessen behandelt. Die Dokumentation schafft keine Garantie, erleichtert aber spätere Vergleiche und begründete Release-Entscheidungen.',
+          'Testverantwortung braucht außerdem feste Zeitpunkte. Prüfungen vor einem Release, nach einem Anbieterwechsel und nach relevanten Vorfällen erfüllen unterschiedliche Zwecke. Ein klarer Ablauf verhindert, dass Qualitätskontrolle nur dann stattfindet, wenn bereits Beschwerden oder technische Störungen sichtbar werden. Auch bekannte Ausnahmen sollten ein Ablaufdatum oder einen erneuten Prüftermin erhalten.',
+        ],
+      },
+      ...faqSections([
+        ['Warum können AI-Ausgaben nicht nur mit exakten Sollwerten getestet werden?', 'Weil sinnvolle Antworten sprachlich variieren können. Tests prüfen deshalb Formate, notwendige Inhalte, verbotene Aussagen und fachliche Kriterien passend zur Aufgabe.'],
+        ['Welche Testfälle sind besonders wichtig?', 'Typische, schwierige, unvollständige und unzulässige Eingaben sowie Fälle mit größeren Folgen. Die Auswahl muss reale Nutzung und bekannte Risiken abbilden.'],
+        ['Kann ein anderes Modell AI-Ausgaben automatisch bewerten?', 'Es kann unterstützen, besitzt aber eigene Fehler. Bewertungen müssen kalibriert, stichprobenartig geprüft und durch fachliche Kriterien ergänzt werden.'],
+        ['Wann ist menschliche Freigabe erforderlich?', 'Das hängt von der Tragweite einer Aktion und der Zuverlässigkeit des Systems ab. Je größer mögliche Folgen, desto wichtiger sind nachvollziehbare Kontrolle und Eskalation.'],
+        ['Garantieren umfangreiche Tests ein fehlerfreies AI-Produkt?', 'Nein. Tests reduzieren Risiken und machen bekannte Abweichungen sichtbar. Variable Eingaben, Modelländerungen und neue Angriffe erfordern fortlaufende Prüfung.'],
+      ]),
+    ],
+    faqs: faqData([
+      ['Warum können AI-Ausgaben nicht nur mit exakten Sollwerten getestet werden?', 'Weil sinnvolle Antworten sprachlich variieren können. Tests prüfen deshalb Formate, notwendige Inhalte, verbotene Aussagen und fachliche Kriterien passend zur Aufgabe.'],
+      ['Welche Testfälle sind besonders wichtig?', 'Typische, schwierige, unvollständige und unzulässige Eingaben sowie Fälle mit größeren Folgen. Die Auswahl muss reale Nutzung und bekannte Risiken abbilden.'],
+      ['Kann ein anderes Modell AI-Ausgaben automatisch bewerten?', 'Es kann unterstützen, besitzt aber eigene Fehler. Bewertungen müssen kalibriert, stichprobenartig geprüft und durch fachliche Kriterien ergänzt werden.'],
+      ['Wann ist menschliche Freigabe erforderlich?', 'Das hängt von der Tragweite einer Aktion und der Zuverlässigkeit des Systems ab. Je größer mögliche Folgen, desto wichtiger sind nachvollziehbare Kontrolle und Eskalation.'],
+      ['Garantieren umfangreiche Tests ein fehlerfreies AI-Produkt?', 'Nein. Tests reduzieren Risiken und machen bekannte Abweichungen sichtbar. Variable Eingaben, Modelländerungen und neue Angriffe erfordern fortlaufende Prüfung.'],
+    ]),
+  },
+  {
+    path: '/wissen/human-in-the-loop-im-produktdesign',
+    title: 'Human in the Loop im AI-Produktdesign',
+    description: 'Wie Human in the Loop in AI-Produkten gestaltet wird: Rollen, Kontrollpunkte, Freigaben, Korrekturen, Eskalation und lernfähige Produktabläufe.',
+    schemaType: 'Article',
+    eyebrow: 'AI Product Design',
+    headline: 'Human in the Loop im Produktdesign',
+    intro: 'Human in the Loop bedeutet, menschliche Prüfung und Entscheidung gezielt in einen AI-gestützten Produktablauf einzubauen. Gute Kontrolle zeigt, was zu prüfen ist, liefert die nötige Grundlage und gibt Nutzern echte Möglichkeiten für Korrektur oder Eskalation.',
+    ctaTitle: 'Menschliche Kontrolle sinnvoll im Produkt verankern',
+    ctaText: 'Sie entwickeln einen AI-Produktablauf mit Freigaben oder Korrekturen? filzinger.lab verbindet Nutzerführung, Produktlogik und technische Kontrollpunkte.',
+    subject: 'Human-in-the-Loop-Produktdesign besprechen',
+    sections: [
+      {
+        title: 'Human in the Loop ist mehr als ein Bestätigungsbutton',
+        paragraphs: [
+          'Ein zusätzlicher Klick reduziert ein Risiko nur, wenn Nutzer eine Entscheidung tatsächlich beurteilen können. Dafür müssen Eingabe, AI-Ergebnis und relevante Grundlage verständlich dargestellt sein. Fehlt dieser Kontext, wird eine Freigabe schnell zur Routine und vermittelt lediglich den Anschein menschlicher Kontrolle.',
+          'Human in the Loop beschreibt eine Rolle im System. Eine Person prüft, korrigiert, ergänzt oder entscheidet an einem definierten Punkt. Das Produkt muss festlegen, was ohne Freigabe geschieht, wie lange ein Vorgang wartet und wer bei Unsicherheit zuständig ist. Diese Fragen gehören zur Produktlogik.',
+          'Der Ansatz ist nicht in jedem Schritt erforderlich. Zu viele Freigaben machen ein Produkt langsam und verlagern Arbeit, ohne Nutzen zu schaffen. Kontrollpunkte werden nach Unsicherheit, möglichen Folgen und Fähigkeit der prüfenden Person ausgewählt. Eine pauschale Regel wäre für unterschiedliche Produkte ungeeignet.',
+        ],
+      },
+      {
+        title: 'Rollen und Verantwortung definieren',
+        paragraphs: [
+          'Die prüfende Person benötigt fachliche Kompetenz und ausreichende Informationen. Ein Nutzer kann einen persönlichen Entwurf beurteilen, aber nicht automatisch technische Sicherheit oder rechtliche Zulässigkeit. Rollen werden danach gestaltet, welche Entscheidung tatsächlich getroffen werden soll und wer dafür verantwortlich ist.',
+          'Bei mehreren Rollen muss klar sein, wer erstellt, prüft und endgültig freigibt. Berechtigungen werden serverseitig durchgesetzt und nicht nur visuell verborgen. Vertretung, Abwesenheit und Eskalation gehören ebenfalls zum Ablauf, wenn ein Vorgang nicht unbegrenzt warten darf.',
+          'Menschliche Verantwortung darf nicht als pauschaler Haftungstransfer missverstanden werden. Das Produkt bleibt für verständliche Darstellung, geeignete Grenzen und technische Kontrollen verantwortlich. Rechtliche Anforderungen hängen vom konkreten Einsatz ab und benötigen bei relevanten Folgen fachkundige Prüfung.',
+        ],
+      },
+      {
+        title: 'Kontrollpunkte nach Risiko gestalten',
+        paragraphs: [
+          'Ein niedrigriskanter Textentwurf kann direkt bearbeitbar angezeigt werden. Eine Veröffentlichung, Datenänderung oder externe Aktion benötigt möglicherweise eine ausdrückliche Freigabe. Je schwieriger eine Aktion rückgängig zu machen ist, desto wichtiger sind Vorschau, eindeutige Folgen und ein kontrollierter Übergang.',
+          'Unsicherheit allein bestimmt den Kontrollpunkt nicht. Auch Reichweite, Sensibilität der Daten und Wiederholbarkeit spielen eine Rolle. Eine häufige kleine Abweichung kann im Betrieb bedeutend werden. Das Produkt sollte daher nicht nur seltene Extremfälle, sondern auch kumulative Folgen wiederkehrender Entscheidungen betrachten.',
+          'Die <a href="/wissen/ai-produkt-architektur">AI-Produkt-Architektur</a> muss Freigabestatus, Rollen und Protokollierung abbilden. Ein Prompt kann diese Anforderungen nicht zuverlässig erzwingen. Produktlogik und Zugriffsschutz bleiben deterministische Bestandteile, auch wenn ein Modell den Inhalt vorbereitet.',
+        ],
+      },
+      {
+        title: 'Interface für Prüfung und Korrektur',
+        paragraphs: [
+          'Eine Prüfoberfläche zeigt relevante Eingaben neben dem Ergebnis. Änderungen und unsichere Bereiche können hervorgehoben werden, sofern das System dafür eine belastbare Grundlage besitzt. Nutzer brauchen ausreichend Kontext, dürfen aber nicht durch irrelevante technische Details überlastet werden.',
+          'Korrekturen sollten einfach und nachvollziehbar sein. Wenn Nutzer ein Ergebnis vollständig neu erstellen müssen, geht der Produktnutzen schnell verloren. Gleichzeitig darf eine AI-Ausgabe nicht so stark formatiert sein, dass problematische Inhalte übersehen werden. Gestaltung unterstützt Aufmerksamkeit, ersetzt sie aber nicht.',
+          'Ablehnung und Eskalation sind gleichwertige Wege. Das Interface darf nicht ausschließlich auf schnelle Zustimmung optimiert werden. Begründungen können später helfen, Fehlerarten zu erkennen, sollten jedoch datensparsam und mit klarer Zweckbindung verarbeitet werden.',
+        ],
+      },
+      {
+        title: 'Lernen aus Korrekturen ohne Automatismus',
+        paragraphs: [
+          'Korrekturen liefern Hinweise darauf, wo Eingaben, Prompt, Kontext oder Interface verbessert werden können. Sie sind nicht automatisch hochwertige Trainingsdaten. Gründe können uneinheitlich sein, personenbezogene Inhalte enthalten oder nur für einen Einzelfall gelten. Vor weiterer Verwendung braucht es Prüfung und einen zulässigen Zweck.',
+          'Muster werden auf Produktebene ausgewertet. Häufige Formatkorrekturen sprechen möglicherweise für eine bessere Ergebnisstruktur. Fachliche Änderungen können auf fehlenden Kontext hinweisen. Ein automatisches Übernehmen jeder Korrektur in künftige Ausgaben würde neue Fehler und unerwartete Abhängigkeiten erzeugen.',
+          'Die Seite <a href="/wissen/ai-produkte-testen">AI-Produkte testen</a> zeigt, wie Korrekturen in Testfälle überführt werden können. Vergleichbare Fälle helfen, eine Änderung vor dem Release zu prüfen. Einzelne Rückmeldungen bleiben dabei Beobachtungen und keine allgemeinen Erfolgskennzahlen.',
+        ],
+      },
+      {
+        title: 'Human in the Loop im Produktlebenszyklus',
+        paragraphs: [
+          'Schon ein <a href="/ai-mvp-entwicklung">AI-MVP</a> sollte den realistisch notwendigen Kontrollweg abbilden. Eine Demo mit manueller Betreuung kann sonst eine Produktqualität suggerieren, die ohne das Projektteam nicht besteht. Rollen und Wartezeiten beeinflussen, ob der Ablauf im Alltag praktikabel ist.',
+          'Im <a href="/ai-saas-entwicklung">AI-SaaS-Betrieb</a> werden offene Freigaben, Fehler und Eskalationen beobachtet. Wenn Kontrolle dauerhaft umgangen oder nur formal ausgeführt wird, muss das Produktdesign überprüft werden. Mehr Hinweise oder Buttons lösen nicht automatisch ein ungeeignetes Verantwortungsmodell.',
+          'Das <a href="/product-studio">Product Studio</a> verbindet diese Fragen mit <a href="/produktentwicklung">Product Engineering</a>. Die <a href="/case-studies/weightcoach-ai">WeightCoach-AI-Case-Study</a> beschreibt ein reales Produkt, behauptet aber keine allgemeine Human-in-the-Loop-Wirkung. Die <a href="/produkte/weightcoach-ai">Produktseite</a> grenzt den tatsächlichen Funktionsrahmen ab.',
+          'Ziel ist keine vollständige Automatisierung um jeden Preis. Ein guter Ablauf verteilt Aufgaben nach ihren Stärken: Software organisiert Zustände, Modelle bearbeiten geeignete variable Inhalte und Menschen treffen Entscheidungen, für die Kontext oder Verantwortung notwendig sind. Diese Aufteilung muss regelmäßig neu bewertet werden.',
+          'Auch die Arbeitsbelastung der prüfenden Personen gehört zur Produktqualität. Wenn zu viele Fälle eskalieren oder jede Entscheidung umfangreiche Recherche verlangt, stimmt möglicherweise die Grenze zwischen automatischer Verarbeitung und menschlicher Aufgabe nicht. Beobachtbare Wartezeiten, Ablehnungsgründe und wiederkehrende Korrekturarten können auf Verbesserungen hinweisen. Sie sollten datensparsam ausgewertet und nicht als pauschale Leistungsbewertung einzelner Personen verwendet werden. Product Design berücksichtigt damit sowohl Sicherheit als auch einen praktikablen Arbeitsablauf.',
+          'Schulungen und verständliche Zuständigkeiten ergänzen das Interface. Selbst eine gut gestaltete Prüfung kann ihren Zweck verfehlen, wenn Rollen die Produktgrenzen unterschiedlich verstehen oder Eskalationswege unbekannt bleiben.',
+        ],
+      },
+      ...faqSections([
+        ['Was bedeutet Human in the Loop?', 'Eine Person prüft, korrigiert oder entscheidet an einem definierten Punkt eines AI-gestützten Produktablaufs und erhält dafür geeignete Informationen und Handlungsoptionen.'],
+        ['Braucht jede AI-Ausgabe eine menschliche Freigabe?', 'Nein. Notwendigkeit und Tiefe hängen von Unsicherheit, Folgen, Daten und Rückgängig-Machbarkeit der jeweiligen Aktion ab.'],
+        ['Wie verhindert man oberflächliche Freigaben?', 'Durch verständlichen Vergleich von Eingabe und Ergebnis, klare Folgen, einfache Korrektur sowie einen realistischen Arbeitsumfang für die prüfende Person.'],
+        ['Können Korrekturen direkt als Trainingsdaten dienen?', 'Nicht automatisch. Sie benötigen Qualitätsprüfung, Zweckbindung und eine datenschutzgerechte Behandlung. Einzelkorrekturen können stark kontextabhängig sein.'],
+        ['Garantiert menschliche Kontrolle fehlerfreie Ergebnisse?', 'Nein. Menschen können Fehler übersehen oder uneinheitlich entscheiden. Gute Produktgestaltung reduziert Risiken, kann vollständige Fehlerfreiheit aber nicht garantieren.'],
+      ]),
+    ],
+    faqs: faqData([
+      ['Was bedeutet Human in the Loop?', 'Eine Person prüft, korrigiert oder entscheidet an einem definierten Punkt eines AI-gestützten Produktablaufs und erhält dafür geeignete Informationen und Handlungsoptionen.'],
+      ['Braucht jede AI-Ausgabe eine menschliche Freigabe?', 'Nein. Notwendigkeit und Tiefe hängen von Unsicherheit, Folgen, Daten und Rückgängig-Machbarkeit der jeweiligen Aktion ab.'],
+      ['Wie verhindert man oberflächliche Freigaben?', 'Durch verständlichen Vergleich von Eingabe und Ergebnis, klare Folgen, einfache Korrektur sowie einen realistischen Arbeitsumfang für die prüfende Person.'],
+      ['Können Korrekturen direkt als Trainingsdaten dienen?', 'Nicht automatisch. Sie benötigen Qualitätsprüfung, Zweckbindung und eine datenschutzgerechte Behandlung. Einzelkorrekturen können stark kontextabhängig sein.'],
+      ['Garantiert menschliche Kontrolle fehlerfreie Ergebnisse?', 'Nein. Menschen können Fehler übersehen oder uneinheitlich entscheiden. Gute Produktgestaltung reduziert Risiken, kann vollständige Fehlerfreiheit aber nicht garantieren.'],
+    ]),
+  },
+  {
+    path: '/wissen/ai-produkte-sicher-betreiben',
+    title: 'AI-Produkte sicher betreiben: Kontrollen und Praxis',
+    description: 'AI-Produkte sicher betreiben: Zugriffsschutz, Daten, Modellrisiken, Monitoring, Anbieterabhängigkeiten, Vorfälle und kontinuierliche Prüfung.',
+    schemaType: 'Article',
+    eyebrow: 'AI Product Operations',
+    headline: 'Wie lassen sich AI-Produkte sicher betreiben?',
+    intro: 'Sicherer Betrieb von AI-Produkten verbindet klassische Anwendungssicherheit mit Kontrollen für Daten, Modellzugriffe und variable Ausgaben. Vollständige Sicherheit ist nicht garantierbar; Risiken müssen passend zum Produkt reduziert, beobachtet und regelmäßig neu bewertet werden.',
+    ctaTitle: 'Betrieb und Produktarchitektur gemeinsam prüfen',
+    ctaText: 'Sie möchten ein AI-Produkt vom Prototyp in einen kontrollierten Betrieb überführen? filzinger.lab strukturiert technische Grundlagen, Produktgrenzen und sinnvolle nächste Schritte.',
+    subject: 'Sicheren AI-Produktbetrieb besprechen',
+    sections: [
+      {
+        title: 'Sicherheit beginnt beim vorgesehenen Einsatz',
+        paragraphs: [
+          'Ein Sicherheitskonzept benötigt einen konkreten Produktkontext. Welche Daten werden verarbeitet, wer darf sie sehen und welche Aktionen kann das System auslösen? Ein persönlicher Entwurf besitzt andere Folgen als eine Veröffentlichung oder ein Zugriff auf geschäftliche Systeme. Maßnahmen richten sich nach diesen Unterschieden.',
+          'Bereits in Discovery und Architektur werden schützenswerte Werte, Rollen und mögliche Missbrauchswege dokumentiert. Diese Betrachtung ist keine einmalige Checkliste. Neue Integrationen, Datenarten oder Zielgruppen verändern das Risiko. Das Produktteam muss Annahmen aktualisieren, sobald sich der Funktionsumfang ändert.',
+          'Die <a href="/wissen/ai-produkt-architektur">AI-Produkt-Architektur</a> schafft technische Grenzen zwischen Frontend, Backend, Daten und Modellen. Sie kann Risiken reduzieren, garantiert aber keine vollständige Sicherheit. Sensible oder regulierte Einsatzfelder benötigen zusätzliche fachliche und rechtliche Prüfung.',
+        ],
+      },
+      {
+        title: 'Identitäten, Rollen und Geheimnisse schützen',
+        paragraphs: [
+          'Authentifizierung stellt fest, wer auf das Produkt zugreift; Autorisierung entscheidet, welche Daten und Aktionen erlaubt sind. Rollen werden serverseitig geprüft. Eine ausgeblendete Schaltfläche ist kein Zugriffsschutz. Besonders administrative und organisationsübergreifende Funktionen benötigen eindeutige Grenzen.',
+          'API-Schlüssel, Modellzugänge und interne Anweisungen gehören nicht in ausgelieferten Browsercode. Geheimnisse werden in geeigneten Umgebungs- oder Secret-Systemen verwaltet und nur den benötigten Diensten bereitgestellt. Rotation und Entzug müssen möglich sein, wenn ein Schlüssel offengelegt oder nicht mehr benötigt wird.',
+          'Dienstkonten erhalten nur erforderliche Rechte. Eine Modellfunktion braucht nicht automatisch Schreibzugriff auf alle verbundenen Systeme. Werkzeuge und Aktionen werden einzeln freigegeben, Eingaben validiert und Ergebnisse kontrolliert. Begrenzte Berechtigungen reduzieren mögliche Folgen eines Fehlers oder Angriffs.',
+        ],
+      },
+      {
+        title: 'Datenwege und externe Anbieter kontrollieren',
+        paragraphs: [
+          'Das Produkt dokumentiert, welche Daten gespeichert, an Modelle übertragen oder in Protokollen verarbeitet werden. Datensparsamkeit reduziert nicht nur rechtliche, sondern auch technische Risiken. Inhalte sollten nicht vorsorglich gesammelt werden, wenn kein klarer Produkt- oder Betriebszweck besteht.',
+          'Externe Anbieter besitzen eigene Bedingungen für Speicherung, Verarbeitung und Standort. Diese Angaben müssen für den konkreten Vertrag und Einsatz geprüft werden. Allgemeine Aussagen wie „vollständig DSGVO-konform“ oder „absolut sicher“ wären ohne genaue Einordnung riskant. Änderungen des Anbieters können eine erneute Prüfung auslösen.',
+          'Lösch- und Korrekturwege gehören zum Systemdesign. Backups, abgeleitete Daten und Suchindizes müssen berücksichtigt werden. Eine Oberfläche, die einen Eintrag entfernt, belegt nicht automatisch, dass jede technische Kopie sofort verschwunden ist. Aufbewahrung und Wiederherstellung benötigen dokumentierte Regeln.',
+        ],
+      },
+      {
+        title: 'Modellbezogene Angriffe und Fehlverhalten begrenzen',
+        paragraphs: [
+          'Untrusted Inhalte können versuchen, Anweisungen zu überschreiben oder das Modell zu unerlaubten Handlungen zu bewegen. Prompt-Regeln allein sind keine verlässliche Sicherheitsgrenze. Zugriffe, Werkzeuge und Datenfilter werden außerhalb des Modells durchgesetzt. Das Modell darf nur Aktionen vorschlagen oder ausführen, die technisch erlaubt sind.',
+          'Ausgaben werden validiert, bevor sie gespeichert, veröffentlicht oder an andere Systeme übertragen werden. Strukturierte Formate erleichtern technische Prüfungen. Inhaltliche Risiken können zusätzliche Regeln und menschliche Freigabe benötigen. Welche Kontrolle sinnvoll ist, hängt von der Folge der Aktion ab.',
+          'Der Artikel <a href="/wissen/human-in-the-loop-im-produktdesign">Human in the Loop</a> beschreibt diese Freigaben. Menschliche Kontrolle garantiert ebenfalls keine Fehlerfreiheit. Das Interface muss ausreichenden Kontext liefern, und wiederkehrende Freigaben dürfen nicht zu einer bedeutungslosen Routine werden.',
+        ],
+      },
+      {
+        title: 'Monitoring, Updates und Vorfälle',
+        paragraphs: [
+          'Monitoring erfasst gezielt technische Fehler, Laufzeiten, ungewöhnliche Zugriffe und zentrale Produktzustände. Personenbezogene Inhalte werden nicht pauschal protokolliert. Warnungen benötigen Schwellen und Verantwortliche, damit ein Signal tatsächlich untersucht wird. Eine große Logmenge allein schafft keine Sicherheit.',
+          'Modelle, Abhängigkeiten und Schnittstellen verändern sich. Updates werden kontrolliert getestet und ausgerollt. Die Seite <a href="/wissen/ai-produkte-testen">AI-Produkte testen</a> erläutert repräsentative Fälle und Regressionstests. Neue Versionen können frühere Qualität verbessern und gleichzeitig andere Abweichungen erzeugen.',
+          'Für Vorfälle braucht es Zuständigkeiten, Begrenzung, Analyse und Wiederherstellung. Je nach Kontext können Informations- oder Meldepflichten bestehen, die rechtlich geprüft werden müssen. Ein Plan sollte nicht erst entstehen, wenn ein System bereits betroffen ist. Übungen können Lücken in Zugriff und Kommunikation sichtbar machen.',
+        ],
+      },
+      {
+        title: 'Sicherheit als Teil des Produktbetriebs',
+        paragraphs: [
+          'Ein <a href="/ai-mvp-entwicklung">AI-MVP</a> muss die Sicherheitsanforderungen seines vorgesehenen Tests erfüllen. Ein Demo-Link mit Testdaten ist anders zu behandeln als ein Produkt mit echten Nutzerkonten. Der MVP-Status rechtfertigt keine verdeckte Verarbeitung oder ungeeignete Zugriffswege.',
+          'Die <a href="/ai-saas-entwicklung">AI-SaaS-Entwicklung</a> verbindet Releases, Kosten und Sicherheit im laufenden Betrieb. Das <a href="/product-studio">Product Studio</a> betrachtet Schutzmaßnahmen gemeinsam mit Nutzerführung und Produktlogik. Unbenutzbare Kontrollen werden häufig umgangen und müssen daher auch praktisch funktionieren.',
+          'Die <a href="/case-studies/weightcoach-ai">WeightCoach-AI-Case-Study</a> und die <a href="/produkte/weightcoach-ai">Produktseite</a> beschreiben ein reales Live-Produkt, geben aber keine pauschale Sicherheitsgarantie. Aktuelle Datenschutz- und Nutzungsangaben eines Produkts bleiben auf dessen eigener Website maßgeblich.',
+          'Kontinuierliche <a href="/produktentwicklung">Produktentwicklung</a> berücksichtigt neue Risiken vor einer Erweiterung. Jede Integration vergrößert mögliche Datenwege und Berechtigungen. Eine bewusste Begrenzung des Funktionsumfangs kann daher zugleich Produktklarheit, Wartbarkeit und Sicherheit unterstützen.',
+          'Regelmäßige Überprüfung sollte einen festen Auslöser besitzen. Neue Datenarten, zusätzliche Werkzeuge, ein Modellwechsel oder ein veränderter Nutzerkreis können eine erneute Risikobewertung erforderlich machen. Zuständigkeiten und Prüfergebnisse werden dokumentiert, damit bekannte Grenzen nicht bei einem Team- oder Anbieterwechsel verloren gehen. Auch Abhängigkeiten mit auslaufender Unterstützung müssen rechtzeitig sichtbar werden. Diese Arbeit erzeugt keine absolute Sicherheit, verhindert aber, dass der Betrieb ausschließlich auf Annahmen aus der ersten Produktversion beruht.',
+          'Ein kontrollierter Rückbau gehört ebenfalls zur Betriebsplanung. Wird eine Funktion deaktiviert oder ein Anbieter ersetzt, müssen offene Vorgänge, gespeicherte Daten und abhängige Schnittstellen berücksichtigt werden. Eine abgeschaltete Oberfläche beendet nicht automatisch jede Hintergrundverarbeitung. Klare Abschaltwege reduzieren vergessene Zugänge und unnötige Datenflüsse. Sie sind besonders wichtig, wenn ein Experiment nicht weitergeführt oder ein Produktkern bewusst verkleinert wird.',
+        ],
+      },
+      ...faqSections([
+        ['Was gehört zum sicheren Betrieb eines AI-Produkts?', 'Dazu gehören Zugriffsschutz, Secret-Management, kontrollierte Datenwege, validierte Modellaktionen, Tests, Monitoring, Updates und ein angemessener Umgang mit Vorfällen.'],
+        ['Reicht ein sicher formulierter Prompt als Schutz?', 'Nein. Berechtigungen, Werkzeugzugriffe und Datenfilter müssen technisch außerhalb des Modells durchgesetzt werden. Prompts sind keine verlässliche Sicherheitsgrenze.'],
+        ['Dürfen Inhalte vollständig protokolliert werden?', 'Nicht pauschal. Protokollierung benötigt einen klaren Zweck und muss Datenminimierung, Zugriffsrechte sowie rechtliche Anforderungen des konkreten Einsatzes berücksichtigen.'],
+        ['Wie werden Modellupdates sicher eingeführt?', 'Durch versionierte Testfälle, kontrollierte Umgebungen, Vergleich der Ergebnisse, begrenzten Rollout und Beobachtung relevanter technischer sowie fachlicher Signale.'],
+        ['Kann sicherer Betrieb garantiert werden?', 'Nein. Maßnahmen reduzieren bekannte Risiken, aber Produkte, Angriffe und Abhängigkeiten verändern sich. Sicherheit erfordert fortlaufende Prüfung und angemessene Reaktion.'],
+      ]),
+    ],
+    faqs: faqData([
+      ['Was gehört zum sicheren Betrieb eines AI-Produkts?', 'Dazu gehören Zugriffsschutz, Secret-Management, kontrollierte Datenwege, validierte Modellaktionen, Tests, Monitoring, Updates und ein angemessener Umgang mit Vorfällen.'],
+      ['Reicht ein sicher formulierter Prompt als Schutz?', 'Nein. Berechtigungen, Werkzeugzugriffe und Datenfilter müssen technisch außerhalb des Modells durchgesetzt werden. Prompts sind keine verlässliche Sicherheitsgrenze.'],
+      ['Dürfen Inhalte vollständig protokolliert werden?', 'Nicht pauschal. Protokollierung benötigt einen klaren Zweck und muss Datenminimierung, Zugriffsrechte sowie rechtliche Anforderungen des konkreten Einsatzes berücksichtigen.'],
+      ['Wie werden Modellupdates sicher eingeführt?', 'Durch versionierte Testfälle, kontrollierte Umgebungen, Vergleich der Ergebnisse, begrenzten Rollout und Beobachtung relevanter technischer sowie fachlicher Signale.'],
+      ['Kann sicherer Betrieb garantiert werden?', 'Nein. Maßnahmen reduzieren bekannte Risiken, aber Produkte, Angriffe und Abhängigkeiten verändern sich. Sicherheit erfordert fortlaufende Prüfung und angemessene Reaktion.'],
+    ]),
+  },
 ] as const satisfies readonly StudioSeoPage[];
 
 type FaqTuple = readonly [question: string, answer: string];
