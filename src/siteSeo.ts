@@ -1,4 +1,4 @@
-import { studioSeoPages } from './studioSeoData';
+import { seoPages } from './studioSeoData';
 
 export const siteUrl = 'https://filzinger.lab';
 export const socialImage = `${siteUrl}/social-preview.png`;
@@ -48,7 +48,7 @@ const homeRoute: RouteSeo = {
   },
 };
 
-const studioRoutes: RouteSeo[] = studioSeoPages.map((page) => {
+const studioRoutes: RouteSeo[] = seoPages.map((page) => {
   const url = `${siteUrl}${page.path}`;
   const jsonLd = page.schemaType === 'Service'
     ? {
@@ -84,7 +84,6 @@ const studioRoutes: RouteSeo[] = studioSeoPages.map((page) => {
                 mainEntityOfPage: url,
                 author: { '@type': 'Organization', name: 'filzinger.lab', url: `${siteUrl}/` },
                 publisher: { '@type': 'Organization', name: 'filzinger.lab', url: `${siteUrl}/` },
-                about: { '@type': 'SoftwareApplication', name: 'WeightCoach AI', url: 'https://weightcoach-ai.de' },
               },
               {
                 '@type': 'BreadcrumbList',
@@ -93,6 +92,16 @@ const studioRoutes: RouteSeo[] = studioSeoPages.map((page) => {
                   { '@type': 'ListItem', position: 2, name: 'WeightCoach AI Case Study', item: url },
                 ],
               },
+              ...('faqs' in page && page.faqs
+                ? [{
+                    '@type': 'FAQPage',
+                    mainEntity: page.faqs.map((faq) => ({
+                      '@type': 'Question',
+                      name: faq.question,
+                      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+                    })),
+                  }]
+                : []),
             ],
           }
         : {

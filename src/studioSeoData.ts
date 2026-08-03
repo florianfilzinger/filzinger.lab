@@ -1,3 +1,5 @@
+import { knowledgeSeoPages } from './knowledgeSeoData';
+
 export type StudioSeoPage = {
   path: string;
   title: string;
@@ -11,6 +13,7 @@ export type StudioSeoPage = {
   subject: string;
   ctaLabel?: string;
   ctaHref?: string;
+  faqs?: readonly { question: string; answer: string }[];
   sections: readonly { title: string; paragraphs: readonly string[] }[];
 };
 
@@ -537,7 +540,9 @@ export const studioSeoPages = [
   },
 ] as const satisfies readonly StudioSeoPage[];
 
+export const seoPages = [...studioSeoPages, ...knowledgeSeoPages] as const;
+
 export function getStudioSeoPage(pathname: string) {
   const path = pathname.replace(/\/$/, '') || '/';
-  return studioSeoPages.find((page) => page.path === path) ?? null;
+  return seoPages.find((page) => page.path === path) ?? null;
 }
