@@ -62,6 +62,13 @@ const factoryLayers = [
 
 const contactEmail = 'filzinger.lab@gmail.com';
 const caseStudyPages = studioSeoPages.filter((page) => page.path.startsWith('/case-studies/'));
+const caseStudiesOverview = [
+  'Die Case Studies von filzinger.lab dokumentieren reale Produktarbeit anhand vorhandener Produkte. Im Mittelpunkt stehen nicht nachträglich konstruierte Erfolgsgeschichten, sondern Ausgangsproblem, Zielgruppe, Produktentscheidungen, technische Umsetzung und bewusst gesetzte Grenzen. Der derzeit veröffentlichte Fall beschreibt WeightCoach AI als erstes Live-Produkt des Studios.',
+  'WeightCoach AI entstand aus der Frage, wie sich Gewicht, Mahlzeiten und Routinen in einem fokussierten digitalen Produkt zusammenhängend dokumentieren lassen. Verstreute Notizen oder getrennte Anwendungen erschweren einen konsistenten Rückblick. Der Produktkern verbindet deshalb Eingabe, Speicherung und zeitliche Einordnung, ohne medizinische Ursachen festzustellen, Diagnosen zu erstellen oder eine bestimmte Wirkung zu versprechen.',
+  'Die Entwicklung konzentrierte sich auf eine verständliche Nutzerführung, stabile Begriffe und ein Datenmodell, das wiederkehrende Einträge sowie spätere Rückblicke unterstützt. Benutzeroberfläche, Produktlogik und Datenhaltung wurden gemeinsam betrachtet. Zum realen Betrieb gehören außerdem geschützte Zugriffe, Fehlerbehandlung und kontrollierte Änderungen. AI-Funktionen werden dabei als Teil des gesamten Ablaufs bewertet und dürfen keine medizinische Gewissheit suggerieren.',
+  'Die ausführliche Case Study zeigt, wie der begrenzte Produktkern priorisiert wurde, welche technischen und produktseitigen Abhängigkeiten sichtbar wurden und warum ein Live-Produkt fortlaufende Entscheidungen benötigt. Sie nennt keine Nutzerzahlen, Umsätze oder Wirkungsnachweise. Der aktuelle Funktions- und Produktstatus wird getrennt auf der offiziellen Produktwebsite dargestellt.',
+  'WeightCoach AI macht damit den Unterschied zwischen einem vorbereiteten Prototyp und einem betriebenen Produkt sichtbar. Ein MVP muss einen vollständigen Kernablauf unter realen Bedingungen abbilden; im laufenden Betrieb kommen Wartbarkeit, Datenzugriff und kontrollierte Releases hinzu. Der Status „live“ beschreibt ausschließlich die Bereitstellung des Produkts und keine wirtschaftliche oder gesundheitliche Wirkung.',
+] as const;
 const knowledgeGroups: DirectoryGroup[] = [
   { title: 'Product Studio, Discovery und MVP', pages: knowledgeSeoPages.filter((page) => /product-studio|ai-mvp-entwickeln|produktidee-validieren|kosten-eines-ai-mvp/.test(page.path)) },
   { title: 'Architektur und Modellintegration', pages: knowledgeSeoPages.filter((page) => /produkt-architektur|llm-in-produkte|build-vs-buy/.test(page.path)) },
@@ -98,7 +105,7 @@ export function App({ initialPathname }: { initialPathname?: string } = {}) {
       {legalPage ? (
         <LegalPage page={legalPage} />
       ) : isCaseStudiesOverview ? (
-        <DirectoryPage eyebrow="Case Studies" title="Case Studies" intro="Reale Produktarbeit, zentrale Entscheidungen und technische Umsetzung im Überblick." groups={[{ title: 'Produkte in der Praxis', pages: caseStudyPages }]} />
+        <DirectoryPage eyebrow="Case Studies" title="Case Studies" intro="Reale Produktarbeit, zentrale Entscheidungen und technische Umsetzung im Überblick." overview={caseStudiesOverview} groups={[{ title: 'WeightCoach AI im Detail', pages: caseStudyPages }]} />
       ) : isKnowledgeOverview ? (
         <DirectoryPage eyebrow="Wissen" title="Wissen zu AI-Produkten" intro="Alle bestehenden Artikel zu Produktstrategie, Entwicklung, Design und Betrieb thematisch geordnet." groups={knowledgeGroups} />
       ) : studioPage ? (

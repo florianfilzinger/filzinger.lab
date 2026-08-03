@@ -6,6 +6,7 @@ const personId = 'https://filzinger-ai.de/#person';
 const organizationId = `${siteUrl}/#organization`;
 const brandId = `${siteUrl}/#brand`;
 const websiteId = `${siteUrl}/#website`;
+const personUrl = 'https://filzinger-ai.de/';
 
 export type StructuredData = Record<string, unknown>;
 
@@ -19,14 +20,14 @@ export type RouteSeo = {
 
 const homeRoute: RouteSeo = {
   path: '/',
-  title: 'filzinger.lab | AI Product Studio for focused digital products',
-  description: 'filzinger.lab is an AI Product Studio building focused digital products, starting with WeightCoach AI for weight, nutrition and routine tracking.',
+  title: 'filzinger.lab | AI Product Studio für digitale Produkte',
+  description: 'filzinger.lab entwickelt fokussierte digitale AI-Produkte – von Product Discovery und Prototyping bis zu MVP, SaaS und laufendem Betrieb.',
   indexable: true,
   jsonLd: {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'Person', '@id': personId, name: 'Florian Filzinger', url: `${siteUrl}/`,
+        '@type': 'Person', '@id': personId, name: 'Florian Filzinger', url: personUrl,
         sameAs: ['https://www.linkedin.com/in/florian-filzinger'],
       },
       {
@@ -34,7 +35,7 @@ const homeRoute: RouteSeo = {
       },
       {
         '@type': 'Organization', '@id': organizationId, name: 'filzinger.lab', url: `${siteUrl}/`,
-        description: 'filzinger.lab is an AI Product Studio building focused digital products, starting with WeightCoach AI.',
+        description: 'filzinger.lab ist ein AI Product Studio für fokussierte digitale Produkte.',
         logo: `${siteUrl}/favicon.svg`, founder: { '@id': personId }, brand: { '@id': brandId },
       },
       {
@@ -58,17 +59,31 @@ const homeRoute: RouteSeo = {
 function withEcosystemGraph(url: string, page: { headline: string; description: string }, data: Record<string, unknown>) {
   const graph = '@graph' in data
     ? (data['@graph'] as Record<string, unknown>[])
-    : [{ ...data, '@context': undefined }];
+    : data['@type'] === 'WebPage'
+      ? []
+      : [{ ...data, '@context': undefined }];
 
   return {
     '@context': 'https://schema.org',
     '@graph': [
-      { '@type': 'Person', '@id': personId, name: 'Florian Filzinger', url: `${siteUrl}/`, sameAs: ['https://www.linkedin.com/in/florian-filzinger'] },
+      { '@type': 'Person', '@id': personId, name: 'Florian Filzinger', url: personUrl, sameAs: ['https://www.linkedin.com/in/florian-filzinger'] },
       { '@type': 'Brand', '@id': brandId, name: 'filzinger.lab', url: `${siteUrl}/`, logo: `${siteUrl}/favicon.svg` },
       { '@type': 'Organization', '@id': organizationId, name: 'filzinger.lab', url: `${siteUrl}/`, founder: { '@id': personId }, brand: { '@id': brandId } },
       { '@type': 'WebSite', '@id': websiteId, name: 'filzinger.lab', url: `${siteUrl}/`, publisher: { '@id': organizationId }, creator: { '@id': personId }, inLanguage: 'de-DE' },
       { '@type': 'WebPage', '@id': `${url}#webpage`, name: page.headline, description: page.description, url, isPartOf: { '@id': websiteId }, publisher: { '@id': organizationId } },
       ...graph,
+    ],
+  };
+}
+
+function breadcrumbData(path: string, name: string) {
+  const url = `${siteUrl}${path}`;
+  return {
+    '@type': 'BreadcrumbList',
+    '@id': `${url}#breadcrumb`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Startseite', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name, item: url },
     ],
   };
 }
@@ -140,7 +155,18 @@ const studioRoutes: RouteSeo[] = seoPages.map((page) => {
         isPartOf: { '@id': websiteId },
       };
 
-  const jsonLd = withEcosystemGraph(url, page, routeData);
+  const routeGraph = page.schemaType === 'WebPage'
+    ? {
+        '@context': 'https://schema.org',
+        '@graph': [breadcrumbData(page.path, page.headline)],
+      }
+    : '@graph' in routeData
+      ? routeData
+      : {
+        '@context': 'https://schema.org',
+        '@graph': [routeData, breadcrumbData(page.path, page.headline)],
+      };
+  const jsonLd = withEcosystemGraph(url, page, routeGraph);
 
   return { path: page.path, title: page.title, description: page.description, indexable: true, jsonLd };
 });
@@ -164,15 +190,11 @@ const legalRoutes: RouteSeo[] = [
 ].map((route) => ({
   ...route,
   indexable: true,
-  jsonLd: {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: route.title.replace(' | filzinger.lab', ''),
-    description: route.description,
-    url: `${siteUrl}${route.path}`,
-    isPartOf: { '@id': websiteId },
-    publisher: { '@id': organizationId },
-  },
+  jsonLd: withEcosystemGraph(
+    `${siteUrl}${route.path}`,
+    { headline: route.title.replace(' | filzinger.lab', ''), description: route.description },
+    { '@context': 'https://schema.org', '@type': 'WebPage' },
+  ),
 }));
 
 const directoryRoutes: RouteSeo[] = [
@@ -182,7 +204,11 @@ const directoryRoutes: RouteSeo[] = [
   ...route,
   indexable: true,
   jsonLd: withEcosystemGraph(`${siteUrl}${route.path}`, { headline: route.title.replace(' | filzinger.lab', ''), description: route.description }, {
-    '@context': 'https://schema.org', '@type': 'CollectionPage', name: route.title.replace(' | filzinger.lab', ''), description: route.description, url: `${siteUrl}${route.path}`, isPartOf: { '@id': websiteId },
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'CollectionPage', name: route.title.replace(' | filzinger.lab', ''), description: route.description, url: `${siteUrl}${route.path}`, isPartOf: { '@id': websiteId } },
+      breadcrumbData(route.path, route.title.replace(' | filzinger.lab', '')),
+    ],
   }),
 }));
 
