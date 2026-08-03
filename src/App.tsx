@@ -1,7 +1,8 @@
 import { useEffect, type ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { StudioSeoPage } from './StudioSeoPage';
-import { getStudioSeoPage, type StudioSeoPage as StudioSeoPageData } from './studioSeoData';
+import { getStudioSeoPage } from './studioSeoData';
+import { getRouteSeo, normalizePath, notFoundSeo, siteUrl, type RouteSeo } from './siteSeo';
 
 const products = [
   {
@@ -58,19 +59,13 @@ const factoryLayers = [
 ];
 
 const contactEmail = 'filzinger.lab@gmail.com';
-const siteUrl = 'https://filzinger.lab';
-const homeMeta = {
-  title: 'filzinger.lab | AI Product Studio for focused digital products',
-  description: 'filzinger.lab is an AI Product Studio building focused digital products, starting with WeightCoach AI for weight, nutrition and routine tracking.',
-  path: '/',
-};
-
-export function App() {
-  const pathname = window.location.pathname;
+export function App({ initialPathname }: { initialPathname?: string } = {}) {
+  const pathname = normalizePath(initialPathname ?? (typeof window === 'undefined' ? '/' : window.location.pathname));
   const legalPage = getLegalPage(pathname);
   const studioPage = getStudioSeoPage(pathname);
+  const routeSeo = getRouteSeo(pathname);
   const shouldReduceMotion = useReducedMotion();
-  usePageMeta(legalPage, studioPage);
+  usePageMeta(routeSeo ?? notFoundSeo);
 
   return (
     <div className="site-shell">
@@ -92,6 +87,8 @@ export function App() {
         <LegalPage page={legalPage} />
       ) : studioPage ? (
         <StudioSeoPage page={studioPage} />
+      ) : !routeSeo ? (
+        <NotFoundPage />
       ) : (
         <>
           <section className="hero" id="hero">
@@ -411,59 +408,22 @@ const legalContent: Record<LegalPageKey, { label: string; title: ReactNode; intr
   },
 };
 
-const legalMeta: Record<LegalPageKey, { title: string; path: string }> = {
-  impressum: { title: 'Impressum', path: '/impressum' },
-  datenschutz: { title: 'Datenschutzerklärung', path: '/datenschutz' },
-  nutzungsbedingungen: { title: 'Nutzungsbedingungen', path: '/nutzungsbedingungen' },
-};
-
-function usePageMeta(page: LegalPageKey | null, studioPage: StudioSeoPageData | null) {
+function usePageMeta(meta: RouteSeo) {
   useEffect(() => {
-    const meta = studioPage
-      ? studioPage
-      : page
-      ? {
-          title: `${legalMeta[page].title} | filzinger.lab`,
-          description: legalContent[page].intro,
-          path: legalMeta[page].path,
-        }
-      : homeMeta;
     const url = `${siteUrl}${meta.path}`;
 
     document.title = meta.title;
     setMetaContent('meta[name="description"]', meta.description);
+    setMetaContent('meta[name="robots"]', meta.indexable ? 'index,follow' : 'noindex,follow');
     setMetaContent('link[rel="canonical"]', url, 'href');
     setMetaContent('meta[property="og:url"]', url);
     setMetaContent('meta[property="og:title"]', meta.title);
     setMetaContent('meta[property="og:description"]', meta.description);
     setMetaContent('meta[name="twitter:title"]', meta.title);
     setMetaContent('meta[name="twitter:description"]', meta.description);
-    setMetaContent('meta[property="og:type"]', studioPage?.schemaType === 'Service' ? 'website' : 'website');
-
-    const jsonLd = studioPage
-      ? studioPage.schemaType === 'Service'
-        ? {
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: studioPage.headline,
-            description: studioPage.description,
-            url,
-            provider: { '@type': 'Organization', name: 'filzinger.lab', url: `${siteUrl}/` },
-            areaServed: { '@type': 'Country', name: 'Deutschland' },
-          }
-        : {
-            '@context': 'https://schema.org',
-            '@type': 'WebPage',
-            name: studioPage.headline,
-            description: studioPage.description,
-            url,
-            isPartOf: { '@type': 'WebSite', name: 'filzinger.lab', url: `${siteUrl}/` },
-          }
-      : null;
-
     const script = document.querySelector<HTMLScriptElement>('script[type="application/ld+json"]');
-    if (script && jsonLd) script.text = JSON.stringify(jsonLd);
-  }, [page, studioPage]);
+    if (script) script.text = JSON.stringify(meta.jsonLd);
+  }, [meta]);
 }
 
 function setMetaContent(selector: string, value: string, attribute = 'content') {
@@ -498,6 +458,21 @@ function LegalPage({ page }: { page: LegalPageKey }) {
             </section>
           ))}
         </div>
+      </section>
+    </main>
+  );
+}
+
+function NotFoundPage() {
+  return (
+    <main className="legal-main">
+      <section className="legal-page">
+        <a className="legal-back" href="/">filzinger.lab</a>
+        <header className="legal-hero">
+          <p className="eyebrow">404</p>
+          <h1>Seite nicht gefunden</h1>
+          <p>Die angeforderte Seite wurde nicht gefunden.</p>
+        </header>
       </section>
     </main>
   );
