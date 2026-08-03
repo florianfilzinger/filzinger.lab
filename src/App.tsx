@@ -1,5 +1,7 @@
 import { useEffect, type ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+import { StudioSeoPage } from './StudioSeoPage';
+import { getStudioSeoPage, type StudioSeoPage as StudioSeoPageData } from './studioSeoData';
 
 const products = [
   {
@@ -66,8 +68,9 @@ const homeMeta = {
 export function App() {
   const pathname = window.location.pathname;
   const legalPage = getLegalPage(pathname);
+  const studioPage = getStudioSeoPage(pathname);
   const shouldReduceMotion = useReducedMotion();
-  usePageMeta(legalPage);
+  usePageMeta(legalPage, studioPage);
 
   return (
     <div className="site-shell">
@@ -87,6 +90,8 @@ export function App() {
 
       {legalPage ? (
         <LegalPage page={legalPage} />
+      ) : studioPage ? (
+        <StudioSeoPage page={studioPage} />
       ) : (
         <>
           <section className="hero" id="hero">
@@ -412,9 +417,11 @@ const legalMeta: Record<LegalPageKey, { title: string; path: string }> = {
   nutzungsbedingungen: { title: 'Nutzungsbedingungen', path: '/nutzungsbedingungen' },
 };
 
-function usePageMeta(page: LegalPageKey | null) {
+function usePageMeta(page: LegalPageKey | null, studioPage: StudioSeoPageData | null) {
   useEffect(() => {
-    const meta = page
+    const meta = studioPage
+      ? studioPage
+      : page
       ? {
           title: `${legalMeta[page].title} | filzinger.lab`,
           description: legalContent[page].intro,
@@ -431,7 +438,32 @@ function usePageMeta(page: LegalPageKey | null) {
     setMetaContent('meta[property="og:description"]', meta.description);
     setMetaContent('meta[name="twitter:title"]', meta.title);
     setMetaContent('meta[name="twitter:description"]', meta.description);
-  }, [page]);
+    setMetaContent('meta[property="og:type"]', studioPage?.schemaType === 'Service' ? 'website' : 'website');
+
+    const jsonLd = studioPage
+      ? studioPage.schemaType === 'Service'
+        ? {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: studioPage.headline,
+            description: studioPage.description,
+            url,
+            provider: { '@type': 'Organization', name: 'filzinger.lab', url: `${siteUrl}/` },
+            areaServed: { '@type': 'Country', name: 'Deutschland' },
+          }
+        : {
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: studioPage.headline,
+            description: studioPage.description,
+            url,
+            isPartOf: { '@type': 'WebSite', name: 'filzinger.lab', url: `${siteUrl}/` },
+          }
+      : null;
+
+    const script = document.querySelector<HTMLScriptElement>('script[type="application/ld+json"]');
+    if (script && jsonLd) script.text = JSON.stringify(jsonLd);
+  }, [page, studioPage]);
 }
 
 function setMetaContent(selector: string, value: string, attribute = 'content') {
