@@ -1004,6 +1004,17 @@ main {
   color: var(--primary);
 }
 
+.directory-main { padding-bottom: 72px; }
+.directory-hero { min-height: auto; padding-bottom: 72px; }
+.directory-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.directory-grid--compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.directory-card { display: flex; min-height: 220px; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; background: var(--surface); transition: border-color var(--duration) var(--ease), transform var(--duration) var(--ease); }
+.directory-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.directory-card h3 { margin: 0; color: var(--text); font-family: "Hanken Grotesk", Inter, sans-serif; font-size: 23px; }
+.directory-card p { margin: 16px 0 24px; color: var(--muted-strong); line-height: 1.65; }
+.directory-card span { margin-top: auto; color: var(--primary); font-size: 13px; font-weight: 700; }
+.section-link { display: inline-flex; margin-top: 28px; }
+
 .legal-main {
   min-height: 100vh;
   padding: 128px clamp(20px, 5vw, 80px) 72px;
@@ -1118,25 +1129,29 @@ main {
 
 @media (max-width: 760px) {
   .topbar {
+    height: 104px;
+    align-items: flex-start;
     padding: 0 20px;
   }
 
   .brand-mark {
+    margin-top: 18px;
     font-size: 17px;
   }
 
   .nav-links {
-    display: none;
+    position: absolute;
+    right: 20px;
+    bottom: 12px;
+    left: 20px;
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    white-space: nowrap;
   }
 
-  .topbar::after {
-    width: 28px;
-    height: 18px;
-    border-top: 4px solid var(--muted-strong);
-    border-bottom: 4px solid var(--muted-strong);
-    background: linear-gradient(var(--muted-strong), var(--muted-strong)) center / 100% 4px no-repeat;
-    content: "";
-  }
+  .nav-links a { font-size: 11px; }
 
   .hero {
     min-height: auto;
@@ -1180,6 +1195,9 @@ main {
   .section-heading {
     grid-template-columns: 1fr;
   }
+
+  .directory-grid,
+  .directory-grid--compact { grid-template-columns: 1fr; }
 
   .content-section,
   .factory-section,

@@ -1,7 +1,9 @@
 import { useEffect, type ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { StudioSeoPage } from './StudioSeoPage';
-import { getStudioSeoPage } from './studioSeoData';
+import { DirectoryPage, type DirectoryGroup } from './DirectoryPage';
+import { knowledgeSeoPages } from './knowledgeSeoData';
+import { getStudioSeoPage, studioSeoPages } from './studioSeoData';
 import { getRouteSeo, normalizePath, notFoundSeo, siteUrl, type RouteSeo } from './siteSeo';
 
 const products = [
@@ -59,11 +61,21 @@ const factoryLayers = [
 ];
 
 const contactEmail = 'filzinger.lab@gmail.com';
+const caseStudyPages = studioSeoPages.filter((page) => page.path.startsWith('/case-studies/'));
+const knowledgeGroups: DirectoryGroup[] = [
+  { title: 'Product Studio, Discovery und MVP', pages: knowledgeSeoPages.filter((page) => /product-studio|ai-mvp-entwickeln|produktidee-validieren|kosten-eines-ai-mvp/.test(page.path)) },
+  { title: 'Architektur und Modellintegration', pages: knowledgeSeoPages.filter((page) => /produkt-architektur|llm-in-produkte|build-vs-buy/.test(page.path)) },
+  { title: 'Produktdesign, Tests und Metriken', pages: knowledgeSeoPages.filter((page) => /produkte-testen|human-in-the-loop|produktmetriken|interface-design/.test(page.path)) },
+  { title: 'Betrieb und Weiterentwicklung', pages: knowledgeSeoPages.filter((page) => /vom-prototyp|sicher-betreiben|prototypen-im-produktbetrieb/.test(page.path)) },
+];
+
 export function App({ initialPathname }: { initialPathname?: string } = {}) {
   const pathname = normalizePath(initialPathname ?? (typeof window === 'undefined' ? '/' : window.location.pathname));
   const legalPage = getLegalPage(pathname);
   const studioPage = getStudioSeoPage(pathname);
   const routeSeo = getRouteSeo(pathname);
+  const isCaseStudiesOverview = pathname === '/case-studies';
+  const isKnowledgeOverview = pathname === '/wissen';
   const shouldReduceMotion = useReducedMotion();
   usePageMeta(routeSeo ?? notFoundSeo);
 
@@ -75,16 +87,20 @@ export function App({ initialPathname }: { initialPathname?: string } = {}) {
           <span className="wordmark"><span>filzinger</span><span>.lab</span></span>
         </a>
         <nav className="nav-links" aria-label="Hauptnavigation">
-          <a href="/#vision">Vision</a>
-          <a href="/#products">Produkte</a>
-          <a href="/#factory">Dark Factory</a>
+          <a href="/product-studio">Product Studio</a>
+          <a href="/produkte">Produkte</a>
+          <a href="/case-studies">Case Studies</a>
+          <a href="/wissen">Wissen</a>
           <a href="https://filzinger-ai.de/" target="_blank" rel="noreferrer">Consulting</a>
-          <a href={`mailto:${contactEmail}`}>Kontakt</a>
         </nav>
       </header>
 
       {legalPage ? (
         <LegalPage page={legalPage} />
+      ) : isCaseStudiesOverview ? (
+        <DirectoryPage eyebrow="Case Studies" title="Case Studies" intro="Reale Produktarbeit, zentrale Entscheidungen und technische Umsetzung im Überblick." groups={[{ title: 'Produkte in der Praxis', pages: caseStudyPages }]} />
+      ) : isKnowledgeOverview ? (
+        <DirectoryPage eyebrow="Wissen" title="Wissen zu AI-Produkten" intro="Alle bestehenden Artikel zu Produktstrategie, Entwicklung, Design und Betrieb thematisch geordnet." groups={knowledgeGroups} />
       ) : studioPage ? (
         <StudioSeoPage page={studioPage} />
       ) : !routeSeo ? (
@@ -130,6 +146,14 @@ export function App({ initialPathname }: { initialPathname?: string } = {}) {
                 {principles.map((principle) => (
                   <span key={principle}>{principle}</span>
                 ))}
+              </div>
+              <a className="secondary-link section-link" href="/produkte">Alle Produkte ansehen</a>
+            </Section>
+
+            <Section id="discover" label="Entdecken" title="Produktarbeit und Wissen im Überblick.">
+              <div className="directory-grid directory-grid--compact">
+                <a className="directory-card" href="/case-studies"><h3>Case Studies</h3><p>Reale Produktentscheidungen und technische Umsetzung nachvollziehen.</p><span>Case Studies ansehen →</span></a>
+                <a className="directory-card" href="/wissen"><h3>Wissensbereich</h3><p>Artikel zu AI-MVPs, Architektur, Design, Tests und Betrieb entdecken.</p><span>Wissen ansehen →</span></a>
               </div>
             </Section>
 
@@ -262,8 +286,11 @@ export function App({ initialPathname }: { initialPathname?: string } = {}) {
       <footer className="site-footer">
         <span>© 2026 filzinger.lab</span>
         <nav aria-label="Footer">
+          <a href="/product-studio">Product Studio</a>
           <a href="/produkte">Produkte</a>
-          <a href="/case-studies/weightcoach-ai">Case Study</a>
+          <a href="/case-studies">Case Studies</a>
+          <a href="/wissen">Wissen</a>
+          <a href="/#about">Über mich</a>
           {ecosystemLinks.map((link) => (
             <a href={link.href} key={link.href} target="_blank" rel="noreferrer">{link.label}</a>
           ))}

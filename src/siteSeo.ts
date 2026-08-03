@@ -175,7 +175,18 @@ const legalRoutes: RouteSeo[] = [
   },
 }));
 
-export const indexableRoutes: readonly RouteSeo[] = [homeRoute, ...studioRoutes, ...legalRoutes];
+const directoryRoutes: RouteSeo[] = [
+  { path: '/case-studies', title: 'Case Studies | filzinger.lab', description: 'Übersicht der bestehenden Case Studies aus der realen Produktentwicklung von filzinger.lab.' },
+  { path: '/wissen', title: 'Wissen zu AI-Produktentwicklung | filzinger.lab', description: 'Thematisch geordnete Wissensartikel zu Product Discovery, AI-MVPs, Architektur, Produktdesign, Tests und Betrieb.' },
+].map((route) => ({
+  ...route,
+  indexable: true,
+  jsonLd: withEcosystemGraph(`${siteUrl}${route.path}`, { headline: route.title.replace(' | filzinger.lab', ''), description: route.description }, {
+    '@context': 'https://schema.org', '@type': 'CollectionPage', name: route.title.replace(' | filzinger.lab', ''), description: route.description, url: `${siteUrl}${route.path}`, isPartOf: { '@id': websiteId },
+  }),
+}));
+
+export const indexableRoutes: readonly RouteSeo[] = [homeRoute, ...studioRoutes, ...directoryRoutes, ...legalRoutes];
 
 export const notFoundSeo: RouteSeo = {
   path: '/404',
