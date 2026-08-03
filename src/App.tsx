@@ -274,11 +274,9 @@ export function App({ initialPathname }: { initialPathname?: string } = {}) {
             <section className="updates-section" aria-labelledby="updates-title">
               <h2 id="updates-title">Early Access / Alpha Updates</h2>
               <p>Frühe Einblicke in neue Produkte, Alpha-Releases und technische Produktentscheidungen.</p>
-              <form className="updates-form" onSubmit={(event) => event.preventDefault()}>
-                <label className="sr-only" htmlFor="updates-email">E-Mail-Adresse</label>
-                <input id="updates-email" type="email" placeholder="filzinger.lab@gmail.com" autoComplete="email" />
-                <button className="primary-link" type="submit">Updates anfragen</button>
-              </form>
+              <div className="updates-form">
+                <a className="primary-link" href={`mailto:${contactEmail}?subject=${encodeURIComponent('Early Access / Alpha Updates')}`}>Updates per E-Mail an {contactEmail} anfragen</a>
+              </div>
             </section>
 
             <section className="contact-section" id="contact">
@@ -373,7 +371,9 @@ const legalContent: Record<LegalPageKey, { label: string; title: ReactNode; intr
         body: (
           <>
             <p>Beim Aufruf der Website können technisch notwendige Daten wie IP-Adresse, Zeitpunkt des Zugriffs, Browserinformationen und angeforderte Ressourcen verarbeitet werden, um die Website auszuliefern und zu sichern.</p>
-            <p>Wenn Besucherinnen und Besucher per E-Mail Kontakt aufnehmen, werden die übermittelten Angaben verarbeitet, um die Anfrage zu beantworten. Dazu gehören insbesondere E-Mail-Adresse, Inhalt der Nachricht und technische Versandinformationen.</p>
+            <p>Das bloße Anklicken eines E-Mail-Links öffnet lediglich das lokal konfigurierte E-Mail-Programm. Dabei wird noch keine Nachricht an filzinger.lab übermittelt.</p>
+            <p>Erst wenn Besucherinnen und Besucher tatsächlich eine E-Mail senden, werden die darin enthaltenen Angaben verarbeitet, um die Anfrage zu beantworten. Dazu gehören insbesondere E-Mail-Adresse, Inhalt der Nachricht und technische Versandinformationen.</p>
+            <p>Die veröffentlichte Empfängeradresse ist eine Gmail-Adresse. Google kann daher als technischer E-Mail-Dienstleister an der Verarbeitung einer tatsächlich versandten Nachricht beteiligt sein. Beim bloßen Aufruf der Website oder Anklicken des E-Mail-Links wird keine E-Mail an filzinger.lab oder Gmail übermittelt.</p>
           </>
         ),
       },
@@ -389,7 +389,7 @@ const legalContent: Record<LegalPageKey, { label: string; title: ReactNode; intr
         title: 'Rechtsgrundlagen und Speicherdauer',
         body: (
           <>
-            <p>Die Verarbeitung erfolgt, soweit anwendbar, auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO zur technischen Sicherheit, Stabilität und Kommunikation sowie Art. 6 Abs. 1 lit. a DSGVO, sofern eine Einwilligung erforderlich ist.</p>
+            <p>Die Verarbeitung erfolgt, soweit anwendbar, auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO zur technischen Sicherheit, Stabilität und Bearbeitung von Anfragen.</p>
             <p>Technische Betriebsdaten, Sicherheitsprotokolle und E-Mail-Kommunikation werden nur so lange verarbeitet, wie dies für Betrieb, Sicherheit, Bearbeitung der Anfrage oder gesetzliche Pflichten erforderlich ist.</p>
           </>
         ),
