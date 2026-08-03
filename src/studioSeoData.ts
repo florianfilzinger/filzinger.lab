@@ -2,13 +2,15 @@ export type StudioSeoPage = {
   path: string;
   title: string;
   description: string;
-  schemaType: 'WebPage' | 'Service' | 'CollectionPage' | 'SoftwareApplication';
+  schemaType: 'WebPage' | 'Service' | 'CollectionPage' | 'SoftwareApplication' | 'Article';
   eyebrow: string;
   headline: string;
   intro: string;
   ctaTitle: string;
   ctaText: string;
   subject: string;
+  ctaLabel?: string;
+  ctaHref?: string;
   sections: readonly { title: string; paragraphs: readonly string[] }[];
 };
 
@@ -446,6 +448,89 @@ export const studioSeoPages = [
           'Für die weitere Entwicklung werden Produktfragen und technische Folgen gemeinsam priorisiert. Eine zusätzliche Eingabe beeinflusst nicht nur die Oberfläche, sondern möglicherweise auch Datenmodell, Auswertung und spätere Rückblicke. Eine neue Darstellung kann verständlicher wirken, muss aber mit bereits gespeicherten Informationen umgehen können. Diese Zusammenhänge sprechen für kleine, kontrollierte Änderungen mit einem klaren Bezug zum Produktkern.',
           'Auch AI-Funktionen werden nicht allein nach der Qualität einzelner Beispielausgaben beurteilt. Entscheidend ist, ob sie im vorgesehenen Ablauf verständlich bleiben, geeignete Eingaben erhalten und Fehler angemessen behandeln. Ausgaben dürfen keine medizinische Autorität vortäuschen. Wo eine Einordnung durch Software nicht zuverlässig möglich ist, muss das Produkt Grenzen zeigen und Nutzern die Kontrolle über ihre Dokumentation lassen. Diese produktseitige Zurückhaltung ist Teil einer verantwortlichen Umsetzung und kein Ersatz für individuelle fachliche Beratung.',
           'Der externe Produktauftritt ist für aktuelle Verfügbarkeit, konkrete Nutzungsbedingungen und Datenschutzinformationen maßgeblich. Diese Studioseite ordnet WeightCoach AI als reales Produkt von filzinger.lab ein und beschreibt die dahinterliegenden Entscheidungen. Sie erweitert das Angebot nicht und nennt keine geplanten Funktionen als vorhanden. Wer das Produkt ansehen oder nutzen möchte, gelangt über <a href="https://weightcoach-ai.de" target="_blank" rel="noreferrer">die offizielle WeightCoach-AI-Website</a> zum aktuellen Stand.',
+        ],
+      },
+    ],
+  },
+  {
+    path: '/case-studies/weightcoach-ai',
+    title: 'WeightCoach AI Case Study: vom Produktkern zum Live-Produkt',
+    description: 'Case Study zur Entwicklung von WeightCoach AI: Produktidee, Zielgruppe, Entscheidungen, technische Umsetzung, Grenzen und nächste Schritte.',
+    schemaType: 'Article',
+    eyebrow: 'Case Study',
+    headline: 'WeightCoach AI: vom fokussierten Problem zum Live-Produkt',
+    intro: 'Diese Case Study beschreibt, wie filzinger.lab WeightCoach AI als eigenes digitales Produkt entwickelt. Sie ordnet Ausgangsproblem, Zielgruppe, Produktentscheidungen, technische Umsetzung und Grenzen ein, ohne Nutzerzahlen, Wirkungen oder wirtschaftliche Erfolge zu behaupten.',
+    ctaTitle: 'WeightCoach AI im aktuellen Produktstand ansehen',
+    ctaText: 'Die Produktwebsite zeigt das derzeit verfügbare Angebot sowie die aktuellen Nutzungs- und Datenschutzinformationen. Die Case Study beschreibt den Entwicklungsweg, erweitert aber nicht den dort ausgewiesenen Funktionsumfang.',
+    subject: 'WeightCoach AI ansehen',
+    ctaLabel: 'WeightCoach AI ansehen',
+    ctaHref: 'https://weightcoach-ai.de',
+    sections: [
+      {
+        title: 'Ausgangsproblem: persönliche Dokumentation bleibt oft verstreut',
+        paragraphs: [
+          'Informationen zu Gewicht, Mahlzeiten und Routinen entstehen im Alltag zu unterschiedlichen Zeitpunkten. Werden sie in einzelnen Notizen, Tabellen oder voneinander getrennten Anwendungen festgehalten, fehlt häufig ein gemeinsamer zeitlicher Zusammenhang. Rückblicke werden umständlich, Begriffe unterscheiden sich und wiederkehrende Dokumentation verliert schnell ihre klare Struktur.',
+          'Die Ausgangsfrage für WeightCoach AI war deshalb nicht, wie möglichst viele Gesundheitsfunktionen in eine Anwendung passen. Sie lautete, wie sich drei zusammengehörige Bereiche in einem fokussierten digitalen Produkt verständlich dokumentieren lassen. Das Produkt sollte Einträge erleichtern, Zusammenhänge lesbar halten und die Rückkehr in den eigenen Verlauf unterstützen.',
+          'Diese Problemdefinition setzt zugleich eine Grenze. WeightCoach AI soll keine medizinischen Ursachen feststellen, Diagnosen erstellen oder Behandlungen empfehlen. Eine persönliche Aufzeichnung kann Beobachtungen strukturieren, aber sie belegt keine gesundheitliche Wirkung und erklärt keine Veränderung abschließend. Medizinische Fragen gehören zu qualifiziertem Fachpersonal, nicht in eine allgemeine Produktfunktion.',
+        ],
+      },
+      {
+        title: 'Zielgruppe und Nutzungssituation',
+        paragraphs: [
+          'Das Produkt richtet sich an Menschen, die Gewicht, Mahlzeiten und Routinen für ihre eigene Dokumentation an einem Ort festhalten möchten. Es setzt weder ein bestimmtes Trainingsniveau noch einen vorgegebenen Ernährungsansatz voraus. Entscheidend ist das Bedürfnis nach einer konsistenten persönlichen Aufzeichnung, die über einzelne Momentaufnahmen hinausgeht.',
+          'Die typische Nutzung ist wiederkehrend und in den Alltag eingebettet. Ein Eintrag konkurriert mit anderen Aufgaben und darf deshalb nicht unnötig komplex sein. Gleichzeitig müssen gespeicherte Informationen später verständlich bleiben. Diese Spannung zwischen schneller Eingabe und lesbarem Verlauf prägte die Priorisierung stärker als der Wunsch nach einer möglichst langen Funktionsliste.',
+          'WeightCoach AI ist nicht für akute Beschwerden, Essstörungen, medizinische Gewichtsfragen oder individuelle Therapieentscheidungen vorgesehen. Die Zielgruppe wird daher über den Dokumentationsbedarf beschrieben und nicht über ein versprochenes Ergebnis. Der aktuelle Produktkontext ist auf der Seite <a href="/produkte/weightcoach-ai">WeightCoach AI</a> zusammengefasst.',
+        ],
+      },
+      {
+        title: 'Die Produktidee: drei Bereiche in einem fokussierten Ablauf',
+        paragraphs: [
+          'Die Produktidee verbindet Gewichtsverlauf, Mahlzeiten und Routinen in einer gemeinsamen Nutzererfahrung. Jeder Bereich besitzt einen eigenen Informationscharakter: Gewicht wird zeitlich fortgeschrieben, Mahlzeiten entstehen situativ und Routinen beschreiben wiederkehrende Handlungen. Die Anwendung muss diese Unterschiede erhalten, ohne sie als vollständig getrennte Produkte erscheinen zu lassen.',
+          'Der Wert liegt damit nicht in einer einzelnen spektakulären Funktion. Er entsteht aus dem konsistenten Zusammenspiel von Eingabe, Speicherung und Rückblick. Nutzer sollen erkennen können, was sie dokumentiert haben und wie Einträge zeitlich eingeordnet sind. Das Produkt liefert dafür Struktur, aber keine automatische medizinische Interpretation der persönlichen Daten.',
+          'Als eigenes Live-Produkt macht WeightCoach AI die Arbeitsweise des <a href="/product-studio">filzinger.lab Product Studios</a> konkret. Eine Annahme wird nicht bei einem Konzept oder einer vorbereiteten Demo beendet. Sie wird in Interface, Datenmodell, technische Bereitstellung und laufende Weiterentwicklung übersetzt. Erst dadurch werden praktische Abhängigkeiten und Grenzen sichtbar.',
+        ],
+      },
+      {
+        title: 'Zentrale Produktentscheidungen',
+        paragraphs: [
+          'Die wichtigste Entscheidung war die Begrenzung auf einen zusammenhängenden Produktkern. Zusätzliche Ideen wurden nicht allein deshalb aufgenommen, weil sie technisch umsetzbar waren. Jede Erweiterung musste beantworten, welchen Beitrag sie zur Dokumentation oder zum verständlichen Rückblick leistet. So blieb die Nutzerführung gegenüber einer Sammlung unverbundener Einzelfunktionen priorisiert.',
+          'Eine zweite Entscheidung betraf die Sprache des Produkts. Begriffe müssen über wiederkehrende Nutzung stabil und eindeutig bleiben. Ein Zustand, eine Eingabe oder ein Rückblick sollte nicht an verschiedenen Stellen unterschiedlich bezeichnet werden. Konsistenz reduziert Erklärungsbedarf und hilft Nutzern, bereits bekannte Abläufe wiederzuerkennen.',
+          'Drittens wurde der Live-Betrieb als Teil der Produktentwicklung verstanden. Ein funktionierender Prototyp beantwortet technische und gestalterische Fragen, bildet aber nicht automatisch die langfristige Nutzung ab. Anmeldung, Datenzugriff, Fehlerbehandlung und kontrollierte Änderungen gehören zum realen Produkt. Diese Perspektive verbindet die Case Study mit der allgemeinen <a href="/produktentwicklung">Produktentwicklung</a> im Studio.',
+        ],
+      },
+      {
+        title: 'Architektur und technische Umsetzung',
+        paragraphs: [
+          'Die Architektur verbindet Benutzeroberfläche, Produktlogik und Datenhaltung entlang der zentralen Abläufe. Einträge müssen einem Nutzer, einem Bereich und einem Zeitpunkt nachvollziehbar zugeordnet werden. Das Datenmodell darf dabei nicht nur die aktuelle Eingabemaske spiegeln. Es muss auch Rückblicke und spätere kontrollierte Änderungen unterstützen, ohne die Bedeutung bestehender Informationen zu verlieren.',
+          'Frontend und Datenstruktur wurden deshalb nicht als getrennte Aufgaben behandelt. Eine besonders schnelle Eingabe ist wenig hilfreich, wenn gespeicherte Angaben später nicht verständlich dargestellt werden können. Umgekehrt führt ein sehr detailliertes Modell zu unnötiger Reibung, wenn Nutzer für einen alltäglichen Eintrag zu viele Entscheidungen treffen müssen. Product Engineering gleicht beide Seiten fortlaufend ab.',
+          'Für den Betrieb sind geschützte Zugriffe, kontrollierte Releases und nachvollziehbare Fehler wichtig. Pauschale Aussagen über vollständige Sicherheit oder permanente Verfügbarkeit wären dennoch unangemessen. Technische Maßnahmen richten sich nach dem jeweiligen Produktstand und den verarbeiteten Daten. Die maßgeblichen aktuellen Hinweise zur Datenverarbeitung stehen auf der externen Produktwebsite.',
+          'AI-Funktionen werden als Teil des gesamten Produkts bewertet, nicht als isolierter Modellaufruf. Eingaben, Kontext, Ausgabeformat und Korrekturmöglichkeiten müssen zusammenspielen. Variable Ergebnisse dürfen keine medizinische Gewissheit suggerieren. Wo ein Ergebnis nicht sinnvoll eingeordnet werden kann, braucht das Interface erkennbare Grenzen und die Möglichkeit, bei der eigenen Dokumentation zu bleiben.',
+        ],
+      },
+      {
+        title: 'Funktionen und bewusst gesetzte Grenzen',
+        paragraphs: [
+          'Der belegbare Funktionsrahmen umfasst die Dokumentation von Gewichtsverlauf, Mahlzeiten und Routinen. Gewichtseinträge werden zeitlich eingeordnet, Mahlzeiten können für die persönliche Aufzeichnung festgehalten und Routinen als wiederkehrende Handlungen dokumentiert werden. Diese Bereiche bilden den Kern des aktuell beschriebenen Produkts.',
+          'Die Funktionen versprechen keine Gewichtsabnahme, keine Verbesserung einer Erkrankung und keinen bestimmten Trainingserfolg. Aus zeitlich zusammen dargestellten Informationen lässt sich nicht automatisch eine Ursache ableiten. Auch eine AI-gestützte Aufbereitung ersetzt keine fachliche Untersuchung. Nutzer müssen Ergebnisse und Einträge entsprechend ihrem persönlichen Kontext einordnen.',
+          'Geplante oder denkbare Erweiterungen werden in dieser Case Study nicht als vorhanden dargestellt. Maßgeblich für den aktuellen Leistungsumfang ist <a href="https://weightcoach-ai.de" target="_blank" rel="noreferrer">weightcoach-ai.de</a>. Dort befinden sich auch die jeweils aktuellen Bedingungen für Nutzung und Datenschutz. Diese Trennung verhindert, dass Entwicklungsüberlegungen mit einem verfügbaren Produktangebot verwechselt werden.',
+          'Der Status „live“ bedeutet, dass WeightCoach AI bereitgestellt wird. Er enthält keine Aussage über Nutzerzahl, Umsatz, Bindung oder Wirkung. Solche Kennzahlen werden hier nicht ergänzt, solange keine belastbare und zur Veröffentlichung geeignete Grundlage vorliegt. Die Case Study dokumentiert Produktarbeit und keine nachträglich konstruierte Erfolgsgeschichte.',
+        ],
+      },
+      {
+        title: 'Lernprozess: reale Nutzung verändert die Fragen',
+        paragraphs: [
+          'Mit einem Live-Produkt verschiebt sich die Produktarbeit. Vor dem Launch stehen Annahmen über Abläufe und technische Machbarkeit im Vordergrund. Im Betrieb werden zusätzlich Wartbarkeit, wiederkehrende Nutzung und die Folgen kleiner Änderungen sichtbar. Eine neue Eingabe beeinflusst möglicherweise Datenmodell, Navigation und spätere Rückblicke zugleich.',
+          'Der Lernprozess besteht daher nicht aus der ungefilterten Übernahme jedes Funktionswunsches. Beobachtungen werden zunächst dem zugrunde liegenden Problem zugeordnet. Liegt eine Schwierigkeit an unklarer Sprache, zu vielen Schritten, fehlender Information oder einem technischen Fehler? Erst danach lässt sich entscheiden, ob eine Änderung am Interface, an der Logik oder an der Architektur erforderlich ist.',
+          'Diese Arbeitsweise entspricht einem fokussierten <a href="/ai-mvp-entwicklung">AI-MVP</a>, auch wenn ein Live-Produkt darüber hinaus fortlaufenden Betrieb benötigt. Eine begrenzte Version soll eine zentrale Annahme prüfbar machen. Sie ist kein verkleinertes Wunschprodukt mit beliebig reduzierter Qualität. Notwendige Datenwege und ein verständlicher Kernablauf müssen tatsächlich funktionieren.',
+        ],
+      },
+      {
+        title: 'Nächste Schritte ohne vorweggenommene Roadmap',
+        paragraphs: [
+          'Die nächsten Schritte für WeightCoach AI werden aus dem aktuellen Produktkern, technischen Anforderungen und nachvollziehbaren Beobachtungen abgeleitet. Diese Case Study veröffentlicht keine feste Roadmap und nennt keine Funktionen, deren Umsetzung oder Termin nicht belastbar feststeht. Produktentwicklung bleibt eine Folge begründeter Entscheidungen statt einer möglichst langen Ankündigungsliste.',
+          'Priorität haben Änderungen, die Verständlichkeit, verlässliche Dokumentation oder Betrieb des bestehenden Kerns unterstützen. Neue Möglichkeiten müssen mit vorhandenen Daten und Abläufen vereinbar sein. Bei AI-Funktionen werden neben der Ausgabequalität auch Kosten, Laufzeit, Datenschutz und geeignete menschliche Kontrolle betrachtet. Die Seite <a href="/ai-saas-entwicklung">AI-SaaS-Entwicklung</a> beschreibt diesen Zusammenhang ausführlicher.',
+          'WeightCoach AI liefert filzinger.lab reale Erfahrung mit Entwicklung und Betrieb eines eigenen Produkts. Diese Erfahrung wird nicht als Beweis für übertragbaren Markterfolg verwendet. Neue Vorhaben benötigen weiterhin eigene Discovery, Zielgruppenverständnis und technische Prüfung. Sie kann jedoch helfen, relevante Produktfragen früher zu erkennen und abstrakte Entscheidungen an praktischen Folgen zu messen.',
+          'Interessierte können WeightCoach AI über die Produktwebsite im aktuellen Stand ansehen. Dort ist ersichtlich, welches Angebot tatsächlich verfügbar ist. Für ein eigenes Produktvorhaben beginnt die Zusammenarbeit mit Problem, Zielgruppe und größter offener Annahme – nicht mit einem versprochenen Ergebnis oder einer kopierten Lösung.',
         ],
       },
     ],

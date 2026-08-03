@@ -72,7 +72,30 @@ const studioRoutes: RouteSeo[] = studioSeoPages.map((page) => {
           creator: { '@type': 'Organization', name: 'filzinger.lab', url: `${siteUrl}/` },
           sameAs: 'https://weightcoach-ai.de',
         }
-      : {
+      : page.schemaType === 'Article'
+        ? {
+            '@context': 'https://schema.org',
+            '@graph': [
+              {
+                '@type': 'Article',
+                headline: page.headline,
+                description: page.description,
+                url,
+                mainEntityOfPage: url,
+                author: { '@type': 'Organization', name: 'filzinger.lab', url: `${siteUrl}/` },
+                publisher: { '@type': 'Organization', name: 'filzinger.lab', url: `${siteUrl}/` },
+                about: { '@type': 'SoftwareApplication', name: 'WeightCoach AI', url: 'https://weightcoach-ai.de' },
+              },
+              {
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  { '@type': 'ListItem', position: 1, name: 'Startseite', item: `${siteUrl}/` },
+                  { '@type': 'ListItem', position: 2, name: 'WeightCoach AI Case Study', item: url },
+                ],
+              },
+            ],
+          }
+        : {
         '@context': 'https://schema.org',
         '@type': page.schemaType,
         name: page.headline,

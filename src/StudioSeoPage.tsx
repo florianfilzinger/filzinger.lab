@@ -3,6 +3,9 @@ import type { StudioSeoPage as StudioSeoPageData } from './studioSeoData';
 const contactEmail = 'filzinger.lab@gmail.com';
 
 export function StudioSeoPage({ page }: { page: StudioSeoPageData }) {
+  const ctaHref = page.ctaHref ?? `mailto:${contactEmail}?subject=${encodeURIComponent(page.subject)}`;
+  const ctaLabel = page.ctaLabel ?? 'Produktidee besprechen';
+
   return (
     <>
       <section className="hero">
@@ -11,7 +14,7 @@ export function StudioSeoPage({ page }: { page: StudioSeoPageData }) {
           <h1>{page.headline}</h1>
           <p className="hero-copy">{page.intro}</p>
           <div className="hero-actions">
-            <a className="primary-link" href={`mailto:${contactEmail}?subject=${encodeURIComponent(page.subject)}`}>Produktidee besprechen</a>
+            <a className="primary-link" href={ctaHref}>{ctaLabel}</a>
             <a className="secondary-link" href="#inhalte">Mehr erfahren</a>
           </div>
         </div>
@@ -31,7 +34,7 @@ export function StudioSeoPage({ page }: { page: StudioSeoPageData }) {
           <p className="eyebrow">Product Studio</p>
           <h2>{page.ctaTitle}</h2>
           <p>{page.ctaText}</p>
-          <a href={`mailto:${contactEmail}?subject=${encodeURIComponent(page.subject)}`}>Produktidee besprechen</a>
+          <a href={ctaHref}>{ctaLabel}</a>
         </section>
       </main>
     </>
