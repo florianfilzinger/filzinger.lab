@@ -289,23 +289,13 @@ export function App({ initialPathname }: { initialPathname?: string } = {}) {
       )}
 
       <footer className="site-footer">
-        <span>© 2026 filzinger.lab</span>
-        <nav aria-label="Footer">
-          <a href="/product-studio">Product Studio</a>
-          <a href="/produkte">Produkte</a>
-          <a href="/case-studies">Case Studies</a>
-          <a href="/wissen">Wissen</a>
-          <a href="/#about">Über mich</a>
-          {ecosystemLinks.map((link) => (
-            <a href={link.href} key={link.href} target="_blank" rel="noreferrer">{link.label}</a>
-          ))}
-          <a href="/impressum">Impressum</a>
-          <a href="/datenschutz">Datenschutz</a>
-          <a href="/nutzungsbedingungen">Nutzungsbedingungen</a>
-          <a href={`mailto:${contactEmail}`}>Kontakt</a>
-          <a href="https://www.linkedin.com/in/florian-filzinger" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="https://www.instagram.com/filzinger_ai/" target="_blank" rel="noopener noreferrer" aria-label="Filzinger AI auf Instagram">Instagram</a>
-        </nav>
+        <div className="site-footer__brand"><span>© 2026 filzinger.lab</span><span className="site-footer__tagline">AI Product Studio</span></div>
+        <div className="site-footer__groups">
+          <nav aria-label="Navigation"><span className="site-footer__label">Navigation</span><a href="/product-studio">Product Studio</a><a href="/produkte">Produkte</a><a href="/case-studies">Case Studies</a><a href="/wissen">Wissen</a><a href="/#about">Über mich</a></nav>
+          <nav aria-label="Projekte"><span className="site-footer__label">Projekte</span>{ecosystemLinks.map((link) => (<a href={link.href} key={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>))}</nav>
+          <nav aria-label="Social Media"><span className="site-footer__label">Social</span><a href="https://www.linkedin.com/in/florian-filzinger" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.instagram.com/filzinger_ai/" target="_blank" rel="noopener noreferrer" aria-label="Filzinger AI auf Instagram">Instagram</a></nav>
+          <nav aria-label="Rechtliches"><span className="site-footer__label">Rechtliches</span><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="/nutzungsbedingungen">Nutzungsbedingungen</a><a href={`mailto:${contactEmail}`}>Kontakt</a></nav>
+        </div>
       </footer>
     </div>
   );
