@@ -28,7 +28,7 @@ const homeRoute: RouteSeo = {
     '@graph': [
       {
         '@type': 'Person', '@id': personId, name: 'Florian Filzinger', url: personUrl,
-        sameAs: ['https://www.linkedin.com/in/florian-filzinger'],
+        sameAs: ['https://www.linkedin.com/in/florian-filzinger', 'https://www.instagram.com/filzinger_ai/'],
       },
       {
         '@type': 'Brand', '@id': brandId, name: 'filzinger.lab', url: `${siteUrl}/`, logo: `${siteUrl}/favicon.svg`,
@@ -66,7 +66,7 @@ function withEcosystemGraph(url: string, page: { headline: string; description: 
   return {
     '@context': 'https://schema.org',
     '@graph': [
-      { '@type': 'Person', '@id': personId, name: 'Florian Filzinger', url: personUrl, sameAs: ['https://www.linkedin.com/in/florian-filzinger'] },
+      { '@type': 'Person', '@id': personId, name: 'Florian Filzinger', url: personUrl, sameAs: ['https://www.linkedin.com/in/florian-filzinger', 'https://www.instagram.com/filzinger_ai/'] },
       { '@type': 'Brand', '@id': brandId, name: 'filzinger.lab', url: `${siteUrl}/`, logo: `${siteUrl}/favicon.svg` },
       { '@type': 'Organization', '@id': organizationId, name: 'filzinger.lab', url: `${siteUrl}/`, founder: { '@id': personId }, brand: { '@id': brandId } },
       { '@type': 'WebSite', '@id': websiteId, name: 'filzinger.lab', url: `${siteUrl}/`, publisher: { '@id': organizationId }, creator: { '@id': personId }, inLanguage: 'de-DE' },

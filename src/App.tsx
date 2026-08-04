@@ -304,6 +304,7 @@ export function App({ initialPathname }: { initialPathname?: string } = {}) {
           <a href="/nutzungsbedingungen">Nutzungsbedingungen</a>
           <a href={`mailto:${contactEmail}`}>Kontakt</a>
           <a href="https://www.linkedin.com/in/florian-filzinger" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://www.instagram.com/filzinger_ai/" target="_blank" rel="noopener noreferrer" aria-label="Filzinger AI auf Instagram">Instagram</a>
         </nav>
       </footer>
     </div>

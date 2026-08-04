@@ -1004,6 +1004,11 @@ main {
   color: var(--primary);
 }
 
+.site-footer a:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
 .directory-main { padding-bottom: 72px; }
 .directory-hero { min-height: auto; padding-bottom: 72px; }
 .directory-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
